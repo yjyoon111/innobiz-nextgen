@@ -1,0 +1,1227 @@
+window.DASHBOARD_DATA = {
+  "meta": {
+    "generated_at": "2026-06-02 17:21:27",
+    "completed_week_range": "1~4주차",
+    "completed_weeks": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "source_files": {
+      "settlement_3rd": "차경 3기 정산서.xlsx",
+      "settlement_4th": "차경 4기 정산서.xlsx",
+      "budget_4th": "예산계획 4.xlsx"
+    }
+  },
+  "kpis": {
+    "income_total": 95995080,
+    "spent_current": 18348000,
+    "spent_prev_same_period": 25487231,
+    "diff_amount": -7139231,
+    "diff_rate": -0.28011010690019644,
+    "budget_usage_rate": 0.19113479565827748,
+    "remaining_budget": 77647080
+  },
+  "weekly_comparison": [
+    {
+      "week": 1,
+      "week_label": "1주차",
+      "prev_amount": 4523900,
+      "current_amount": 6944900,
+      "diff_amount": 2421000,
+      "diff_rate": 0.5351577178982736
+    },
+    {
+      "week": 2,
+      "week_label": "2주차",
+      "prev_amount": 3614200,
+      "current_amount": 3411500,
+      "diff_amount": -202700,
+      "diff_rate": -0.056084334015826465
+    },
+    {
+      "week": 3,
+      "week_label": "3주차",
+      "prev_amount": 3864100,
+      "current_amount": 4207100,
+      "diff_amount": 343000,
+      "diff_rate": 0.08876581868999249
+    },
+    {
+      "week": 4,
+      "week_label": "4주차",
+      "prev_amount": 13485031,
+      "current_amount": 3784500,
+      "diff_amount": -9700531,
+      "diff_rate": -0.7193554838694847
+    }
+  ],
+  "category_comparison": [
+    {
+      "category": "강의/진행/인력",
+      "prev_amount": 12700000,
+      "current_amount": 13750000,
+      "diff_amount": 1050000,
+      "diff_rate": 0.08267716535433071
+    },
+    {
+      "category": "식음료",
+      "prev_amount": 4566661,
+      "current_amount": 2559700,
+      "diff_amount": -2006961,
+      "diff_rate": -0.4394810562903618
+    },
+    {
+      "category": "준비/인쇄/물품",
+      "prev_amount": 854000,
+      "current_amount": 2038300,
+      "diff_amount": 1184300,
+      "diff_rate": 1.386768149882904
+    },
+    {
+      "category": "기타",
+      "prev_amount": 93370,
+      "current_amount": 0,
+      "diff_amount": -93370,
+      "diff_rate": -1.0
+    },
+    {
+      "category": "장소/운영",
+      "prev_amount": 7273200,
+      "current_amount": 0,
+      "diff_amount": -7273200,
+      "diff_rate": -1.0
+    }
+  ],
+  "budget_vs_actual": [
+    {
+      "category": "실수입 총액",
+      "budget": 95995080,
+      "spent": 18348000,
+      "remain": 77647080,
+      "usage_rate": 0.19113479565827748
+    }
+  ],
+  "income_summary": [
+    {
+      "category": "교육비",
+      "amount": 81000000
+    },
+    {
+      "category": "해외연수+단독방",
+      "amount": 11410000
+    },
+    {
+      "category": "해외연수",
+      "amount": 3585080
+    }
+  ],
+  "income_rows": [
+    {
+      "name": "박정원",
+      "category": "교육비",
+      "amount": 3500000
+    },
+    {
+      "name": "성현석",
+      "category": "교육비",
+      "amount": 3500000
+    },
+    {
+      "name": "염주승",
+      "category": "교육비",
+      "amount": 3400000
+    },
+    {
+      "name": "한규호",
+      "category": "교육비",
+      "amount": 3400000
+    },
+    {
+      "name": "김미수",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "김영찬",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "김보미",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "김은수",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "김민석",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "김경목",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "강신호",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "박정임",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "류영수",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "김주하",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "백진웅",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "이기택",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "이병관",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "이은솔",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "엄현식",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "이현석",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "임수예",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "임현창",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "임영훈",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "정은정",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "주우형",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "최얼",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "한지희",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "황동석",
+      "category": "교육비",
+      "amount": 2800000
+    },
+    {
+      "name": "정호섭",
+      "category": "해외연수+단독방",
+      "amount": 1600000
+    },
+    {
+      "name": "김경목",
+      "category": "해외연수+단독방",
+      "amount": 1090000
+    },
+    {
+      "name": "강신호",
+      "category": "해외연수+단독방",
+      "amount": 1090000
+    },
+    {
+      "name": "류영수",
+      "category": "해외연수+단독방",
+      "amount": 1090000
+    },
+    {
+      "name": "염주승",
+      "category": "해외연수+단독방",
+      "amount": 1090000
+    },
+    {
+      "name": "김주하",
+      "category": "해외연수+단독방",
+      "amount": 1090000
+    },
+    {
+      "name": "김영찬",
+      "category": "해외연수+단독방",
+      "amount": 1090000
+    },
+    {
+      "name": "이기택",
+      "category": "해외연수+단독방",
+      "amount": 1090000
+    },
+    {
+      "name": "정은정",
+      "category": "해외연수+단독방",
+      "amount": 1090000
+    },
+    {
+      "name": "주우형",
+      "category": "해외연수+단독방",
+      "amount": 1090000
+    },
+    {
+      "name": "김미수",
+      "category": "해외연수",
+      "amount": 990000
+    },
+    {
+      "name": "김민석",
+      "category": "해외연수",
+      "amount": 990000
+    },
+    {
+      "name": "김보미",
+      "category": "해외연수",
+      "amount": 990000
+    },
+    {
+      "name": "황동석",
+      "category": "해외연수",
+      "amount": 448080
+    },
+    {
+      "name": "김은수",
+      "category": "해외연수",
+      "amount": 167000
+    }
+  ],
+  "top_transactions": [
+    {
+      "week_label": "1주차",
+      "date": "2026-05-07",
+      "category": "강의/진행/인력",
+      "raw_category": "강의비",
+      "vendor": "",
+      "detail": "강사비(신제구)",
+      "amount": 3000000
+    },
+    {
+      "week_label": "2주차",
+      "date": "2026-05-14",
+      "category": "강의/진행/인력",
+      "raw_category": "강의비,진행비",
+      "vendor": "",
+      "detail": "강사비,진행비(유일한) *세금계산서 처리",
+      "amount": 3000000
+    },
+    {
+      "week_label": "3주차",
+      "date": "2026-05-21",
+      "category": "강의/진행/인력",
+      "raw_category": "강의비",
+      "vendor": "",
+      "detail": "강사비(류제언) *세금계산서 처리",
+      "amount": 2750000
+    },
+    {
+      "week_label": "4주차",
+      "date": "2026-05-28",
+      "category": "강의/진행/인력",
+      "raw_category": "강의비",
+      "vendor": "",
+      "detail": "강사비(김용진)",
+      "amount": 2000000
+    },
+    {
+      "week_label": "1주차",
+      "date": "2026-03-25",
+      "category": "준비/인쇄/물품",
+      "raw_category": "준비비",
+      "vendor": "레드우드코퍼레이션",
+      "detail": "홍보용 웹포스터, E-브로슈어",
+      "amount": 1193500
+    },
+    {
+      "week_label": "1주차",
+      "date": "2026-05-07",
+      "category": "식음료",
+      "raw_category": "식비",
+      "vendor": "북청집-삼평",
+      "detail": "삼겹살, 맥주, 소주…",
+      "amount": 1144000
+    },
+    {
+      "week_label": "3주차",
+      "date": "2026-05-21",
+      "category": "강의/진행/인력",
+      "raw_category": "진행비",
+      "vendor": "",
+      "detail": "진행비(유일한) *세금계산서 처리",
+      "amount": 1000000
+    },
+    {
+      "week_label": "1주차",
+      "date": "2026-05-07",
+      "category": "강의/진행/인력",
+      "raw_category": "진행비",
+      "vendor": "",
+      "detail": "진행비(유일한)",
+      "amount": 1000000
+    },
+    {
+      "week_label": "4주차",
+      "date": "2026-05-28",
+      "category": "강의/진행/인력",
+      "raw_category": "진행비",
+      "vendor": "",
+      "detail": "진행비(유일한) *세금계산서 처리",
+      "amount": 1000000
+    },
+    {
+      "week_label": "1주차",
+      "date": "2026-04-29",
+      "category": "준비/인쇄/물품",
+      "raw_category": "준비비",
+      "vendor": "행일미디어 백승주",
+      "detail": "교재 제본, 현수막, 배너 제작비",
+      "amount": 464200
+    },
+    {
+      "week_label": "3주차",
+      "date": "2026-05-21",
+      "category": "식음료",
+      "raw_category": "식비",
+      "vendor": "군산오징어",
+      "detail": "석식비",
+      "amount": 393000
+    },
+    {
+      "week_label": "4주차",
+      "date": "2026-05-28",
+      "category": "준비/인쇄/물품",
+      "raw_category": "준비비",
+      "vendor": "행일미디어 백승주",
+      "detail": "2권 교재 제본, 회원수첩",
+      "amount": 380600
+    },
+    {
+      "week_label": "2주차",
+      "date": "2026-05-14",
+      "category": "식음료",
+      "raw_category": "식비",
+      "vendor": "우림닭갈비",
+      "detail": "치즈닭갈비 16, 콜라 5, 볶음밥 6, 소주 6, 맥주 6, 사이다1",
+      "amount": 358000
+    },
+    {
+      "week_label": "4주차",
+      "date": "2026-05-28",
+      "category": "식음료",
+      "raw_category": "식비",
+      "vendor": "피자이딸리아나 분당본점",
+      "detail": "피자 6판",
+      "amount": 175100
+    },
+    {
+      "week_label": "4주차",
+      "date": "2026-05-28",
+      "category": "식음료",
+      "raw_category": "식비",
+      "vendor": "후라이드참잘하는집 수내서현점",
+      "detail": "치킨 6마리(순살2세트, 뼈1세트)",
+      "amount": 105000
+    }
+  ],
+  "current_transactions": [
+    {
+      "week_label": "1주차",
+      "date": "2026-05-07",
+      "category": "강의/진행/인력",
+      "raw_category": "강의비",
+      "vendor": "",
+      "detail": "강사비(신제구)",
+      "amount": 3000000
+    },
+    {
+      "week_label": "1주차",
+      "date": "2026-03-25",
+      "category": "준비/인쇄/물품",
+      "raw_category": "준비비",
+      "vendor": "레드우드코퍼레이션",
+      "detail": "홍보용 웹포스터, E-브로슈어",
+      "amount": 1193500
+    },
+    {
+      "week_label": "1주차",
+      "date": "2026-05-07",
+      "category": "식음료",
+      "raw_category": "식비",
+      "vendor": "북청집-삼평",
+      "detail": "삼겹살, 맥주, 소주…",
+      "amount": 1144000
+    },
+    {
+      "week_label": "1주차",
+      "date": "2026-05-07",
+      "category": "강의/진행/인력",
+      "raw_category": "진행비",
+      "vendor": "",
+      "detail": "진행비(유일한)",
+      "amount": 1000000
+    },
+    {
+      "week_label": "1주차",
+      "date": "2026-04-29",
+      "category": "준비/인쇄/물품",
+      "raw_category": "준비비",
+      "vendor": "행일미디어 백승주",
+      "detail": "교재 제본, 현수막, 배너 제작비",
+      "amount": 464200
+    },
+    {
+      "week_label": "1주차",
+      "date": "2026-05-07",
+      "category": "식음료",
+      "raw_category": "다과비",
+      "vendor": "세븐일레븐 판교이노밸리점",
+      "detail": "다과",
+      "amount": 82200
+    },
+    {
+      "week_label": "1주차",
+      "date": "2026-05-07",
+      "category": "식음료",
+      "raw_category": "다과비",
+      "vendor": "삼성웰스토리 이노밸리카페",
+      "detail": "음료",
+      "amount": 61000
+    },
+    {
+      "week_label": "2주차",
+      "date": "2026-05-14",
+      "category": "강의/진행/인력",
+      "raw_category": "강의비,진행비",
+      "vendor": "",
+      "detail": "강사비,진행비(유일한) *세금계산서 처리",
+      "amount": 3000000
+    },
+    {
+      "week_label": "2주차",
+      "date": "2026-05-14",
+      "category": "식음료",
+      "raw_category": "식비",
+      "vendor": "우림닭갈비",
+      "detail": "치즈닭갈비 16, 콜라 5, 볶음밥 6, 소주 6, 맥주 6, 사이다1",
+      "amount": 358000
+    },
+    {
+      "week_label": "2주차",
+      "date": "2026-05-14",
+      "category": "식음료",
+      "raw_category": "다과비",
+      "vendor": "삼성웰스토리 이노밸리카페",
+      "detail": "아이스 카페라떼 12잔, 아이스아메리카노 21잔",
+      "amount": 52500
+    },
+    {
+      "week_label": "2주차",
+      "date": "2026-05-14",
+      "category": "식음료",
+      "raw_category": "다과비",
+      "vendor": "삼성웰스토리 이노밸리카페",
+      "detail": "따뜻한 아메리카노 1잔",
+      "amount": 1000
+    },
+    {
+      "week_label": "3주차",
+      "date": "2026-05-21",
+      "category": "강의/진행/인력",
+      "raw_category": "강의비",
+      "vendor": "",
+      "detail": "강사비(류제언) *세금계산서 처리",
+      "amount": 2750000
+    },
+    {
+      "week_label": "3주차",
+      "date": "2026-05-21",
+      "category": "강의/진행/인력",
+      "raw_category": "진행비",
+      "vendor": "",
+      "detail": "진행비(유일한) *세금계산서 처리",
+      "amount": 1000000
+    },
+    {
+      "week_label": "3주차",
+      "date": "2026-05-21",
+      "category": "식음료",
+      "raw_category": "식비",
+      "vendor": "군산오징어",
+      "detail": "석식비",
+      "amount": 393000
+    },
+    {
+      "week_label": "3주차",
+      "date": "2026-05-21",
+      "category": "식음료",
+      "raw_category": "다과비",
+      "vendor": "세븐일레븐 판교이노밸리점",
+      "detail": "과자,생수",
+      "amount": 25600
+    },
+    {
+      "week_label": "3주차",
+      "date": "2026-05-21",
+      "category": "식음료",
+      "raw_category": "다과비",
+      "vendor": "삼성웰스토리 이노밸리카페",
+      "detail": "카페라떼 4잔, 아메리카노 8잔 추가 구매",
+      "amount": 24000
+    },
+    {
+      "week_label": "3주차",
+      "date": "2026-05-21",
+      "category": "식음료",
+      "raw_category": "다과비",
+      "vendor": "삼성웰스토리 이노밸리카페",
+      "detail": "카페라떼 4잔, 아메리카노 5잔",
+      "amount": 14500
+    },
+    {
+      "week_label": "4주차",
+      "date": "2026-05-28",
+      "category": "강의/진행/인력",
+      "raw_category": "강의비",
+      "vendor": "",
+      "detail": "강사비(김용진)",
+      "amount": 2000000
+    },
+    {
+      "week_label": "4주차",
+      "date": "2026-05-28",
+      "category": "강의/진행/인력",
+      "raw_category": "진행비",
+      "vendor": "",
+      "detail": "진행비(유일한) *세금계산서 처리",
+      "amount": 1000000
+    },
+    {
+      "week_label": "4주차",
+      "date": "2026-05-28",
+      "category": "준비/인쇄/물품",
+      "raw_category": "준비비",
+      "vendor": "행일미디어 백승주",
+      "detail": "2권 교재 제본, 회원수첩",
+      "amount": 380600
+    },
+    {
+      "week_label": "4주차",
+      "date": "2026-05-28",
+      "category": "식음료",
+      "raw_category": "식비",
+      "vendor": "피자이딸리아나 분당본점",
+      "detail": "피자 6판",
+      "amount": 175100
+    },
+    {
+      "week_label": "4주차",
+      "date": "2026-05-28",
+      "category": "식음료",
+      "raw_category": "식비",
+      "vendor": "후라이드참잘하는집 수내서현점",
+      "detail": "치킨 6마리(순살2세트, 뼈1세트)",
+      "amount": 105000
+    },
+    {
+      "week_label": "4주차",
+      "date": "2026-05-28",
+      "category": "식음료",
+      "raw_category": "식비",
+      "vendor": "세븐일레븐 판교이노밸리점",
+      "detail": "석식 음료 추가",
+      "amount": 64600
+    },
+    {
+      "week_label": "4주차",
+      "date": "2026-05-28",
+      "category": "식음료",
+      "raw_category": "다과비",
+      "vendor": "삼성웰스토리 이노밸리카페",
+      "detail": "음료",
+      "amount": 37000
+    },
+    {
+      "week_label": "4주차",
+      "date": "2026-05-28",
+      "category": "식음료",
+      "raw_category": "다과비",
+      "vendor": "세븐일레븐 판교이노밸리점",
+      "detail": "생수 40개, 위생장갑 48매",
+      "amount": 22200
+    }
+  ],
+  "prev_transactions": [
+    {
+      "week_label": "1주차",
+      "date": "",
+      "category": "식음료",
+      "raw_category": "다과 및 식비",
+      "vendor": "북청집",
+      "detail": "식비",
+      "amount": 2023000
+    },
+    {
+      "week_label": "1주차",
+      "date": "",
+      "category": "준비/인쇄/물품",
+      "raw_category": "인쇄비",
+      "vendor": "행일미디어",
+      "detail": "교재인쇄비",
+      "amount": 854000
+    },
+    {
+      "week_label": "1주차",
+      "date": "",
+      "category": "강의/진행/인력",
+      "raw_category": "강사료",
+      "vendor": "정형권",
+      "detail": "강사료",
+      "amount": 500000
+    },
+    {
+      "week_label": "1주차",
+      "date": "",
+      "category": "강의/진행/인력",
+      "raw_category": "강사료",
+      "vendor": "정주용",
+      "detail": "액션런닝",
+      "amount": 500000
+    },
+    {
+      "week_label": "1주차",
+      "date": "",
+      "category": "강의/진행/인력",
+      "raw_category": "강사료",
+      "vendor": "장재욱",
+      "detail": "액션런닝",
+      "amount": 500000
+    },
+    {
+      "week_label": "1주차",
+      "date": "",
+      "category": "식음료",
+      "raw_category": "다과 및 식비",
+      "vendor": "세븐일레븐",
+      "detail": "다과비",
+      "amount": 77300
+    },
+    {
+      "week_label": "1주차",
+      "date": "",
+      "category": "식음료",
+      "raw_category": "다과 및 식비",
+      "vendor": "델리판교이노밸리",
+      "detail": "다과비",
+      "amount": 44600
+    },
+    {
+      "week_label": "1주차",
+      "date": "",
+      "category": "식음료",
+      "raw_category": "다과 및 식비",
+      "vendor": "양평해장국",
+      "detail": "식비",
+      "amount": 25000
+    },
+    {
+      "week_label": "2주차",
+      "date": "",
+      "category": "강의/진행/인력",
+      "raw_category": "강사료",
+      "vendor": "김용진",
+      "detail": "강사료",
+      "amount": 2000000
+    },
+    {
+      "week_label": "2주차",
+      "date": "",
+      "category": "식음료",
+      "raw_category": "다과 및 식비",
+      "vendor": "우림 닭갈비",
+      "detail": "식비",
+      "amount": 557000
+    },
+    {
+      "week_label": "2주차",
+      "date": "",
+      "category": "강의/진행/인력",
+      "raw_category": "강사료",
+      "vendor": "정주용",
+      "detail": "액션런닝",
+      "amount": 500000
+    },
+    {
+      "week_label": "2주차",
+      "date": "",
+      "category": "강의/진행/인력",
+      "raw_category": "강사료",
+      "vendor": "장재욱",
+      "detail": "액션런닝",
+      "amount": 500000
+    },
+    {
+      "week_label": "2주차",
+      "date": "",
+      "category": "식음료",
+      "raw_category": "다과 및 식비",
+      "vendor": "세븐일레븐",
+      "detail": "다과비",
+      "amount": 57200
+    },
+    {
+      "week_label": "3주차",
+      "date": "",
+      "category": "강의/진행/인력",
+      "raw_category": "강사료",
+      "vendor": "류재언",
+      "detail": "강사료",
+      "amount": 2750000
+    },
+    {
+      "week_label": "3주차",
+      "date": "",
+      "category": "강의/진행/인력",
+      "raw_category": "강사료",
+      "vendor": "정주용",
+      "detail": "액션런닝",
+      "amount": 500000
+    },
+    {
+      "week_label": "3주차",
+      "date": "",
+      "category": "강의/진행/인력",
+      "raw_category": "강사료",
+      "vendor": "장재욱",
+      "detail": "액션런닝",
+      "amount": 500000
+    },
+    {
+      "week_label": "3주차",
+      "date": "",
+      "category": "식음료",
+      "raw_category": "다과 및 식비",
+      "vendor": "세븐일레븐",
+      "detail": "다과비",
+      "amount": 57200
+    },
+    {
+      "week_label": "3주차",
+      "date": "",
+      "category": "식음료",
+      "raw_category": "다과 및 식비",
+      "vendor": "군산오징어",
+      "detail": "식비",
+      "amount": 36000
+    },
+    {
+      "week_label": "3주차",
+      "date": "",
+      "category": "식음료",
+      "raw_category": "다과 및 식비",
+      "vendor": "이노밸리 카페",
+      "detail": "다과비",
+      "amount": 20900
+    },
+    {
+      "week_label": "4주차",
+      "date": "",
+      "category": "장소/운영",
+      "raw_category": "워크숍",
+      "vendor": "알펜시아리조트",
+      "detail": "숙박",
+      "amount": 5264200
+    },
+    {
+      "week_label": "4주차",
+      "date": "",
+      "category": "강의/진행/인력",
+      "raw_category": "강사료",
+      "vendor": "레크레이션",
+      "detail": "특강료",
+      "amount": 2450000
+    },
+    {
+      "week_label": "4주차",
+      "date": "",
+      "category": "장소/운영",
+      "raw_category": "워크숍",
+      "vendor": "뉴대진관광",
+      "detail": "임차료",
+      "amount": 2000000
+    },
+    {
+      "week_label": "4주차",
+      "date": "",
+      "category": "강의/진행/인력",
+      "raw_category": "강사료",
+      "vendor": "장재욱",
+      "detail": "강사료",
+      "amount": 1000000
+    },
+    {
+      "week_label": "4주차",
+      "date": "",
+      "category": "식음료",
+      "raw_category": "워크숍",
+      "vendor": "사계절시골밥상",
+      "detail": "식비",
+      "amount": 716000
+    },
+    {
+      "week_label": "4주차",
+      "date": "",
+      "category": "강의/진행/인력",
+      "raw_category": "강사료",
+      "vendor": "정주용",
+      "detail": "액션런닝",
+      "amount": 500000
+    },
+    {
+      "week_label": "4주차",
+      "date": "",
+      "category": "강의/진행/인력",
+      "raw_category": "강사료",
+      "vendor": "장재욱",
+      "detail": "액션런닝",
+      "amount": 500000
+    },
+    {
+      "week_label": "4주차",
+      "date": "",
+      "category": "식음료",
+      "raw_category": "워크숍",
+      "vendor": "오대산서울",
+      "detail": "식비",
+      "amount": 446000
+    },
+    {
+      "week_label": "4주차",
+      "date": "",
+      "category": "식음료",
+      "raw_category": "워크숍",
+      "vendor": "클라우드",
+      "detail": "식비",
+      "amount": 381000
+    },
+    {
+      "week_label": "4주차",
+      "date": "",
+      "category": "기타",
+      "raw_category": "워크숍",
+      "vendor": "LIG",
+      "detail": "보험료",
+      "amount": 93370
+    },
+    {
+      "week_label": "4주차",
+      "date": "",
+      "category": "식음료",
+      "raw_category": "워크숍",
+      "vendor": "CU 알펜시아",
+      "detail": "다과비",
+      "amount": 63000
+    },
+    {
+      "week_label": "4주차",
+      "date": "",
+      "category": "식음료",
+      "raw_category": "워크숍",
+      "vendor": "신세계",
+      "detail": "다과비",
+      "amount": 62461
+    },
+    {
+      "week_label": "4주차",
+      "date": "",
+      "category": "장소/운영",
+      "raw_category": "워크숍",
+      "vendor": "월정사입장권",
+      "detail": "입장료",
+      "amount": 9000
+    }
+  ],
+  "attendance": {
+    "available": true,
+    "source_file": "차경 4기 정산서.xlsx",
+    "weekly": [
+      {
+        "week": 1,
+        "week_label": "1주차",
+        "date": "2026-05-07",
+        "attend": 20,
+        "absent": 7,
+        "rate": 0.7407407407407407
+      },
+      {
+        "week": 2,
+        "week_label": "2주차",
+        "date": "2026-05-14",
+        "attend": 21,
+        "absent": 6,
+        "rate": 0.7777777777777778
+      },
+      {
+        "week": 3,
+        "week_label": "3주차",
+        "date": "2026-05-21",
+        "attend": 19,
+        "absent": 9,
+        "rate": 0.6785714285714286
+      },
+      {
+        "week": 4,
+        "week_label": "4주차",
+        "date": "2026-05-28",
+        "attend": 18,
+        "absent": 10,
+        "rate": 0.6428571428571429
+      }
+    ],
+    "members_all": [
+      {
+        "name": "김은수",
+        "company": "제이이솔루션 주식회사",
+        "attend_count": 1,
+        "check_count": 3,
+        "rate": 0.3333333333333333
+      },
+      {
+        "name": "염주승",
+        "company": "삼흥산업개발",
+        "attend_count": 1,
+        "check_count": 3,
+        "rate": 0.3333333333333333
+      },
+      {
+        "name": "정은정",
+        "company": "주식회사 콤위즈",
+        "attend_count": 1,
+        "check_count": 3,
+        "rate": 0.3333333333333333
+      },
+      {
+        "name": "최얼",
+        "company": "(주)시디피우정",
+        "attend_count": 1,
+        "check_count": 3,
+        "rate": 0.3333333333333333
+      },
+      {
+        "name": "황동석",
+        "company": "가능성특허법률사무소",
+        "attend_count": 1,
+        "check_count": 3,
+        "rate": 0.3333333333333333
+      },
+      {
+        "name": "황지영",
+        "company": "",
+        "attend_count": 1,
+        "check_count": 3,
+        "rate": 0.3333333333333333
+      },
+      {
+        "name": "김보미",
+        "company": "주식회사 쉬엔비",
+        "attend_count": 2,
+        "check_count": 3,
+        "rate": 0.6666666666666666
+      },
+      {
+        "name": "류영수",
+        "company": "㈜지비티코리아",
+        "attend_count": 2,
+        "check_count": 3,
+        "rate": 0.6666666666666666
+      },
+      {
+        "name": "백진웅",
+        "company": "(주)케이벨로",
+        "attend_count": 2,
+        "check_count": 3,
+        "rate": 0.6666666666666666
+      },
+      {
+        "name": "성현석",
+        "company": "(주)넥센서",
+        "attend_count": 2,
+        "check_count": 3,
+        "rate": 0.6666666666666666
+      },
+      {
+        "name": "엄현식",
+        "company": "아트원 주식회사",
+        "attend_count": 2,
+        "check_count": 3,
+        "rate": 0.6666666666666666
+      },
+      {
+        "name": "이병관",
+        "company": "주식회사 아이소브",
+        "attend_count": 2,
+        "check_count": 3,
+        "rate": 0.6666666666666666
+      },
+      {
+        "name": "임수예",
+        "company": "(주)나이스레이저",
+        "attend_count": 2,
+        "check_count": 3,
+        "rate": 0.6666666666666666
+      },
+      {
+        "name": "임영훈",
+        "company": "주식회사 저스템",
+        "attend_count": 2,
+        "check_count": 3,
+        "rate": 0.6666666666666666
+      },
+      {
+        "name": "임현창",
+        "company": "주식회사 신정테크",
+        "attend_count": 2,
+        "check_count": 3,
+        "rate": 0.6666666666666666
+      },
+      {
+        "name": "한규호",
+        "company": "(주)제우스켐",
+        "attend_count": 2,
+        "check_count": 3,
+        "rate": 0.6666666666666666
+      },
+      {
+        "name": "김주하",
+        "company": "(주)투데이칩스",
+        "attend_count": 1,
+        "check_count": 1,
+        "rate": 1.0
+      },
+      {
+        "name": "강신호",
+        "company": "(주)페타네트워크",
+        "attend_count": 3,
+        "check_count": 3,
+        "rate": 1.0
+      },
+      {
+        "name": "김경목",
+        "company": "파르팜",
+        "attend_count": 3,
+        "check_count": 3,
+        "rate": 1.0
+      },
+      {
+        "name": "김미수",
+        "company": "주식회사와이엠알티씨",
+        "attend_count": 3,
+        "check_count": 3,
+        "rate": 1.0
+      },
+      {
+        "name": "김민석",
+        "company": "주식회사 현성베스코",
+        "attend_count": 3,
+        "check_count": 3,
+        "rate": 1.0
+      },
+      {
+        "name": "김영찬",
+        "company": "(주)에스엠테크",
+        "attend_count": 3,
+        "check_count": 3,
+        "rate": 1.0
+      },
+      {
+        "name": "박정원",
+        "company": "(주)애드테크",
+        "attend_count": 3,
+        "check_count": 3,
+        "rate": 1.0
+      },
+      {
+        "name": "박정임",
+        "company": "(주)제이앤제이건설산업개발",
+        "attend_count": 3,
+        "check_count": 3,
+        "rate": 1.0
+      },
+      {
+        "name": "이기택",
+        "company": "삼도관세법인",
+        "attend_count": 3,
+        "check_count": 3,
+        "rate": 1.0
+      },
+      {
+        "name": "이현석",
+        "company": "국제웨딩컨벤션",
+        "attend_count": 3,
+        "check_count": 3,
+        "rate": 1.0
+      },
+      {
+        "name": "주우형",
+        "company": "(주)유진인프라코어",
+        "attend_count": 3,
+        "check_count": 3,
+        "rate": 1.0
+      },
+      {
+        "name": "한지희",
+        "company": "(주)비씨상사",
+        "attend_count": 3,
+        "check_count": 3,
+        "rate": 1.0
+      }
+    ]
+  }
+};
