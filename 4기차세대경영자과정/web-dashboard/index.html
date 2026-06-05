@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
     />
-    <link rel="stylesheet" href="./styles.css" />
+    <link rel="stylesheet" href="./styles.css?v=20260605a" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
   </head>
   <body>
@@ -63,18 +63,9 @@
         </article>
         <article class="panel">
           <h2>주차별 출석률</h2>
+          <p class="panel-note">점 위에만 커서를 올리면 출석 인원과 정확한 출석률이 보입니다.</p>
           <canvas id="attendanceChart"></canvas>
         </article>
-      </section>
-
-      <section class="panel insights-panel">
-        <div class="panel-headline">
-          <div>
-            <h2>보고서용 인사이트</h2>
-            <p class="panel-note">보고서 문장으로 바로 옮기기 좋은 핵심 포인트를 자동 정리합니다.</p>
-          </div>
-        </div>
-        <ul id="insight-list" class="insight-list"></ul>
       </section>
 
       <section class="chart-grid">
@@ -92,18 +83,20 @@
             </div>
             <div class="table-toolbar">
               <input id="attendance-search" class="toolbar-input" type="search" placeholder="이름/업체 검색" />
-              <select id="attendance-sort" class="toolbar-select">
-                <option value="rate_desc">출석률 높은 순</option>
-                <option value="rate_asc">출석률 낮은 순</option>
-                <option value="attend_desc">출석횟수 많은 순</option>
-                <option value="name_asc">이름순</option>
-              </select>
-              <button id="attendance-more" class="more-btn" type="button">더보기</button>
-              <span id="attendance-count" class="table-count"></span>
+            <select id="attendance-sort" class="toolbar-select">
+              <option value="rate_desc">출석률 높은 순</option>
+              <option value="rate_asc">출석률 낮은 순</option>
+              <option value="attend_desc">출석횟수 많은 순</option>
+              <option value="name_asc">이름순</option>
+            </select>
             </div>
           </div>
           <div class="table-wrap">
             <table id="attendance-table"></table>
+          </div>
+          <div class="table-footer">
+            <span id="attendance-count" class="table-count"></span>
+            <button id="attendance-more" class="more-btn" type="button">더보기</button>
           </div>
         </article>
       </section>
@@ -123,18 +116,20 @@
             </div>
             <div class="table-toolbar">
               <input id="income-search" class="toolbar-input" type="search" placeholder="이름/구분 검색" />
-              <select id="income-sort" class="toolbar-select">
-                <option value="amount_desc">금액 높은 순</option>
-                <option value="amount_asc">금액 낮은 순</option>
-                <option value="name_asc">이름순</option>
-                <option value="category_asc">구분순</option>
-              </select>
-              <button id="income-more" class="more-btn" type="button">더보기</button>
-              <span id="income-count" class="table-count"></span>
+            <select id="income-sort" class="toolbar-select">
+              <option value="amount_desc">금액 높은 순</option>
+              <option value="amount_asc">금액 낮은 순</option>
+              <option value="name_asc">이름순</option>
+              <option value="category_asc">구분순</option>
+            </select>
             </div>
           </div>
           <div class="table-wrap">
             <table id="income-table"></table>
+          </div>
+          <div class="table-footer">
+            <span id="income-count" class="table-count"></span>
+            <button id="income-more" class="more-btn" type="button">더보기</button>
           </div>
         </article>
       </section>
@@ -153,12 +148,14 @@
               <option value="week_asc">주차순</option>
               <option value="detail_asc">내역순</option>
             </select>
-            <button id="top-more" class="more-btn" type="button">더보기</button>
-            <span id="top-count" class="table-count"></span>
           </div>
         </div>
         <div class="table-wrap">
           <table id="top-table"></table>
+        </div>
+        <div class="table-footer">
+          <span id="top-count" class="table-count"></span>
+          <button id="top-more" class="more-btn" type="button">더보기</button>
         </div>
       </section>
     </main>
@@ -176,7 +173,7 @@
       </div>
     </div>
 
-    <script src="./data/dashboard.js"></script>
-    <script src="./app.js"></script>
+    <script src="./data/dashboard.js?v=20260605c"></script>
+    <script src="./app.js?v=20260605c"></script>
   </body>
 </html>

@@ -198,8 +198,15 @@ function bindAttendanceChart(rows) {
           backgroundColor: "rgba(24,111,101,0.16)",
           fill: true,
           tension: 0.25,
-          pointRadius: 5,
-          pointHoverRadius: 8,
+          pointRadius: 10,
+          pointHoverRadius: 12,
+          pointHitRadius: 0,
+          pointBorderWidth: 3,
+          pointBorderColor: "#186f65",
+          pointBackgroundColor: "#f7f5f0",
+          pointHoverBorderWidth: 4,
+          pointHoverBorderColor: "#0f5d55",
+          pointHoverBackgroundColor: "#186f65",
         },
       ],
     },
@@ -207,14 +214,34 @@ function bindAttendanceChart(rows) {
       responsive: true,
       maintainAspectRatio: false,
       animation: false,
+      interaction: {
+        mode: "index",
+        intersect: false,
+        axis: "x",
+      },
+      hover: {
+        mode: "index",
+        intersect: false,
+      },
+      elements: {
+        point: {
+          radius: 10,
+          hoverRadius: 12,
+          hitRadius: 0,
+        },
+      },
       plugins: {
         tooltip: {
+          enabled: true,
+          displayColors: false,
+          mode: "index",
+          intersect: false,
           callbacks: {
-            title: (items) => `${items[0].label}`,
+            title: (items) => `${items[0].label} 출석률`,
             label: (context) => {
               const row = rows[context.dataIndex];
               const total = Number(row.attend || 0) + Number(row.absent || 0);
-              return [`출석률 ${pfmt.format(context.raw)}%`, `출석 ${fmtCount(row.attend)} / 전체 ${fmtCount(total)}${row.absent ? `, 불참 ${fmtCount(row.absent)}` : ""}`];
+              return `출석 ${fmtCount(row.attend)} / 전체 ${fmtCount(total)} | 출석률 ${pfmt.format(context.raw)}%${row.absent ? ` | 불참 ${fmtCount(row.absent)}` : ""}`;
             },
           },
         },
@@ -434,46 +461,6 @@ function renderBudgetSummary(data) {
   `;
 }
 
-function buildInsights(data) {
-  const maxSpendWeek = [...(data.weekly_comparison || [])].sort((a, b) => b.current_amount - a.current_amount)[0] || {
-    week_label: "-",
-    current_amount: 0,
-  };
-  const biggestIncrease = [...(data.category_comparison || [])].sort((a, b) => b.diff_amount - a.diff_amount)[0] || {
-    category: "-",
-    diff_amount: 0,
-  };
-  const highestAttendanceWeek = [...(data.attendance?.weekly || [])].sort((a, b) => b.rate - a.rate)[0] || {
-    week_label: "-",
-    rate: 0,
-  };
-  const topIncome = [...(data.income_rows || [])].sort((a, b) => b.amount - a.amount)[0] || {
-    name: "-",
-    amount: 0,
-  };
-  const topExpense = [...(data.top_transactions || [])].sort((a, b) => b.amount - a.amount)[0] || {
-    detail: "-",
-    amount: 0,
-  };
-
-  return [
-    `가장 많이 쓴 주차는 ${maxSpendWeek.week_label}로 ${fmtMoney(maxSpendWeek.current_amount)}입니다.`,
-    biggestIncrease.diff_amount > 0
-      ? `전년 대비 가장 많이 늘어난 항목은 ${biggestIncrease.category}로 ${fmtMoney(biggestIncrease.diff_amount)} 증가했습니다.`
-      : `전년 대비 가장 많이 줄어든 항목은 ${biggestIncrease.category}로 ${fmtMoney(Math.abs(biggestIncrease.diff_amount))} 감소했습니다.`,
-    `출석률이 가장 좋은 주차는 ${highestAttendanceWeek.week_label}로 ${pfmt.format(highestAttendanceWeek.rate * 100)}%입니다.`,
-    `실수입 상위 항목은 ${topIncome.name} ${fmtMoney(topIncome.amount)}입니다.`,
-    `지출 상위 항목은 ${topExpense.detail} ${fmtMoney(topExpense.amount)}입니다.`,
-  ];
-}
-
-function renderInsights(data) {
-  const insights = buildInsights(data);
-  byId("insight-list").innerHTML = insights
-    .map((text) => `<li class="insight-item">${escapeHtml(text)}</li>`)
-    .join("");
-}
-
 function renderIncomeSummaryTable(data) {
   const rows = (data.income_summary || []).map((row) => ({
     ...row,
@@ -513,7 +500,6 @@ function init() {
       bindCategoryChart(data.category_comparison);
       bindAttendanceChart(data.attendance.weekly);
       renderBudgetSummary(data);
-      renderInsights(data);
       renderIncomeSummaryTable(data);
 
       renderSimpleTable(

@@ -245,6 +245,19 @@ body {
   background: rgba(24, 111, 101, 0.14);
 }
 
+.table-footer {
+  margin-top: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.table-footer .more-btn {
+  min-width: 120px;
+}
+
 .table-count {
   font-size: 12px;
   color: var(--muted);
@@ -404,28 +417,6 @@ tbody tr:nth-child(even) {
   font-size: 11px;
 }
 
-.insights-panel {
-  margin-top: 18px;
-}
-
-.insight-list {
-  margin: 10px 0 0;
-  padding: 0;
-  list-style: none;
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
-}
-
-.insight-item {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 14px;
-  padding: 12px 14px;
-  font-size: 13px;
-  line-height: 1.55;
-}
-
 .modal {
   display: none;
   position: fixed;
@@ -494,8 +485,7 @@ tbody tr:nth-child(even) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .budget-source-list,
-  .insight-list {
+  .budget-source-list {
     grid-template-columns: 1fr;
   }
 }
