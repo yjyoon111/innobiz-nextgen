@@ -1,4 +1,4 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
@@ -46,14 +46,35 @@
       </section>
 
       <section class="chart-grid">
-        <article class="panel">
-          <h2>실수입 대비 지출 현황</h2>
-          <canvas id="budgetChart"></canvas>
+        <article class="panel budget-panel">
+          <div class="panel-headline">
+            <div>
+              <h2>실수입 대비 지출 현황</h2>
+              <p class="panel-note">실수입, 실지출, 잔액을 한눈에 보이게 정리했습니다.</p>
+            </div>
+          </div>
+          <div id="budget-summary"></div>
+          <div class="budget-table-block">
+            <p class="panel-note budget-table-title">실수입 구성표</p>
+            <div class="table-wrap compact-table">
+              <table id="budget-table"></table>
+            </div>
+          </div>
         </article>
         <article class="panel">
           <h2>주차별 출석률</h2>
           <canvas id="attendanceChart"></canvas>
         </article>
+      </section>
+
+      <section class="panel insights-panel">
+        <div class="panel-headline">
+          <div>
+            <h2>보고서용 인사이트</h2>
+            <p class="panel-note">보고서 문장으로 바로 옮기기 좋은 핵심 포인트를 자동 정리합니다.</p>
+          </div>
+        </div>
+        <ul id="insight-list" class="insight-list"></ul>
       </section>
 
       <section class="chart-grid">
@@ -64,36 +85,78 @@
           </div>
         </article>
         <article class="panel table-panel">
-          <h2>출석률 점검(전체)</h2>
+          <div class="panel-headline table-headline">
+            <div>
+              <h2>출석률 점검(전체)</h2>
+              <p class="panel-note">기본 10명만 먼저 보여주고 더보기로 전체를 펼칠 수 있습니다.</p>
+            </div>
+            <div class="table-toolbar">
+              <input id="attendance-search" class="toolbar-input" type="search" placeholder="이름/업체 검색" />
+              <select id="attendance-sort" class="toolbar-select">
+                <option value="rate_desc">출석률 높은 순</option>
+                <option value="rate_asc">출석률 낮은 순</option>
+                <option value="attend_desc">출석횟수 많은 순</option>
+                <option value="name_asc">이름순</option>
+              </select>
+              <button id="attendance-more" class="more-btn" type="button">더보기</button>
+              <span id="attendance-count" class="table-count"></span>
+            </div>
+          </div>
           <div class="table-wrap">
             <table id="attendance-table"></table>
           </div>
         </article>
       </section>
 
-      <section class="panel table-panel">
-        <h2>카테고리별 비교표</h2>
-        <div class="table-wrap">
-          <table id="category-table"></table>
-        </div>
+      <section class="chart-grid">
+        <article class="panel table-panel">
+          <h2>카테고리별 비교표</h2>
+          <div class="table-wrap">
+            <table id="category-table"></table>
+          </div>
+        </article>
+        <article class="panel table-panel">
+          <div class="panel-headline table-headline">
+            <div>
+              <h2>실수입 구성표</h2>
+              <p class="panel-note">실수입 내역을 항목별로 정리해 지출 판단 기준으로 바로 쓸 수 있습니다.</p>
+            </div>
+            <div class="table-toolbar">
+              <input id="income-search" class="toolbar-input" type="search" placeholder="이름/구분 검색" />
+              <select id="income-sort" class="toolbar-select">
+                <option value="amount_desc">금액 높은 순</option>
+                <option value="amount_asc">금액 낮은 순</option>
+                <option value="name_asc">이름순</option>
+                <option value="category_asc">구분순</option>
+              </select>
+              <button id="income-more" class="more-btn" type="button">더보기</button>
+              <span id="income-count" class="table-count"></span>
+            </div>
+          </div>
+          <div class="table-wrap">
+            <table id="income-table"></table>
+          </div>
+        </article>
       </section>
 
       <section class="panel table-panel">
-        <h2>실수입 대비 지출표</h2>
-        <div class="table-wrap">
-          <table id="budget-table"></table>
+        <div class="panel-headline table-headline">
+          <div>
+            <h2>4기 주요 지출 Top 15</h2>
+            <p class="panel-note">금액 기준 정렬과 검색이 가능한 상세 지출 목록입니다.</p>
+          </div>
+          <div class="table-toolbar">
+            <input id="top-search" class="toolbar-input" type="search" placeholder="주차/내역/거래처 검색" />
+            <select id="top-sort" class="toolbar-select">
+              <option value="amount_desc">금액 높은 순</option>
+              <option value="amount_asc">금액 낮은 순</option>
+              <option value="week_asc">주차순</option>
+              <option value="detail_asc">내역순</option>
+            </select>
+            <button id="top-more" class="more-btn" type="button">더보기</button>
+            <span id="top-count" class="table-count"></span>
+          </div>
         </div>
-      </section>
-
-      <section class="panel table-panel">
-        <h2>실수입내역</h2>
-        <div class="table-wrap">
-          <table id="income-table"></table>
-        </div>
-      </section>
-
-      <section class="panel table-panel">
-        <h2>4기 주요 지출 Top 15</h2>
         <div class="table-wrap">
           <table id="top-table"></table>
         </div>
