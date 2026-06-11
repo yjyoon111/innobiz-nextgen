@@ -348,13 +348,26 @@ def load_attendance(path: Path | None, settlement_4th_path: Path | None = None) 
         member_raw.columns = [str(column).strip().strip("'") for column in member_raw.columns]
         week_columns = member_raw.columns[4:8].tolist()
         attendance_rows = member_raw.copy()
-        attendance_rows = attendance_rows[pd.to_numeric(attendance_rows.iloc[:, 8], errors="coerce").notna()].copy()
-        attendance_rows["attend_count"] = pd.to_numeric(attendance_rows.iloc[:, 8], errors="coerce").fillna(0).astype(int)
-        attendance_rows["check_count"] = pd.to_numeric(attendance_rows.iloc[:, 9], errors="coerce").fillna(0).astype(int)
-        attendance_rows["rate"] = pd.to_numeric(attendance_rows.iloc[:, 10], errors="coerce").fillna(0.0).astype(float)
         attendance_rows["name"] = attendance_rows.iloc[:, 2].fillna("").astype(str).str.strip()
         attendance_rows["company"] = attendance_rows.iloc[:, 1].fillna("").astype(str).str.strip()
+        attendance_rows = attendance_rows[attendance_rows["name"] != ""].copy()
+
+        # 엑셀의 출석횟수/확인회차 수식이 일부 주차를 누락하는 경우가 있어
+        # 주차 컬럼(참석/불참)에서 직접 재계산한다.
+        attend_mask = pd.DataFrame(index=attendance_rows.index)
+        absent_mask = pd.DataFrame(index=attendance_rows.index)
+        for column in week_columns:
+            values = attendance_rows[column].fillna("").astype(str).str.strip()
+            attend_mask[column] = values.isin(["출석", "참석"])
+            absent_mask[column] = values.isin(["불참"])
+        attendance_rows["attend_count"] = attend_mask.sum(axis=1).astype(int)
+        attendance_rows["check_count"] = (attend_mask.sum(axis=1) + absent_mask.sum(axis=1)).astype(int)
+        attendance_rows["rate"] = attendance_rows.apply(
+            lambda row: (row["attend_count"] / row["check_count"]) if row["check_count"] else 0.0, axis=1
+        )
         attendance_rows = attendance_rows[attendance_rows["check_count"] > 0].copy()
+        attend_mask = attend_mask.loc[attendance_rows.index]
+        absent_mask = absent_mask.loc[attendance_rows.index]
 
         weekly_rows = []
         for column in week_columns:
@@ -363,20 +376,27 @@ def load_attendance(path: Path | None, settlement_4th_path: Path | None = None) 
             if not match:
                 continue
             week_num = int(match.group(1))
-            values = attendance_rows[column].fillna("").astype(str).str.strip()
-            attend_count = int(values.isin(["출석", "참석"]).sum())
-            absent_count = int(values.isin(["불참"]).sum())
-            checked = attend_count + absent_count
-            rate = (attend_count / checked) if checked else 0.0
+            attendees = [
+                {"name": row["name"], "company": row["company"]}
+                for _, row in attendance_rows[attend_mask[column]].iterrows()
+            ]
+            absentees = [
+                {"name": row["name"], "company": row["company"]}
+                for _, row in attendance_rows[absent_mask[column]].iterrows()
+            ]
+            checked = len(attendees) + len(absentees)
+            rate = (len(attendees) / checked) if checked else 0.0
             date_match = re.search(r"(\d{4}-\d{2}-\d{2})", text)
             weekly_rows.append(
                 {
                     "week": week_num,
                     "week_label": f"{week_num}주차",
                     "date": date_match.group(1) if date_match else "",
-                    "attend": attend_count,
-                    "absent": absent_count,
+                    "attend": len(attendees),
+                    "absent": len(absentees),
                     "rate": float(rate),
+                    "attendees": attendees,
+                    "absentees": absentees,
                 }
             )
         weekly_rows.sort(key=lambda item: item["week"])

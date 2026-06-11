@@ -230,6 +230,29 @@ function bindAttendanceChart(rows) {
           hitRadius: 0,
         },
       },
+      onClick: (_, elements) => {
+        if (!elements.length) return;
+        const row = rows[elements[0].index];
+        const people = [
+          ...(row.attendees || []).map((person) => ({ ...person, status: "출석" })),
+          ...(row.absentees || []).map((person) => ({ ...person, status: "불참" })),
+        ];
+        if (!people.length) return;
+        openModal(
+          `${row.week_label} 출석 명단 — 출석 ${row.attend}명 / 불참 ${row.absent}명`,
+          [
+            {
+              key: "status",
+              label: "구분",
+              render: (value) =>
+                `<span style="font-weight:700;color:${value === "출석" ? "#0f8b4c" : "#c33b2f"}">${value}</span>`,
+            },
+            { key: "name", label: "성명" },
+            { key: "company", label: "업체명", render: (value) => clipText(value, 18) },
+          ],
+          people,
+        );
+      },
       plugins: {
         tooltip: {
           enabled: true,
@@ -295,8 +318,7 @@ function renderManagedTable(name) {
       columns: [
         { key: "name", label: "성명" },
         { key: "company", label: "업체명", render: (value) => clipText(value, 14) },
-        { key: "attend_count", label: "출석횟수", render: (value) => fmtCount(value) },
-        { key: "check_count", label: "확인회차", render: (value) => `${value}회` },
+        { key: "attend_count", label: "출석횟수", render: (value) => `${value}회` },
         { key: "rate", label: "출석률", render: (value) => fmtPercent(value) },
       ],
     },
