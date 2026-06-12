@@ -202,11 +202,11 @@ function bindAttendanceChart(rows) {
           pointHoverRadius: 12,
           pointHitRadius: 0,
           pointBorderWidth: 3,
-          pointBorderColor: "#186f65",
-          pointBackgroundColor: "#f7f5f0",
+          pointBorderColor: rows.map((row) => (row.trip ? "#c8851f" : "#186f65")),
+          pointBackgroundColor: rows.map((row) => (row.trip ? "#fdf3e3" : "#f7f5f0")),
           pointHoverBorderWidth: 4,
-          pointHoverBorderColor: "#0f5d55",
-          pointHoverBackgroundColor: "#186f65",
+          pointHoverBorderColor: rows.map((row) => (row.trip ? "#a96d12" : "#0f5d55")),
+          pointHoverBackgroundColor: rows.map((row) => (row.trip ? "#c8851f" : "#186f65")),
         },
       ],
     },
@@ -234,18 +234,20 @@ function bindAttendanceChart(rows) {
         if (!elements.length) return;
         const row = rows[elements[0].index];
         const people = [
-          ...(row.attendees || []).map((person) => ({ ...person, status: "출석" })),
+          ...(row.attendees || []).map((person) => ({ ...person, status: row.trip ? "참가" : "출석" })),
           ...(row.absentees || []).map((person) => ({ ...person, status: "불참" })),
         ];
         if (!people.length) return;
         openModal(
-          `${row.week_label} 출석 명단 — 출석 ${row.attend}명 / 불참 ${row.absent}명`,
+          row.trip
+            ? `${row.week_label} 해외연수 참가 명단 — 참가 ${row.attend}명 (출석률 집계 제외)`
+            : `${row.week_label} 출석 명단 — 출석 ${row.attend}명 / 불참 ${row.absent}명`,
           [
             {
               key: "status",
               label: "구분",
               render: (value) =>
-                `<span style="font-weight:700;color:${value === "출석" ? "#0f8b4c" : "#c33b2f"}">${value}</span>`,
+                `<span style="font-weight:700;color:${value === "불참" ? "#c33b2f" : value === "참가" ? "#c8851f" : "#0f8b4c"}">${value}</span>`,
             },
             { key: "name", label: "성명" },
             { key: "company", label: "업체명", render: (value) => clipText(value, 18) },
@@ -260,9 +262,15 @@ function bindAttendanceChart(rows) {
           mode: "index",
           intersect: false,
           callbacks: {
-            title: (items) => `${items[0].label} 출석률`,
+            title: (items) => {
+              const row = rows[items[0].dataIndex];
+              return row.trip ? `${items[0].label} 해외연수 참가율` : `${items[0].label} 출석률`;
+            },
             label: (context) => {
               const row = rows[context.dataIndex];
+              if (row.trip) {
+                return `참가 ${fmtCount(row.attend)} | 참가율 ${pfmt.format(context.raw)}% (출석률 집계 제외)`;
+              }
               const total = Number(row.attend || 0) + Number(row.absent || 0);
               return `출석 ${fmtCount(row.attend)} / 전체 ${fmtCount(total)} | 출석률 ${pfmt.format(context.raw)}%${row.absent ? ` | 불참 ${fmtCount(row.absent)}` : ""}`;
             },

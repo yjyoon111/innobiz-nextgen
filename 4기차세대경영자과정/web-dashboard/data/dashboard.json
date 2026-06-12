@@ -990,7 +990,7 @@
                           ],
     "attendance":  {
                        "available":  true,
-                       "source_file":  "차경 4기 정산서.xlsx",
+                       "source_file":  "차경 4기 정산서.xlsx + 출석부 PDF(5~6주차)",
                        "weekly":  [
                                       {
                                           "week":  1,
@@ -1483,210 +1483,384 @@
                                                                 "company":  ""
                                                             }
                                                         ]
+                                      },
+                                      {
+                                          "week":  5,
+                                          "week_label":  "5주차",
+                                          "date":  "2026-06-03",
+                                          "attend":  8,
+                                          "absent":  0,
+                                          "rate":  0.27586206896551724,
+                                          "trip":  true,
+                                          "attendees":  [
+                                                            {
+                                                                "name":  "강신호",
+                                                                "company":  "(주)페타네트워크"
+                                                            },
+                                                            {
+                                                                "name":  "김경목",
+                                                                "company":  "파르팜"
+                                                            },
+                                                            {
+                                                                "name":  "김미수",
+                                                                "company":  "주식회사와이엠알티씨"
+                                                            },
+                                                            {
+                                                                "name":  "김보미",
+                                                                "company":  "주식회사 쉬엔비"
+                                                            },
+                                                            {
+                                                                "name":  "김영찬",
+                                                                "company":  "(주)에스엠테크"
+                                                            },
+                                                            {
+                                                                "name":  "김주하",
+                                                                "company":  "(주)투데이칩스"
+                                                            },
+                                                            {
+                                                                "name":  "염주승",
+                                                                "company":  "삼흥산업개발"
+                                                            },
+                                                            {
+                                                                "name":  "정은정",
+                                                                "company":  "주식회사 콤위즈"
+                                                            }
+                                                        ],
+                                          "absentees":  [
+
+                                                        ]
+                                      },
+                                      {
+                                          "week":  6,
+                                          "week_label":  "6주차",
+                                          "date":  "2026-06-11",
+                                          "attend":  16,
+                                          "absent":  13,
+                                          "rate":  0.55172413793103448,
+                                          "attendees":  [
+                                                            {
+                                                                "name":  "강신호",
+                                                                "company":  "(주)페타네트워크"
+                                                            },
+                                                            {
+                                                                "name":  "김경목",
+                                                                "company":  "파르팜"
+                                                            },
+                                                            {
+                                                                "name":  "김미수",
+                                                                "company":  "주식회사와이엠알티씨"
+                                                            },
+                                                            {
+                                                                "name":  "김민석",
+                                                                "company":  "주식회사 현성베스코"
+                                                            },
+                                                            {
+                                                                "name":  "김보미",
+                                                                "company":  "주식회사 쉬엔비"
+                                                            },
+                                                            {
+                                                                "name":  "김영찬",
+                                                                "company":  "(주)에스엠테크"
+                                                            },
+                                                            {
+                                                                "name":  "김주하",
+                                                                "company":  "(주)투데이칩스"
+                                                            },
+                                                            {
+                                                                "name":  "엄현식",
+                                                                "company":  "아트원 주식회사"
+                                                            },
+                                                            {
+                                                                "name":  "이기택",
+                                                                "company":  "삼도관세법인"
+                                                            },
+                                                            {
+                                                                "name":  "이은솔",
+                                                                "company":  "㈜엔에스미디어"
+                                                            },
+                                                            {
+                                                                "name":  "이현석",
+                                                                "company":  "국제웨딩컨벤션"
+                                                            },
+                                                            {
+                                                                "name":  "임수예",
+                                                                "company":  "(주)나이스레이저"
+                                                            },
+                                                            {
+                                                                "name":  "정은정",
+                                                                "company":  "주식회사 콤위즈"
+                                                            },
+                                                            {
+                                                                "name":  "주우형",
+                                                                "company":  "(주)유진인프라코어"
+                                                            },
+                                                            {
+                                                                "name":  "한규호",
+                                                                "company":  "(주)제우스켐"
+                                                            },
+                                                            {
+                                                                "name":  "한지희",
+                                                                "company":  "(주)비씨상사"
+                                                            }
+                                                        ],
+                                          "absentees":  [
+                                                            {
+                                                                "name":  "김은수",
+                                                                "company":  "제이이솔루션 주식회사"
+                                                            },
+                                                            {
+                                                                "name":  "류영수",
+                                                                "company":  "㈜지비티코리아"
+                                                            },
+                                                            {
+                                                                "name":  "박정원",
+                                                                "company":  "(주)애드테크"
+                                                            },
+                                                            {
+                                                                "name":  "박정임",
+                                                                "company":  "(주)제이앤제이건설산업개발"
+                                                            },
+                                                            {
+                                                                "name":  "백진웅",
+                                                                "company":  "(주)케이벨로"
+                                                            },
+                                                            {
+                                                                "name":  "성현석",
+                                                                "company":  "(주)넥센서"
+                                                            },
+                                                            {
+                                                                "name":  "염주승",
+                                                                "company":  "삼흥산업개발"
+                                                            },
+                                                            {
+                                                                "name":  "이병관",
+                                                                "company":  "주식회사 아이소브"
+                                                            },
+                                                            {
+                                                                "name":  "임영훈",
+                                                                "company":  "주식회사 저스템"
+                                                            },
+                                                            {
+                                                                "name":  "임현창",
+                                                                "company":  "주식회사 신정테크"
+                                                            },
+                                                            {
+                                                                "name":  "최얼",
+                                                                "company":  "(주)시디피우정"
+                                                            },
+                                                            {
+                                                                "name":  "황동석",
+                                                                "company":  "가능성특허법률사무소"
+                                                            },
+                                                            {
+                                                                "name":  "황지영",
+                                                                "company":  ""
+                                                            }
+                                                        ]
                                       }
                                   ],
                        "members_all":  [
                                            {
-                                               "name":  "정은정",
-                                               "company":  "주식회사 콤위즈",
-                                               "attend_count":  1,
-                                               "check_count":  4,
-                                               "rate":  0.25
-                                           },
-                                           {
                                                "name":  "최얼",
                                                "company":  "(주)시디피우정",
                                                "attend_count":  1,
-                                               "check_count":  4,
-                                               "rate":  0.25
+                                               "check_count":  5,
+                                               "rate":  0.2
                                            },
                                            {
                                                "name":  "황지영",
                                                "company":  "",
                                                "attend_count":  1,
-                                               "check_count":  4,
-                                               "rate":  0.25
-                                           },
-                                           {
-                                               "name":  "김주하",
-                                               "company":  "(주)투데이칩스",
-                                               "attend_count":  1,
-                                               "check_count":  2,
-                                               "rate":  0.5
+                                               "check_count":  5,
+                                               "rate":  0.2
                                            },
                                            {
                                                "name":  "김은수",
                                                "company":  "제이이솔루션 주식회사",
                                                "attend_count":  2,
-                                               "check_count":  4,
-                                               "rate":  0.5
+                                               "check_count":  5,
+                                               "rate":  0.4
                                            },
                                            {
                                                "name":  "백진웅",
                                                "company":  "(주)케이벨로",
                                                "attend_count":  2,
-                                               "check_count":  4,
-                                               "rate":  0.5
+                                               "check_count":  5,
+                                               "rate":  0.4
                                            },
                                            {
                                                "name":  "성현석",
                                                "company":  "(주)넥센서",
                                                "attend_count":  2,
-                                               "check_count":  4,
-                                               "rate":  0.5
-                                           },
-                                           {
-                                               "name":  "염주승",
-                                               "company":  "삼흥산업개발",
-                                               "attend_count":  2,
-                                               "check_count":  4,
-                                               "rate":  0.5
+                                               "check_count":  5,
+                                               "rate":  0.4
                                            },
                                            {
                                                "name":  "이병관",
                                                "company":  "주식회사 아이소브",
                                                "attend_count":  2,
-                                               "check_count":  4,
-                                               "rate":  0.5
+                                               "check_count":  5,
+                                               "rate":  0.4
                                            },
                                            {
                                                "name":  "황동석",
                                                "company":  "가능성특허법률사무소",
                                                "attend_count":  2,
-                                               "check_count":  4,
-                                               "rate":  0.5
+                                               "check_count":  5,
+                                               "rate":  0.4
                                            },
                                            {
-                                               "name":  "김보미",
-                                               "company":  "주식회사 쉬엔비",
+                                               "name":  "염주승",
+                                               "company":  "삼흥산업개발",
                                                "attend_count":  3,
-                                               "check_count":  4,
-                                               "rate":  0.75
+                                               "check_count":  5,
+                                               "rate":  0.4
+                                           },
+                                           {
+                                               "name":  "정은정",
+                                               "company":  "주식회사 콤위즈",
+                                               "attend_count":  3,
+                                               "check_count":  5,
+                                               "rate":  0.4
                                            },
                                            {
                                                "name":  "류영수",
                                                "company":  "㈜지비티코리아",
                                                "attend_count":  3,
-                                               "check_count":  4,
-                                               "rate":  0.75
+                                               "check_count":  5,
+                                               "rate":  0.6
                                            },
                                            {
                                                "name":  "박정원",
                                                "company":  "(주)애드테크",
                                                "attend_count":  3,
-                                               "check_count":  4,
-                                               "rate":  0.75
-                                           },
-                                           {
-                                               "name":  "엄현식",
-                                               "company":  "아트원 주식회사",
-                                               "attend_count":  3,
-                                               "check_count":  4,
-                                               "rate":  0.75
-                                           },
-                                           {
-                                               "name":  "이기택",
-                                               "company":  "삼도관세법인",
-                                               "attend_count":  3,
-                                               "check_count":  4,
-                                               "rate":  0.75
-                                           },
-                                           {
-                                               "name":  "이현석",
-                                               "company":  "국제웨딩컨벤션",
-                                               "attend_count":  3,
-                                               "check_count":  4,
-                                               "rate":  0.75
-                                           },
-                                           {
-                                               "name":  "임수예",
-                                               "company":  "(주)나이스레이저",
-                                               "attend_count":  3,
-                                               "check_count":  4,
-                                               "rate":  0.75
+                                               "check_count":  5,
+                                               "rate":  0.6
                                            },
                                            {
                                                "name":  "임영훈",
                                                "company":  "주식회사 저스템",
                                                "attend_count":  3,
-                                               "check_count":  4,
-                                               "rate":  0.75
+                                               "check_count":  5,
+                                               "rate":  0.6
                                            },
                                            {
                                                "name":  "임현창",
                                                "company":  "주식회사 신정테크",
                                                "attend_count":  3,
-                                               "check_count":  4,
-                                               "rate":  0.75
+                                               "check_count":  5,
+                                               "rate":  0.6
                                            },
                                            {
-                                               "name":  "한규호",
-                                               "company":  "(주)제우스켐",
+                                               "name":  "김주하",
+                                               "company":  "(주)투데이칩스",
                                                "attend_count":  3,
-                                               "check_count":  4,
-                                               "rate":  0.75
-                                           },
-                                           {
-                                               "name":  "이은솔",
-                                               "company":  "㈜엔에스미디어",
-                                               "attend_count":  1,
-                                               "check_count":  1,
-                                               "rate":  1
-                                           },
-                                           {
-                                               "name":  "강신호",
-                                               "company":  "(주)페타네트워크",
-                                               "attend_count":  4,
-                                               "check_count":  4,
-                                               "rate":  1
-                                           },
-                                           {
-                                               "name":  "김경목",
-                                               "company":  "파르팜",
-                                               "attend_count":  4,
-                                               "check_count":  4,
-                                               "rate":  1
-                                           },
-                                           {
-                                               "name":  "김미수",
-                                               "company":  "주식회사와이엠알티씨",
-                                               "attend_count":  4,
-                                               "check_count":  4,
-                                               "rate":  1
-                                           },
-                                           {
-                                               "name":  "김민석",
-                                               "company":  "주식회사 현성베스코",
-                                               "attend_count":  4,
-                                               "check_count":  4,
-                                               "rate":  1
-                                           },
-                                           {
-                                               "name":  "김영찬",
-                                               "company":  "(주)에스엠테크",
-                                               "attend_count":  4,
-                                               "check_count":  4,
-                                               "rate":  1
+                                               "check_count":  3,
+                                               "rate":  0.66666666666666663
                                            },
                                            {
                                                "name":  "박정임",
                                                "company":  "(주)제이앤제이건설산업개발",
                                                "attend_count":  4,
-                                               "check_count":  4,
+                                               "check_count":  5,
+                                               "rate":  0.8
+                                           },
+                                           {
+                                               "name":  "엄현식",
+                                               "company":  "아트원 주식회사",
+                                               "attend_count":  4,
+                                               "check_count":  5,
+                                               "rate":  0.8
+                                           },
+                                           {
+                                               "name":  "이기택",
+                                               "company":  "삼도관세법인",
+                                               "attend_count":  4,
+                                               "check_count":  5,
+                                               "rate":  0.8
+                                           },
+                                           {
+                                               "name":  "이현석",
+                                               "company":  "국제웨딩컨벤션",
+                                               "attend_count":  4,
+                                               "check_count":  5,
+                                               "rate":  0.8
+                                           },
+                                           {
+                                               "name":  "임수예",
+                                               "company":  "(주)나이스레이저",
+                                               "attend_count":  4,
+                                               "check_count":  5,
+                                               "rate":  0.8
+                                           },
+                                           {
+                                               "name":  "한규호",
+                                               "company":  "(주)제우스켐",
+                                               "attend_count":  4,
+                                               "check_count":  5,
+                                               "rate":  0.8
+                                           },
+                                           {
+                                               "name":  "김보미",
+                                               "company":  "주식회사 쉬엔비",
+                                               "attend_count":  5,
+                                               "check_count":  5,
+                                               "rate":  0.8
+                                           },
+                                           {
+                                               "name":  "이은솔",
+                                               "company":  "㈜엔에스미디어",
+                                               "attend_count":  2,
+                                               "check_count":  2,
+                                               "rate":  1
+                                           },
+                                           {
+                                               "name":  "김민석",
+                                               "company":  "주식회사 현성베스코",
+                                               "attend_count":  5,
+                                               "check_count":  5,
                                                "rate":  1
                                            },
                                            {
                                                "name":  "주우형",
                                                "company":  "(주)유진인프라코어",
-                                               "attend_count":  4,
-                                               "check_count":  4,
+                                               "attend_count":  5,
+                                               "check_count":  5,
                                                "rate":  1
                                            },
                                            {
                                                "name":  "한지희",
                                                "company":  "(주)비씨상사",
-                                               "attend_count":  4,
-                                               "check_count":  4,
+                                               "attend_count":  5,
+                                               "check_count":  5,
+                                               "rate":  1
+                                           },
+                                           {
+                                               "name":  "강신호",
+                                               "company":  "(주)페타네트워크",
+                                               "attend_count":  6,
+                                               "check_count":  5,
+                                               "rate":  1
+                                           },
+                                           {
+                                               "name":  "김경목",
+                                               "company":  "파르팜",
+                                               "attend_count":  6,
+                                               "check_count":  5,
+                                               "rate":  1
+                                           },
+                                           {
+                                               "name":  "김미수",
+                                               "company":  "주식회사와이엠알티씨",
+                                               "attend_count":  6,
+                                               "check_count":  5,
+                                               "rate":  1
+                                           },
+                                           {
+                                               "name":  "김영찬",
+                                               "company":  "(주)에스엠테크",
+                                               "attend_count":  6,
+                                               "check_count":  5,
                                                "rate":  1
                                            }
                                        ]
