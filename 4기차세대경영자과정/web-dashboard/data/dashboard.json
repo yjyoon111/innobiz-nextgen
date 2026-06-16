@@ -1,12 +1,14 @@
 {
     "meta":  {
-                 "generated_at":  "2026-06-02 17:21:27",
-                 "completed_week_range":  "1~4주차",
+                 "generated_at":  "2026-06-16 14:22:06",
+                 "completed_week_range":  "1~6주차",
                  "completed_weeks":  [
                                          1,
                                          2,
                                          3,
-                                         4
+                                         4,
+                                         5,
+                                         6
                                      ],
                  "source_files":  {
                                       "settlement_3rd":  "차경 3기 정산서.xlsx",
@@ -16,12 +18,12 @@
              },
     "kpis":  {
                  "income_total":  95995080,
-                 "spent_current":  18348000,
-                 "spent_prev_same_period":  25487231,
-                 "diff_amount":  -7139231,
-                 "diff_rate":  -0.28011010690019644,
-                 "budget_usage_rate":  0.19113479565827748,
-                 "remaining_budget":  77647080
+                 "spent_current":  36933900,
+                 "spent_prev_same_period":  30510231,
+                 "diff_amount":  6423669,
+                 "diff_rate":  0.21054147377645224,
+                 "budget_usage_rate":  0.38474784332697048,
+                 "remaining_budget":  59061180
              },
     "weekly_comparison":  [
                               {
@@ -54,53 +56,76 @@
                                   "prev_amount":  13485031,
                                   "current_amount":  3784500,
                                   "diff_amount":  -9700531,
-                                  "diff_rate":  -0.7193554838694847
+                                  "diff_rate":  -0.71935548386948467
+                              },
+                              {
+                                  "week":  5,
+                                  "week_label":  "5주차",
+                                  "prev_amount":  2579400,
+                                  "current_amount":  15766000,
+                                  "diff_amount":  13186600,
+                                  "diff_rate":  5.1122741722881289
+                              },
+                              {
+                                  "week":  6,
+                                  "week_label":  "6주차",
+                                  "prev_amount":  2443600,
+                                  "current_amount":  2819900,
+                                  "diff_amount":  376300,
+                                  "diff_rate":  0.1539941070551645
                               }
                           ],
     "category_comparison":  [
                                 {
                                     "category":  "강의/진행/인력",
-                                    "prev_amount":  12700000,
-                                    "current_amount":  13750000,
-                                    "diff_amount":  1050000,
-                                    "diff_rate":  0.08267716535433071
+                                    "prev_amount":  17200000,
+                                    "current_amount":  17250000,
+                                    "diff_amount":  50000,
+                                    "diff_rate":  0.0029069767441860465
+                                },
+                                {
+                                    "category":  "해외전시",
+                                    "prev_amount":  0,
+                                    "current_amount":  14266000,
+                                    "diff_amount":  14266000,
+                                    "diff_rate":  0
                                 },
                                 {
                                     "category":  "식음료",
-                                    "prev_amount":  4566661,
-                                    "current_amount":  2559700,
-                                    "diff_amount":  -2006961,
-                                    "diff_rate":  -0.4394810562903618
+                                    "prev_amount":  5089661,
+                                    "current_amount":  3309600,
+                                    "diff_amount":  -1780061,
+                                    "diff_rate":  -0.34974058193659657
                                 },
                                 {
                                     "category":  "준비/인쇄/물품",
                                     "prev_amount":  854000,
                                     "current_amount":  2038300,
                                     "diff_amount":  1184300,
-                                    "diff_rate":  1.386768149882904
+                                    "diff_rate":  1.3867681498829041
                                 },
                                 {
                                     "category":  "기타",
                                     "prev_amount":  93370,
-                                    "current_amount":  0,
-                                    "diff_amount":  -93370,
-                                    "diff_rate":  -1.0
+                                    "current_amount":  70000,
+                                    "diff_amount":  -23370,
+                                    "diff_rate":  -0.25029452715004818
                                 },
                                 {
                                     "category":  "장소/운영",
                                     "prev_amount":  7273200,
                                     "current_amount":  0,
                                     "diff_amount":  -7273200,
-                                    "diff_rate":  -1.0
+                                    "diff_rate":  -1
                                 }
                             ],
     "budget_vs_actual":  [
                              {
                                  "category":  "실수입 총액",
                                  "budget":  95995080,
-                                 "spent":  18348000,
-                                 "remain":  77647080,
-                                 "usage_rate":  0.19113479565827748
+                                 "spent":  36933900,
+                                 "remain":  59061180,
+                                 "usage_rate":  0.38474784332697048
                              }
                          ],
     "income_summary":  [
@@ -336,6 +361,15 @@
                     ],
     "top_transactions":  [
                              {
+                                 "week_label":  "5주차",
+                                 "date":  "2026-06-02",
+                                 "category":  "해외전시",
+                                 "raw_category":  "해외전시",
+                                 "vendor":  "(주)인터메세항공",
+                                 "detail":  "상하이 전시회(NEPCON,SIA) 운영 용역 선금 70%",
+                                 "amount":  14266000
+                             },
+                             {
                                  "week_label":  "1주차",
                                  "date":  "2026-05-07",
                                  "category":  "강의/진행/인력",
@@ -372,6 +406,15 @@
                                  "amount":  2000000
                              },
                              {
+                                 "week_label":  "5주차",
+                                 "date":  "2026-06-03",
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "강의비",
+                                 "vendor":  "SCG",
+                                 "detail":  "강사비(고영)",
+                                 "amount":  1500000
+                             },
+                             {
                                  "week_label":  "1주차",
                                  "date":  "2026-03-25",
                                  "category":  "준비/인쇄/물품",
@@ -388,6 +431,33 @@
                                  "vendor":  "북청집-삼평",
                                  "detail":  "삼겹살, 맥주, 소주…",
                                  "amount":  1144000
+                             },
+                             {
+                                 "week_label":  "6주차",
+                                 "date":  "2026-06-11",
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "진행비",
+                                 "vendor":  "주식회사 스마트에이엘",
+                                 "detail":  "진행비(유일한) *세금계산서 처리",
+                                 "amount":  1000000
+                             },
+                             {
+                                 "week_label":  "4주차",
+                                 "date":  "2026-05-28",
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "진행비",
+                                 "vendor":  "",
+                                 "detail":  "진행비(유일한) *세금계산서 처리",
+                                 "amount":  1000000
+                             },
+                             {
+                                 "week_label":  "6주차",
+                                 "date":  "2026-06-11",
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "강의비",
+                                 "vendor":  "이상진",
+                                 "detail":  "강사비(이상진)",
+                                 "amount":  1000000
                              },
                              {
                                  "week_label":  "3주차",
@@ -408,13 +478,13 @@
                                  "amount":  1000000
                              },
                              {
-                                 "week_label":  "4주차",
-                                 "date":  "2026-05-28",
-                                 "category":  "강의/진행/인력",
-                                 "raw_category":  "진행비",
-                                 "vendor":  "",
-                                 "detail":  "진행비(유일한) *세금계산서 처리",
-                                 "amount":  1000000
+                                 "week_label":  "6주차",
+                                 "date":  "2026-06-11",
+                                 "category":  "식음료",
+                                 "raw_category":  "식비",
+                                 "vendor":  "스시가오",
+                                 "detail":  "식비(스시가오)",
+                                 "amount":  670000
                              },
                              {
                                  "week_label":  "1주차",
@@ -424,51 +494,6 @@
                                  "vendor":  "행일미디어 백승주",
                                  "detail":  "교재 제본, 현수막, 배너 제작비",
                                  "amount":  464200
-                             },
-                             {
-                                 "week_label":  "3주차",
-                                 "date":  "2026-05-21",
-                                 "category":  "식음료",
-                                 "raw_category":  "식비",
-                                 "vendor":  "군산오징어",
-                                 "detail":  "석식비",
-                                 "amount":  393000
-                             },
-                             {
-                                 "week_label":  "4주차",
-                                 "date":  "2026-05-28",
-                                 "category":  "준비/인쇄/물품",
-                                 "raw_category":  "준비비",
-                                 "vendor":  "행일미디어 백승주",
-                                 "detail":  "2권 교재 제본, 회원수첩",
-                                 "amount":  380600
-                             },
-                             {
-                                 "week_label":  "2주차",
-                                 "date":  "2026-05-14",
-                                 "category":  "식음료",
-                                 "raw_category":  "식비",
-                                 "vendor":  "우림닭갈비",
-                                 "detail":  "치즈닭갈비 16, 콜라 5, 볶음밥 6, 소주 6, 맥주 6, 사이다1",
-                                 "amount":  358000
-                             },
-                             {
-                                 "week_label":  "4주차",
-                                 "date":  "2026-05-28",
-                                 "category":  "식음료",
-                                 "raw_category":  "식비",
-                                 "vendor":  "피자이딸리아나 분당본점",
-                                 "detail":  "피자 6판",
-                                 "amount":  175100
-                             },
-                             {
-                                 "week_label":  "4주차",
-                                 "date":  "2026-05-28",
-                                 "category":  "식음료",
-                                 "raw_category":  "식비",
-                                 "vendor":  "후라이드참잘하는집 수내서현점",
-                                 "detail":  "치킨 6마리(순살2세트, 뼈1세트)",
-                                 "amount":  105000
                              }
                          ],
     "current_transactions":  [
@@ -696,6 +721,78 @@
                                      "vendor":  "세븐일레븐 판교이노밸리점",
                                      "detail":  "생수 40개, 위생장갑 48매",
                                      "amount":  22200
+                                 },
+                                 {
+                                     "week_label":  "5주차",
+                                     "date":  "2026-06-02",
+                                     "category":  "해외전시",
+                                     "raw_category":  "해외전시",
+                                     "vendor":  "(주)인터메세항공",
+                                     "detail":  "상하이 전시회(NEPCON,SIA) 운영 용역 선금 70%",
+                                     "amount":  14266000
+                                 },
+                                 {
+                                     "week_label":  "5주차",
+                                     "date":  "2026-06-03",
+                                     "category":  "강의/진행/인력",
+                                     "raw_category":  "강의비",
+                                     "vendor":  "SCG",
+                                     "detail":  "강사비(고영)",
+                                     "amount":  1500000
+                                 },
+                                 {
+                                     "week_label":  "6주차",
+                                     "date":  "2026-06-11",
+                                     "category":  "강의/진행/인력",
+                                     "raw_category":  "진행비",
+                                     "vendor":  "주식회사 스마트에이엘",
+                                     "detail":  "진행비(유일한) *세금계산서 처리",
+                                     "amount":  1000000
+                                 },
+                                 {
+                                     "week_label":  "6주차",
+                                     "date":  "2026-06-11",
+                                     "category":  "강의/진행/인력",
+                                     "raw_category":  "강의비",
+                                     "vendor":  "이상진",
+                                     "detail":  "강사비(이상진)",
+                                     "amount":  1000000
+                                 },
+                                 {
+                                     "week_label":  "6주차",
+                                     "date":  "2026-06-11",
+                                     "category":  "식음료",
+                                     "raw_category":  "식비",
+                                     "vendor":  "스시가오",
+                                     "detail":  "식비(스시가오)",
+                                     "amount":  670000
+                                 },
+                                 {
+                                     "week_label":  "6주차",
+                                     "date":  "2026-06-11",
+                                     "category":  "기타",
+                                     "raw_category":  "운영비",
+                                     "vendor":  "투썸플레이스 판교만도점",
+                                     "detail":  "운영비(투썸 기프트카드)",
+                                     "amount":  70000
+                                 },
+                                 {
+                                     "week_label":  "6주차",
+                                     "date":  "2026-06-11",
+                                     "category":  "식음료",
+                                     "raw_category":  "다과비",
+                                     "vendor":  "세븐일레븐 판교이노밸리점",
+                                     "detail":  "다과비",
+                                     "amount":  50200
+                                 },
+                                 {
+                                     "week_label":  "6주차",
+                                     "date":  "2026-06-11",
+                                     "category":  "식음료",
+                                     "raw_category":  "다과비",
+                                     "vendor":  "삼성웰스토리 이노밸리카페",
+                                     "detail":  "다과비(음료)",
+                                     "amount":  29700
                                  }
                              ],
     "prev_transactions":  [
@@ -794,7 +891,7 @@
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "정주용",
+                                  "vendor":  "장재욱",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -803,7 +900,7 @@
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "장재욱",
+                                  "vendor":  "정주용",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -830,7 +927,7 @@
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "정주용",
+                                  "vendor":  "장재욱",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -839,7 +936,7 @@
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "장재욱",
+                                  "vendor":  "정주용",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -920,7 +1017,7 @@
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "정주용",
+                                  "vendor":  "장재욱",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -929,7 +1026,7 @@
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "장재욱",
+                                  "vendor":  "정주용",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -986,6 +1083,123 @@
                                   "vendor":  "월정사입장권",
                                   "detail":  "입장료",
                                   "amount":  9000
+                              },
+                              {
+                                  "week_label":  "5주차",
+                                  "date":  "",
+                                  "category":  "강의/진행/인력",
+                                  "raw_category":  "강사료",
+                                  "vendor":  "고영",
+                                  "detail":  "강사료",
+                                  "amount":  1500000
+                              },
+                              {
+                                  "week_label":  "5주차",
+                                  "date":  "",
+                                  "category":  "강의/진행/인력",
+                                  "raw_category":  "강사료",
+                                  "vendor":  "장재욱",
+                                  "detail":  "액션런닝",
+                                  "amount":  500000
+                              },
+                              {
+                                  "week_label":  "5주차",
+                                  "date":  "",
+                                  "category":  "강의/진행/인력",
+                                  "raw_category":  "강사료",
+                                  "vendor":  "정주용",
+                                  "detail":  "액션런닝",
+                                  "amount":  500000
+                              },
+                              {
+                                  "week_label":  "5주차",
+                                  "date":  "",
+                                  "category":  "식음료",
+                                  "raw_category":  "다과 및 식비",
+                                  "vendor":  "세븐일레븐",
+                                  "detail":  "다과비",
+                                  "amount":  65000
+                              },
+                              {
+                                  "week_label":  "5주차",
+                                  "date":  "",
+                                  "category":  "식음료",
+                                  "raw_category":  "다과 및 식비",
+                                  "vendor":  "매머드커피",
+                                  "detail":  "다과비",
+                                  "amount":  14400
+                              },
+                              {
+                                  "week_label":  "6주차",
+                                  "date":  "",
+                                  "category":  "강의/진행/인력",
+                                  "raw_category":  "강사료",
+                                  "vendor":  "정주용",
+                                  "detail":  "강사료",
+                                  "amount":  1000000
+                              },
+                              {
+                                  "week_label":  "6주차",
+                                  "date":  "",
+                                  "category":  "강의/진행/인력",
+                                  "raw_category":  "강사료",
+                                  "vendor":  "장재욱",
+                                  "detail":  "액션런닝",
+                                  "amount":  500000
+                              },
+                              {
+                                  "week_label":  "6주차",
+                                  "date":  "",
+                                  "category":  "강의/진행/인력",
+                                  "raw_category":  "강사료",
+                                  "vendor":  "정주용",
+                                  "detail":  "액션런닝",
+                                  "amount":  500000
+                              },
+                              {
+                                  "week_label":  "6주차",
+                                  "date":  "",
+                                  "category":  "식음료",
+                                  "raw_category":  "다과 및 식비",
+                                  "vendor":  "도미노피자",
+                                  "detail":  "식비",
+                                  "amount":  189500
+                              },
+                              {
+                                  "week_label":  "6주차",
+                                  "date":  "",
+                                  "category":  "식음료",
+                                  "raw_category":  "다과 및 식비",
+                                  "vendor":  "푸라닭",
+                                  "detail":  "식비",
+                                  "amount":  125200
+                              },
+                              {
+                                  "week_label":  "6주차",
+                                  "date":  "",
+                                  "category":  "식음료",
+                                  "raw_category":  "다과 및 식비",
+                                  "vendor":  "세븐일레븐",
+                                  "detail":  "다과비",
+                                  "amount":  45100
+                              },
+                              {
+                                  "week_label":  "6주차",
+                                  "date":  "",
+                                  "category":  "식음료",
+                                  "raw_category":  "다과 및 식비",
+                                  "vendor":  "이노밸리 카페",
+                                  "detail":  "다과비",
+                                  "amount":  42600
+                              },
+                              {
+                                  "week_label":  "6주차",
+                                  "date":  "",
+                                  "category":  "식음료",
+                                  "raw_category":  "다과 및 식비",
+                                  "vendor":  "세븐일레븐",
+                                  "detail":  "다과비",
+                                  "amount":  41200
                               }
                           ],
     "attendance":  {
