@@ -87,6 +87,38 @@ function closeModal() {
   modalEl.setAttribute("aria-hidden", "true");
 }
 
+function showMemberDetail(name) {
+  if (!dashboardData || !dashboardData.attendance) return;
+  const weekly = dashboardData.attendance.weekly || [];
+  const has = (list, target) => (list || []).some((person) => person.name === target);
+  const rows = weekly.map((week) => {
+    let status;
+    if (has(week.attendees, name)) status = week.trip ? "참가" : "출석";
+    else if (has(week.absentees, name)) status = "불참";
+    else status = "-";
+    return { week_label: week.week_label, date: week.date, status, trip: week.trip };
+  });
+  const attendCount = rows.filter((row) => row.status === "출석" || row.status === "참가").length;
+  openModal(
+    `${name} 주차별 출석 현황 — 총 ${attendCount}회`,
+    [
+      { key: "week_label", label: "주차", render: (value, row) => (row.trip ? `${value} (해외연수)` : value) },
+      { key: "date", label: "일자" },
+      {
+        key: "status",
+        label: "출석 여부",
+        render: (value) => {
+          const color = value === "불참" ? "#c33b2f" : value === "참가" ? "#c8851f" : value === "출석" ? "#0f8b4c" : "#9aa0a6";
+          const text = value === "-" ? "해당없음" : value;
+          return `<span style="font-weight:700;color:${color}">${text}</span>`;
+        },
+      },
+    ],
+    rows,
+  );
+}
+window.showMemberDetail = showMemberDetail;
+
 function bindWeeklyChart(rows) {
   if (weeklyChart) weeklyChart.destroy();
   weeklyChart = new Chart(byId("weeklyChart"), {
@@ -326,7 +358,12 @@ function renderManagedTable(name) {
       columns: [
         { key: "name", label: "성명" },
         { key: "company", label: "업체명", render: (value) => clipText(value, 14) },
-        { key: "attend_count", label: "출석횟수", render: (value) => `${value}회` },
+        {
+          key: "attend_count",
+          label: "출석횟수",
+          render: (value, row) =>
+            `<button type="button" class="attend-detail-btn" onclick="showMemberDetail('${escapeHtml(row.name).replaceAll("'", "\\'")}')">${value}회</button>`,
+        },
         { key: "rate", label: "출석률", render: (value) => fmtPercent(value) },
       ],
     },
