@@ -98,9 +98,10 @@ function showMemberDetail(name) {
     else status = "-";
     return { week_label: week.week_label, date: week.date, status, trip: week.trip };
   });
-  const attendCount = rows.filter((row) => row.status === "출석" || row.status === "참가").length;
+  const attendCount = rows.filter((row) => row.status === "출석").length;
+  const tripCount = rows.filter((row) => row.status === "참가").length;
   openModal(
-    `${name} 주차별 출석 현황 — 총 ${attendCount}회`,
+    `${name} 주차별 출석 현황 — 정규 ${attendCount}회${tripCount ? " (+해외연수 참가)" : ""}`,
     [
       { key: "week_label", label: "주차", render: (value, row) => (row.trip ? `${value} (해외연수)` : value) },
       { key: "date", label: "일자" },
