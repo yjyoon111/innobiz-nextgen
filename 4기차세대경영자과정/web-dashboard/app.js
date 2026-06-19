@@ -219,6 +219,7 @@ function bindCategoryChart(rows) {
 
 function bindAttendanceChart(rows) {
   if (attendanceChart) attendanceChart.destroy();
+  rows = rows.filter((row) => !row.trip); // 해외연수(5주차)는 출석률이 아니므로 차트에서 제외
   attendanceChart = new Chart(byId("attendanceChart"), {
     type: "line",
     data: {
