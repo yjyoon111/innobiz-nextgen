@@ -1,7 +1,7 @@
 {
     "meta":  {
-                 "generated_at":  "2026-06-19 17:30:35",
-                 "completed_week_range":  "1~7주차",
+                 "generated_at":  "2026-06-29 16:16:32",
+                 "completed_week_range":  "1~8주차",
                  "completed_weeks":  [
                                          1,
                                          2,
@@ -9,7 +9,8 @@
                                          4,
                                          5,
                                          6,
-                                         7
+                                         7,
+                                         8
                                      ],
                  "source_files":  {
                                       "settlement_3rd":  "차경 3기 정산서.xlsx",
@@ -19,12 +20,12 @@
              },
     "kpis":  {
                  "income_total":  95995080,
-                 "spent_current":  38907000,
-                 "spent_prev_same_period":  33746231,
-                 "diff_amount":  5160769,
-                 "diff_rate":  0.15292875225088098,
-                 "budget_usage_rate":  0.40530202172861357,
-                 "remaining_budget":  57088080
+                 "spent_current":  41709100,
+                 "spent_prev_same_period":  38518031,
+                 "diff_amount":  3191069,
+                 "diff_rate":  0.082846109137821713,
+                 "budget_usage_rate":  0.43449205938471014,
+                 "remaining_budget":  54285980
              },
     "weekly_comparison":  [
                               {
@@ -82,15 +83,23 @@
                                   "current_amount":  1973100,
                                   "diff_amount":  -1262900,
                                   "diff_rate":  -0.39026576019777504
+                              },
+                              {
+                                  "week":  8,
+                                  "week_label":  "8주차",
+                                  "prev_amount":  4771800,
+                                  "current_amount":  2802100,
+                                  "diff_amount":  -1969700,
+                                  "diff_rate":  -0.41277924472945221
                               }
                           ],
     "category_comparison":  [
                                 {
                                     "category":  "강의/진행/인력",
-                                    "prev_amount":  19700000,
-                                    "current_amount":  18750000,
-                                    "diff_amount":  -950000,
-                                    "diff_rate":  -0.048223350253807105
+                                    "prev_amount":  23700000,
+                                    "current_amount":  20750000,
+                                    "diff_amount":  -2950000,
+                                    "diff_rate":  -0.12447257383966245
                                 },
                                 {
                                     "category":  "해외전시",
@@ -101,17 +110,17 @@
                                 },
                                 {
                                     "category":  "식음료",
-                                    "prev_amount":  5825661,
-                                    "current_amount":  3782700,
-                                    "diff_amount":  -2042961,
-                                    "diff_rate":  -0.35068312419826697
+                                    "prev_amount":  6597461,
+                                    "current_amount":  4008400,
+                                    "diff_amount":  -2589061,
+                                    "diff_rate":  -0.39243293745881941
                                 },
                                 {
                                     "category":  "준비/인쇄/물품",
                                     "prev_amount":  854000,
-                                    "current_amount":  2038300,
-                                    "diff_amount":  1184300,
-                                    "diff_rate":  1.3867681498829041
+                                    "current_amount":  2614700,
+                                    "diff_amount":  1760700,
+                                    "diff_rate":  2.0617096018735364
                                 },
                                 {
                                     "category":  "기타",
@@ -132,9 +141,9 @@
                              {
                                  "category":  "실수입 총액",
                                  "budget":  95995080,
-                                 "spent":  38907000,
-                                 "remain":  57088080,
-                                 "usage_rate":  0.40530202172861357
+                                 "spent":  41709100,
+                                 "remain":  54285980,
+                                 "usage_rate":  0.43449205938471014
                              }
                          ],
     "income_summary":  [
@@ -415,6 +424,15 @@
                                  "amount":  2000000
                              },
                              {
+                                 "week_label":  "8주차",
+                                 "date":  "2026-06-25",
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "강의비",
+                                 "vendor":  "고영",
+                                 "detail":  "강사비(고영)",
+                                 "amount":  1500000
+                             },
+                             {
                                  "week_label":  "5주차",
                                  "date":  "2026-06-03",
                                  "category":  "강의/진행/인력",
@@ -442,39 +460,12 @@
                                  "amount":  1144000
                              },
                              {
-                                 "week_label":  "6주차",
-                                 "date":  "2026-06-11",
-                                 "category":  "강의/진행/인력",
-                                 "raw_category":  "강의비",
-                                 "vendor":  "이상진",
-                                 "detail":  "강사비(이상진)",
-                                 "amount":  1000000
-                             },
-                             {
                                  "week_label":  "7주차",
                                  "date":  "2026-06-18",
                                  "category":  "강의/진행/인력",
                                  "raw_category":  "강의비",
                                  "vendor":  "김창원",
                                  "detail":  "강사비(김창원)",
-                                 "amount":  1000000
-                             },
-                             {
-                                 "week_label":  "3주차",
-                                 "date":  "2026-05-21",
-                                 "category":  "강의/진행/인력",
-                                 "raw_category":  "진행비",
-                                 "vendor":  "",
-                                 "detail":  "진행비(유일한) *세금계산서 처리",
-                                 "amount":  1000000
-                             },
-                             {
-                                 "week_label":  "6주차",
-                                 "date":  "2026-06-11",
-                                 "category":  "강의/진행/인력",
-                                 "raw_category":  "진행비",
-                                 "vendor":  "주식회사 스마트에이엘",
-                                 "detail":  "진행비(유일한) *세금계산서 처리",
                                  "amount":  1000000
                              },
                              {
@@ -498,11 +489,29 @@
                              {
                                  "week_label":  "6주차",
                                  "date":  "2026-06-11",
-                                 "category":  "식음료",
-                                 "raw_category":  "식비",
-                                 "vendor":  "스시가오",
-                                 "detail":  "식비(스시가오)",
-                                 "amount":  670000
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "강의비",
+                                 "vendor":  "이상진",
+                                 "detail":  "강사비(이상진)",
+                                 "amount":  1000000
+                             },
+                             {
+                                 "week_label":  "6주차",
+                                 "date":  "2026-06-11",
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "진행비",
+                                 "vendor":  "주식회사 스마트에이엘",
+                                 "detail":  "진행비(유일한) *세금계산서 처리",
+                                 "amount":  1000000
+                             },
+                             {
+                                 "week_label":  "3주차",
+                                 "date":  "2026-05-21",
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "진행비",
+                                 "vendor":  "",
+                                 "detail":  "진행비(유일한) *세금계산서 처리",
+                                 "amount":  1000000
                              }
                          ],
     "current_transactions":  [
@@ -838,6 +847,51 @@
                                      "vendor":  "세븐일레븐 판교이노밸리점",
                                      "detail":  "다과비",
                                      "amount":  78100
+                                 },
+                                 {
+                                     "week_label":  "8주차",
+                                     "date":  "2026-06-25",
+                                     "category":  "강의/진행/인력",
+                                     "raw_category":  "강의비",
+                                     "vendor":  "고영",
+                                     "detail":  "강사비(고영)",
+                                     "amount":  1500000
+                                 },
+                                 {
+                                     "week_label":  "8주차",
+                                     "date":  "2026-06-26",
+                                     "category":  "준비/인쇄/물품",
+                                     "raw_category":  "준비비",
+                                     "vendor":  "(주)행일미디어",
+                                     "detail":  "교재 인쇄(3권), 회원수첩",
+                                     "amount":  576400
+                                 },
+                                 {
+                                     "week_label":  "8주차",
+                                     "date":  "2026-06-25",
+                                     "category":  "강의/진행/인력",
+                                     "raw_category":  "진행비",
+                                     "vendor":  "고영",
+                                     "detail":  "진행비(고영)",
+                                     "amount":  500000
+                                 },
+                                 {
+                                     "week_label":  "8주차",
+                                     "date":  "2026-06-25",
+                                     "category":  "식음료",
+                                     "raw_category":  "식비",
+                                     "vendor":  "끌리마",
+                                     "detail":  "식비(끌리마)",
+                                     "amount":  153000
+                                 },
+                                 {
+                                     "week_label":  "8주차",
+                                     "date":  "2026-06-24",
+                                     "category":  "식음료",
+                                     "raw_category":  "다과비",
+                                     "vendor":  "세븐일레븐 판교이노밸리점",
+                                     "detail":  "다과비",
+                                     "amount":  72700
                                  }
                              ],
     "prev_transactions":  [
@@ -873,7 +927,7 @@
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "장재욱",
+                                  "vendor":  "정주용",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -882,7 +936,7 @@
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "정주용",
+                                  "vendor":  "장재욱",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -1143,7 +1197,7 @@
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "정주용",
+                                  "vendor":  "장재욱",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -1152,7 +1206,7 @@
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "장재욱",
+                                  "vendor":  "정주용",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -1299,6 +1353,60 @@
                                   "vendor":  "이노밸리 카페",
                                   "detail":  "다과비",
                                   "amount":  30100
+                              },
+                              {
+                                  "week_label":  "8주차",
+                                  "date":  "",
+                                  "category":  "강의/진행/인력",
+                                  "raw_category":  "강사료",
+                                  "vendor":  "김경일",
+                                  "detail":  "강사료",
+                                  "amount":  3000000
+                              },
+                              {
+                                  "week_label":  "8주차",
+                                  "date":  "",
+                                  "category":  "식음료",
+                                  "raw_category":  "다과 및 식비",
+                                  "vendor":  "스시가오",
+                                  "detail":  "식비",
+                                  "amount":  679000
+                              },
+                              {
+                                  "week_label":  "8주차",
+                                  "date":  "",
+                                  "category":  "강의/진행/인력",
+                                  "raw_category":  "강사료",
+                                  "vendor":  "장재욱",
+                                  "detail":  "액션런닝",
+                                  "amount":  500000
+                              },
+                              {
+                                  "week_label":  "8주차",
+                                  "date":  "",
+                                  "category":  "강의/진행/인력",
+                                  "raw_category":  "강사료",
+                                  "vendor":  "정주용",
+                                  "detail":  "액션런닝",
+                                  "amount":  500000
+                              },
+                              {
+                                  "week_label":  "8주차",
+                                  "date":  "",
+                                  "category":  "식음료",
+                                  "raw_category":  "다과 및 식비",
+                                  "vendor":  "이노밸리 카페",
+                                  "detail":  "다과비",
+                                  "amount":  58800
+                              },
+                              {
+                                  "week_label":  "8주차",
+                                  "date":  "",
+                                  "category":  "식음료",
+                                  "raw_category":  "다과 및 식비",
+                                  "vendor":  "세븐일레븐",
+                                  "detail":  "다과비",
+                                  "amount":  34000
                               }
                           ],
     "attendance":  {
@@ -2098,6 +2206,134 @@
                                                                 "company":  ""
                                                             }
                                                         ]
+                                      },
+                                      {
+                                          "week":  8,
+                                          "week_label":  "8주차",
+                                          "date":  "2026-06-25",
+                                          "attend":  17,
+                                          "absent":  12,
+                                          "rate":  0.58620689655172409,
+                                          "attendees":  [
+                                                            {
+                                                                "name":  "강신호",
+                                                                "company":  "(주)페타네트워크"
+                                                            },
+                                                            {
+                                                                "name":  "김경목",
+                                                                "company":  "파르팜"
+                                                            },
+                                                            {
+                                                                "name":  "김미수",
+                                                                "company":  "주식회사와이엠알티씨"
+                                                            },
+                                                            {
+                                                                "name":  "김민석",
+                                                                "company":  "주식회사 현성베스코"
+                                                            },
+                                                            {
+                                                                "name":  "김보미",
+                                                                "company":  "주식회사 쉬엔비"
+                                                            },
+                                                            {
+                                                                "name":  "김영찬",
+                                                                "company":  "(주)에스엠테크"
+                                                            },
+                                                            {
+                                                                "name":  "김주하",
+                                                                "company":  "(주)투데이칩스"
+                                                            },
+                                                            {
+                                                                "name":  "류영수",
+                                                                "company":  "㈜지비티코리아"
+                                                            },
+                                                            {
+                                                                "name":  "박정임",
+                                                                "company":  "(주)제이앤제이건설산업개발"
+                                                            },
+                                                            {
+                                                                "name":  "엄현식",
+                                                                "company":  "아트원 주식회사"
+                                                            },
+                                                            {
+                                                                "name":  "이병관",
+                                                                "company":  "주식회사 아이소브"
+                                                            },
+                                                            {
+                                                                "name":  "이은솔",
+                                                                "company":  "㈜엔에스미디어"
+                                                            },
+                                                            {
+                                                                "name":  "임수예",
+                                                                "company":  "(주)나이스레이저"
+                                                            },
+                                                            {
+                                                                "name":  "임현창",
+                                                                "company":  "주식회사 신정테크"
+                                                            },
+                                                            {
+                                                                "name":  "주우형",
+                                                                "company":  "(주)유진인프라코어"
+                                                            },
+                                                            {
+                                                                "name":  "한규호",
+                                                                "company":  "(주)제우스켐"
+                                                            },
+                                                            {
+                                                                "name":  "한지희",
+                                                                "company":  "(주)비씨상사"
+                                                            }
+                                                        ],
+                                          "absentees":  [
+                                                            {
+                                                                "name":  "김은수",
+                                                                "company":  "제이이솔루션 주식회사"
+                                                            },
+                                                            {
+                                                                "name":  "박정원",
+                                                                "company":  "(주)애드테크"
+                                                            },
+                                                            {
+                                                                "name":  "백진웅",
+                                                                "company":  "(주)케이벨로"
+                                                            },
+                                                            {
+                                                                "name":  "성현석",
+                                                                "company":  "(주)넥센서"
+                                                            },
+                                                            {
+                                                                "name":  "염주승",
+                                                                "company":  "삼흥산업개발"
+                                                            },
+                                                            {
+                                                                "name":  "이기택",
+                                                                "company":  "삼도관세법인"
+                                                            },
+                                                            {
+                                                                "name":  "이현석",
+                                                                "company":  "국제웨딩컨벤션"
+                                                            },
+                                                            {
+                                                                "name":  "임영훈",
+                                                                "company":  "주식회사 저스템"
+                                                            },
+                                                            {
+                                                                "name":  "정은정",
+                                                                "company":  "주식회사 콤위즈"
+                                                            },
+                                                            {
+                                                                "name":  "최얼",
+                                                                "company":  "(주)시디피우정"
+                                                            },
+                                                            {
+                                                                "name":  "황동석",
+                                                                "company":  "가능성특허법률사무소"
+                                                            },
+                                                            {
+                                                                "name":  "황지영",
+                                                                "company":  ""
+                                                            }
+                                                        ]
                                       }
                                   ],
                        "members_all":  [
@@ -2105,203 +2341,203 @@
                                                "name":  "최얼",
                                                "company":  "(주)시디피우정",
                                                "attend_count":  1,
-                                               "check_count":  6,
-                                               "rate":  0.16666666666666666
+                                               "check_count":  7,
+                                               "rate":  0.14285714285714285
                                            },
                                            {
                                                "name":  "황지영",
                                                "company":  "",
                                                "attend_count":  1,
-                                               "check_count":  6,
-                                               "rate":  0.16666666666666666
+                                               "check_count":  7,
+                                               "rate":  0.14285714285714285
                                            },
                                            {
                                                "name":  "백진웅",
                                                "company":  "(주)케이벨로",
                                                "attend_count":  2,
-                                               "check_count":  6,
-                                               "rate":  0.33333333333333331
+                                               "check_count":  7,
+                                               "rate":  0.2857142857142857
                                            },
                                            {
                                                "name":  "성현석",
                                                "company":  "(주)넥센서",
                                                "attend_count":  2,
-                                               "check_count":  6,
-                                               "rate":  0.33333333333333331
-                                           },
-                                           {
-                                               "name":  "이병관",
-                                               "company":  "주식회사 아이소브",
-                                               "attend_count":  2,
-                                               "check_count":  6,
-                                               "rate":  0.33333333333333331
+                                               "check_count":  7,
+                                               "rate":  0.2857142857142857
                                            },
                                            {
                                                "name":  "정은정",
                                                "company":  "주식회사 콤위즈",
                                                "attend_count":  2,
-                                               "check_count":  6,
-                                               "rate":  0.33333333333333331
+                                               "check_count":  7,
+                                               "rate":  0.2857142857142857
                                            },
                                            {
                                                "name":  "황동석",
                                                "company":  "가능성특허법률사무소",
                                                "attend_count":  2,
-                                               "check_count":  6,
-                                               "rate":  0.33333333333333331
+                                               "check_count":  7,
+                                               "rate":  0.2857142857142857
                                            },
                                            {
                                                "name":  "김은수",
                                                "company":  "제이이솔루션 주식회사",
                                                "attend_count":  3,
-                                               "check_count":  6,
-                                               "rate":  0.5
-                                           },
-                                           {
-                                               "name":  "류영수",
-                                               "company":  "㈜지비티코리아",
-                                               "attend_count":  3,
-                                               "check_count":  6,
-                                               "rate":  0.5
+                                               "check_count":  7,
+                                               "rate":  0.42857142857142855
                                            },
                                            {
                                                "name":  "박정원",
                                                "company":  "(주)애드테크",
                                                "attend_count":  3,
-                                               "check_count":  6,
-                                               "rate":  0.5
+                                               "check_count":  7,
+                                               "rate":  0.42857142857142855
                                            },
                                            {
                                                "name":  "염주승",
                                                "company":  "삼흥산업개발",
                                                "attend_count":  3,
-                                               "check_count":  6,
-                                               "rate":  0.5
+                                               "check_count":  7,
+                                               "rate":  0.42857142857142855
+                                           },
+                                           {
+                                               "name":  "이병관",
+                                               "company":  "주식회사 아이소브",
+                                               "attend_count":  3,
+                                               "check_count":  7,
+                                               "rate":  0.42857142857142855
                                            },
                                            {
                                                "name":  "임영훈",
                                                "company":  "주식회사 저스템",
                                                "attend_count":  3,
-                                               "check_count":  6,
-                                               "rate":  0.5
+                                               "check_count":  7,
+                                               "rate":  0.42857142857142855
+                                           },
+                                           {
+                                               "name":  "류영수",
+                                               "company":  "㈜지비티코리아",
+                                               "attend_count":  4,
+                                               "check_count":  7,
+                                               "rate":  0.5714285714285714
                                            },
                                            {
                                                "name":  "김보미",
                                                "company":  "주식회사 쉬엔비",
-                                               "attend_count":  4,
-                                               "check_count":  6,
-                                               "rate":  0.66666666666666663
+                                               "attend_count":  5,
+                                               "check_count":  7,
+                                               "rate":  0.7142857142857143
                                            },
                                            {
                                                "name":  "박정임",
                                                "company":  "(주)제이앤제이건설산업개발",
-                                               "attend_count":  4,
-                                               "check_count":  6,
-                                               "rate":  0.66666666666666663
-                                           },
-                                           {
-                                               "name":  "임현창",
-                                               "company":  "주식회사 신정테크",
-                                               "attend_count":  4,
-                                               "check_count":  6,
-                                               "rate":  0.66666666666666663
-                                           },
-                                           {
-                                               "name":  "김주하",
-                                               "company":  "(주)투데이칩스",
-                                               "attend_count":  3,
-                                               "check_count":  4,
-                                               "rate":  0.75
-                                           },
-                                           {
-                                               "name":  "엄현식",
-                                               "company":  "아트원 주식회사",
                                                "attend_count":  5,
-                                               "check_count":  6,
-                                               "rate":  0.83333333333333337
+                                               "check_count":  7,
+                                               "rate":  0.7142857142857143
                                            },
                                            {
                                                "name":  "이기택",
                                                "company":  "삼도관세법인",
                                                "attend_count":  5,
-                                               "check_count":  6,
-                                               "rate":  0.83333333333333337
+                                               "check_count":  7,
+                                               "rate":  0.7142857142857143
                                            },
                                            {
                                                "name":  "이현석",
                                                "company":  "국제웨딩컨벤션",
                                                "attend_count":  5,
-                                               "check_count":  6,
-                                               "rate":  0.83333333333333337
+                                               "check_count":  7,
+                                               "rate":  0.7142857142857143
+                                           },
+                                           {
+                                               "name":  "임현창",
+                                               "company":  "주식회사 신정테크",
+                                               "attend_count":  5,
+                                               "check_count":  7,
+                                               "rate":  0.7142857142857143
+                                           },
+                                           {
+                                               "name":  "김주하",
+                                               "company":  "(주)투데이칩스",
+                                               "attend_count":  4,
+                                               "check_count":  5,
+                                               "rate":  0.8
+                                           },
+                                           {
+                                               "name":  "엄현식",
+                                               "company":  "아트원 주식회사",
+                                               "attend_count":  6,
+                                               "check_count":  7,
+                                               "rate":  0.8571428571428571
                                            },
                                            {
                                                "name":  "임수예",
                                                "company":  "(주)나이스레이저",
-                                               "attend_count":  5,
-                                               "check_count":  6,
-                                               "rate":  0.83333333333333337
+                                               "attend_count":  6,
+                                               "check_count":  7,
+                                               "rate":  0.8571428571428571
                                            },
                                            {
                                                "name":  "한규호",
                                                "company":  "(주)제우스켐",
-                                               "attend_count":  5,
-                                               "check_count":  6,
-                                               "rate":  0.83333333333333337
+                                               "attend_count":  6,
+                                               "check_count":  7,
+                                               "rate":  0.8571428571428571
                                            },
                                            {
                                                "name":  "이은솔",
                                                "company":  "㈜엔에스미디어",
-                                               "attend_count":  3,
-                                               "check_count":  3,
+                                               "attend_count":  4,
+                                               "check_count":  4,
                                                "rate":  1
                                            },
                                            {
                                                "name":  "강신호",
                                                "company":  "(주)페타네트워크",
-                                               "attend_count":  6,
-                                               "check_count":  6,
+                                               "attend_count":  7,
+                                               "check_count":  7,
                                                "rate":  1
                                            },
                                            {
                                                "name":  "김경목",
                                                "company":  "파르팜",
-                                               "attend_count":  6,
-                                               "check_count":  6,
+                                               "attend_count":  7,
+                                               "check_count":  7,
                                                "rate":  1
                                            },
                                            {
                                                "name":  "김미수",
                                                "company":  "주식회사와이엠알티씨",
-                                               "attend_count":  6,
-                                               "check_count":  6,
+                                               "attend_count":  7,
+                                               "check_count":  7,
                                                "rate":  1
                                            },
                                            {
                                                "name":  "김민석",
                                                "company":  "주식회사 현성베스코",
-                                               "attend_count":  6,
-                                               "check_count":  6,
+                                               "attend_count":  7,
+                                               "check_count":  7,
                                                "rate":  1
                                            },
                                            {
                                                "name":  "김영찬",
                                                "company":  "(주)에스엠테크",
-                                               "attend_count":  6,
-                                               "check_count":  6,
+                                               "attend_count":  7,
+                                               "check_count":  7,
                                                "rate":  1
                                            },
                                            {
                                                "name":  "주우형",
                                                "company":  "(주)유진인프라코어",
-                                               "attend_count":  6,
-                                               "check_count":  6,
+                                               "attend_count":  7,
+                                               "check_count":  7,
                                                "rate":  1
                                            },
                                            {
                                                "name":  "한지희",
                                                "company":  "(주)비씨상사",
-                                               "attend_count":  6,
-                                               "check_count":  6,
+                                               "attend_count":  7,
+                                               "check_count":  7,
                                                "rate":  1
                                            }
                                        ]
