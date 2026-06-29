@@ -1,6 +1,6 @@
 {
     "meta":  {
-                 "generated_at":  "2026-06-29 17:28:33",
+                 "generated_at":  "2026-06-29 18:00:56",
                  "completed_week_range":  "1~8주차",
                  "completed_weeks":  [
                                          1,
@@ -20,12 +20,12 @@
              },
     "kpis":  {
                  "income_total":  95995080,
-                 "spent_current":  41209100,
+                 "spent_current":  40209100,
                  "spent_prev_same_period":  38518031,
-                 "diff_amount":  2691069,
-                 "diff_rate":  0.0698651756108717,
-                 "budget_usage_rate":  0.42928345911061278,
-                 "remaining_budget":  54785980
+                 "diff_amount":  1691069,
+                 "diff_rate":  0.043903308556971665,
+                 "budget_usage_rate":  0.418866258562418,
+                 "remaining_budget":  55785980
              },
     "weekly_comparison":  [
                               {
@@ -40,9 +40,9 @@
                                   "week":  2,
                                   "week_label":  "2주차",
                                   "prev_amount":  3614200,
-                                  "current_amount":  3411500,
-                                  "diff_amount":  -202700,
-                                  "diff_rate":  -0.056084334015826465
+                                  "current_amount":  2411500,
+                                  "diff_amount":  -1202700,
+                                  "diff_rate":  -0.33277073764595205
                               },
                               {
                                   "week":  3,
@@ -97,9 +97,9 @@
                                 {
                                     "category":  "강의/진행/인력",
                                     "prev_amount":  23700000,
-                                    "current_amount":  20250000,
-                                    "diff_amount":  -3450000,
-                                    "diff_rate":  -0.14556962025316456
+                                    "current_amount":  19250000,
+                                    "diff_amount":  -4450000,
+                                    "diff_rate":  -0.18776371308016879
                                 },
                                 {
                                     "category":  "해외전시",
@@ -141,9 +141,9 @@
                              {
                                  "category":  "실수입 총액",
                                  "budget":  95995080,
-                                 "spent":  41209100,
-                                 "remain":  54785980,
-                                 "usage_rate":  0.42928345911061278
+                                 "spent":  40209100,
+                                 "remain":  55785980,
+                                 "usage_rate":  0.418866258562418
                              }
                          ],
     "income_summary":  [
@@ -388,15 +388,6 @@
                                  "amount":  14266000
                              },
                              {
-                                 "week_label":  "2주차",
-                                 "date":  "2026-05-14",
-                                 "category":  "강의/진행/인력",
-                                 "raw_category":  "강의비,진행비",
-                                 "vendor":  "",
-                                 "detail":  "강사비,진행비(유일한) *세금계산서 처리",
-                                 "amount":  3000000
-                             },
-                             {
                                  "week_label":  "1주차",
                                  "date":  "2026-05-07",
                                  "category":  "강의/진행/인력",
@@ -413,6 +404,15 @@
                                  "vendor":  "",
                                  "detail":  "강사비(류제언) *세금계산서 처리",
                                  "amount":  2750000
+                             },
+                             {
+                                 "week_label":  "2주차",
+                                 "date":  "2026-05-14",
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "강의비,진행비",
+                                 "vendor":  "",
+                                 "detail":  "강사비,진행비(유일한) *세금계산서 처리",
+                                 "amount":  2000000
                              },
                              {
                                  "week_label":  "4주차",
@@ -585,7 +585,7 @@
                                      "raw_category":  "강의비,진행비",
                                      "vendor":  "",
                                      "detail":  "강사비,진행비(유일한) *세금계산서 처리",
-                                     "amount":  3000000
+                                     "amount":  2000000
                                  },
                                  {
                                      "week_label":  "2주차",
