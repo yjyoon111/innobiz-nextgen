@@ -1,6 +1,6 @@
 window.DASHBOARD_DATA = {
     "meta":  {
-                 "generated_at":  "2026-06-29 16:16:32",
+                 "generated_at":  "2026-06-29 17:28:33",
                  "completed_week_range":  "1~8주차",
                  "completed_weeks":  [
                                          1,
@@ -20,12 +20,12 @@ window.DASHBOARD_DATA = {
              },
     "kpis":  {
                  "income_total":  95995080,
-                 "spent_current":  41709100,
+                 "spent_current":  41209100,
                  "spent_prev_same_period":  38518031,
-                 "diff_amount":  3191069,
-                 "diff_rate":  0.082846109137821713,
-                 "budget_usage_rate":  0.43449205938471014,
-                 "remaining_budget":  54285980
+                 "diff_amount":  2691069,
+                 "diff_rate":  0.0698651756108717,
+                 "budget_usage_rate":  0.42928345911061278,
+                 "remaining_budget":  54785980
              },
     "weekly_comparison":  [
                               {
@@ -88,18 +88,18 @@ window.DASHBOARD_DATA = {
                                   "week":  8,
                                   "week_label":  "8주차",
                                   "prev_amount":  4771800,
-                                  "current_amount":  2802100,
-                                  "diff_amount":  -1969700,
-                                  "diff_rate":  -0.41277924472945221
+                                  "current_amount":  2302100,
+                                  "diff_amount":  -2469700,
+                                  "diff_rate":  -0.51756150718806315
                               }
                           ],
     "category_comparison":  [
                                 {
                                     "category":  "강의/진행/인력",
                                     "prev_amount":  23700000,
-                                    "current_amount":  20750000,
-                                    "diff_amount":  -2950000,
-                                    "diff_rate":  -0.12447257383966245
+                                    "current_amount":  20250000,
+                                    "diff_amount":  -3450000,
+                                    "diff_rate":  -0.14556962025316456
                                 },
                                 {
                                     "category":  "해외전시",
@@ -141,9 +141,9 @@ window.DASHBOARD_DATA = {
                              {
                                  "category":  "실수입 총액",
                                  "budget":  95995080,
-                                 "spent":  41709100,
-                                 "remain":  54285980,
-                                 "usage_rate":  0.43449205938471014
+                                 "spent":  41209100,
+                                 "remain":  54785980,
+                                 "usage_rate":  0.42928345911061278
                              }
                          ],
     "income_summary":  [
@@ -388,21 +388,21 @@ window.DASHBOARD_DATA = {
                                  "amount":  14266000
                              },
                              {
-                                 "week_label":  "1주차",
-                                 "date":  "2026-05-07",
-                                 "category":  "강의/진행/인력",
-                                 "raw_category":  "강의비",
-                                 "vendor":  "",
-                                 "detail":  "강사비(신제구)",
-                                 "amount":  3000000
-                             },
-                             {
                                  "week_label":  "2주차",
                                  "date":  "2026-05-14",
                                  "category":  "강의/진행/인력",
                                  "raw_category":  "강의비,진행비",
                                  "vendor":  "",
                                  "detail":  "강사비,진행비(유일한) *세금계산서 처리",
+                                 "amount":  3000000
+                             },
+                             {
+                                 "week_label":  "1주차",
+                                 "date":  "2026-05-07",
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "강의비",
+                                 "vendor":  "",
+                                 "detail":  "강사비(신제구)",
                                  "amount":  3000000
                              },
                              {
@@ -422,15 +422,6 @@ window.DASHBOARD_DATA = {
                                  "vendor":  "",
                                  "detail":  "강사비(김용진)",
                                  "amount":  2000000
-                             },
-                             {
-                                 "week_label":  "8주차",
-                                 "date":  "2026-06-25",
-                                 "category":  "강의/진행/인력",
-                                 "raw_category":  "강의비",
-                                 "vendor":  "고영",
-                                 "detail":  "강사비(고영)",
-                                 "amount":  1500000
                              },
                              {
                                  "week_label":  "5주차",
@@ -502,6 +493,15 @@ window.DASHBOARD_DATA = {
                                  "raw_category":  "진행비",
                                  "vendor":  "주식회사 스마트에이엘",
                                  "detail":  "진행비(유일한) *세금계산서 처리",
+                                 "amount":  1000000
+                             },
+                             {
+                                 "week_label":  "8주차",
+                                 "date":  "2026-06-25",
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "강의비",
+                                 "vendor":  "고영",
+                                 "detail":  "강사비(고영)",
                                  "amount":  1000000
                              },
                              {
@@ -855,7 +855,7 @@ window.DASHBOARD_DATA = {
                                      "raw_category":  "강의비",
                                      "vendor":  "고영",
                                      "detail":  "강사비(고영)",
-                                     "amount":  1500000
+                                     "amount":  1000000
                                  },
                                  {
                                      "week_label":  "8주차",
