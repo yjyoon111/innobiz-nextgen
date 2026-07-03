@@ -120,6 +120,54 @@ function showMemberDetail(name) {
 }
 window.showMemberDetail = showMemberDetail;
 
+function downloadAttendanceExcel() {
+  if (!dashboardData || !dashboardData.attendance || typeof XLSX === "undefined") {
+    alert("데이터 준비 중입니다. 잠시 후 다시 시도해 주세요.");
+    return;
+  }
+  const weekly = dashboardData.attendance.weekly || [];
+  const has = (list, target) => (list || []).some((person) => person.name === target);
+
+  // 시트1: 개인별 출석현황 (이름 가나다순)
+  const members = [...dashboardData.attendance.members_all].sort((a, b) => a.name.localeCompare(b.name, "ko"));
+  const memberRows = members.map((m, index) => {
+    const row = { 번호: index + 1, 성명: m.name, 업체명: m.company };
+    weekly.forEach((week) => {
+      const label = week.trip ? `${week.week_label}(해외연수)` : week.week_label;
+      let status;
+      if (has(week.attendees, m.name)) status = week.trip ? "참가" : "참석";
+      else if (has(week.absentees, m.name)) status = "불참";
+      else status = "-";
+      row[label] = status;
+    });
+    row["출석횟수"] = m.attend_count;
+    row["확인가능회차"] = m.check_count;
+    row["출석률"] = `${(m.rate * 100).toFixed(1)}%`;
+    return row;
+  });
+
+  // 시트2: 주차별 출석현황
+  const weekRows = weekly.map((week) => ({
+    주차: week.week_label,
+    일자: week.date,
+    구분: week.trip ? "해외연수" : "정규",
+    출석: week.attend,
+    불참: week.absent,
+    출석률: week.trip ? "집계 제외" : `${(week.rate * 100).toFixed(1)}%`,
+  }));
+
+  const workbook = XLSX.utils.book_new();
+  const memberSheet = XLSX.utils.json_to_sheet(memberRows);
+  memberSheet["!cols"] = [{ wch: 5 }, { wch: 8 }, { wch: 22 }].concat(weekly.map(() => ({ wch: 10 })), [{ wch: 9 }, { wch: 12 }, { wch: 9 }]);
+  const weekSheet = XLSX.utils.json_to_sheet(weekRows);
+  weekSheet["!cols"] = [{ wch: 8 }, { wch: 12 }, { wch: 10 }, { wch: 6 }, { wch: 6 }, { wch: 10 }];
+  XLSX.utils.book_append_sheet(workbook, memberSheet, "개인별 출석현황");
+  XLSX.utils.book_append_sheet(workbook, weekSheet, "주차별 출석현황");
+
+  const today = new Date().toISOString().slice(0, 10);
+  XLSX.writeFile(workbook, `차경4기_출석현황_${today}.xlsx`);
+}
+
 function bindWeeklyChart(rows) {
   if (weeklyChart) weeklyChart.destroy();
   weeklyChart = new Chart(byId("weeklyChart"), {
@@ -551,6 +599,7 @@ function init() {
   modalTitleEl = byId("modal-title");
   byId("modal-close-btn").addEventListener("click", closeModal);
   byId("modal-close-bg").addEventListener("click", closeModal);
+  byId("attendance-download").addEventListener("click", downloadAttendanceExcel);
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeModal();
   });
