@@ -1,6 +1,6 @@
 {
     "meta":  {
-                 "generated_at":  "2026-07-03 16:41:23",
+                 "generated_at":  "2026-07-06 09:10:29",
                  "completed_week_range":  "1~9주차",
                  "completed_weeks":  [
                                          1,
@@ -21,12 +21,12 @@
              },
     "kpis":  {
                  "income_total":  95995080,
-                 "spent_current":  43163900,
+                 "spent_current":  42663900,
                  "spent_prev_same_period":  41783131,
-                 "diff_amount":  1380769,
-                 "diff_rate":  0.033046087427004933,
-                 "budget_usage_rate":  0.44964700274222386,
-                 "remaining_budget":  52831180
+                 "diff_amount":  880769,
+                 "diff_rate":  0.02107953566237054,
+                 "budget_usage_rate":  0.44443840246812649,
+                 "remaining_budget":  53331180
              },
     "weekly_comparison":  [
                               {
@@ -97,18 +97,18 @@
                                   "week":  9,
                                   "week_label":  "9주차",
                                   "prev_amount":  3265100,
-                                  "current_amount":  2954800,
-                                  "diff_amount":  -310300,
-                                  "diff_rate":  -0.095035374107990567
+                                  "current_amount":  2454800,
+                                  "diff_amount":  -810300,
+                                  "diff_rate":  -0.24817004073382132
                               }
                           ],
     "category_comparison":  [
                                 {
                                     "category":  "강의/진행/인력",
                                     "prev_amount":  26200000,
-                                    "current_amount":  21250000,
-                                    "diff_amount":  -4950000,
-                                    "diff_rate":  -0.18893129770992367
+                                    "current_amount":  20750000,
+                                    "diff_amount":  -5450000,
+                                    "diff_rate":  -0.20801526717557253
                                 },
                                 {
                                     "category":  "해외전시",
@@ -150,9 +150,9 @@
                              {
                                  "category":  "실수입 총액",
                                  "budget":  95995080,
-                                 "spent":  43163900,
-                                 "remain":  52831180,
-                                 "usage_rate":  0.44964700274222386
+                                 "spent":  42663900,
+                                 "remain":  53331180,
+                                 "usage_rate":  0.44443840246812649
                              }
                          ],
     "income_summary":  [
@@ -914,20 +914,20 @@
                                  {
                                      "week_label":  "9주차",
                                      "date":  "2026-07-02",
-                                     "category":  "강의/진행/인력",
-                                     "raw_category":  "강의비",
-                                     "vendor":  "코맥스",
-                                     "detail":  "강사비(한웅)",
-                                     "amount":  1000000
-                                 },
-                                 {
-                                     "week_label":  "9주차",
-                                     "date":  "2026-07-02",
                                      "category":  "장소/운영",
                                      "raw_category":  "운영비",
                                      "vendor":  "이노밸리",
                                      "detail":  "회의실 사용료(07/02, 냉방사용료 포함)",
                                      "amount":  550000
+                                 },
+                                 {
+                                     "week_label":  "9주차",
+                                     "date":  "2026-07-02",
+                                     "category":  "강의/진행/인력",
+                                     "raw_category":  "강의비",
+                                     "vendor":  "코맥스",
+                                     "detail":  "강사비(한웅)",
+                                     "amount":  500000
                                  },
                                  {
                                      "week_label":  "9주차",
