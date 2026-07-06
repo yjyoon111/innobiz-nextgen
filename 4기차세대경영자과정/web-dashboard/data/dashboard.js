@@ -1,6 +1,6 @@
 window.DASHBOARD_DATA = {
     "meta":  {
-                 "generated_at":  "2026-07-06 09:10:29",
+                 "generated_at":  "2026-07-06 17:24:50",
                  "completed_week_range":  "1~9주차",
                  "completed_weeks":  [
                                          1,
@@ -21,12 +21,12 @@ window.DASHBOARD_DATA = {
              },
     "kpis":  {
                  "income_total":  95995080,
-                 "spent_current":  42663900,
+                 "spent_current":  48135980,
                  "spent_prev_same_period":  41783131,
-                 "diff_amount":  880769,
-                 "diff_rate":  0.02107953566237054,
-                 "budget_usage_rate":  0.44443840246812649,
-                 "remaining_budget":  53331180
+                 "diff_amount":  6352849,
+                 "diff_rate":  0.15204339282281168,
+                 "budget_usage_rate":  0.50144215724389207,
+                 "remaining_budget":  47859100
              },
     "weekly_comparison":  [
                               {
@@ -65,9 +65,9 @@ window.DASHBOARD_DATA = {
                                   "week":  5,
                                   "week_label":  "5주차",
                                   "prev_amount":  2579400,
-                                  "current_amount":  15766000,
-                                  "diff_amount":  13186600,
-                                  "diff_rate":  5.1122741722881289
+                                  "current_amount":  21238080,
+                                  "diff_amount":  18658680,
+                                  "diff_rate":  7.2337287741335192
                               },
                               {
                                   "week":  6,
@@ -113,8 +113,8 @@ window.DASHBOARD_DATA = {
                                 {
                                     "category":  "해외전시",
                                     "prev_amount":  0,
-                                    "current_amount":  14266000,
-                                    "diff_amount":  14266000,
+                                    "current_amount":  19738080,
+                                    "diff_amount":  19738080,
                                     "diff_rate":  0
                                 },
                                 {
@@ -150,9 +150,9 @@ window.DASHBOARD_DATA = {
                              {
                                  "category":  "실수입 총액",
                                  "budget":  95995080,
-                                 "spent":  42663900,
-                                 "remain":  53331180,
-                                 "usage_rate":  0.44443840246812649
+                                 "spent":  48135980,
+                                 "remain":  47859100,
+                                 "usage_rate":  0.50144215724389207
                              }
                          ],
     "income_summary":  [
@@ -397,6 +397,15 @@ window.DASHBOARD_DATA = {
                                  "amount":  14266000
                              },
                              {
+                                 "week_label":  "5주차",
+                                 "date":  "2026-07-06",
+                                 "category":  "해외전시",
+                                 "raw_category":  "해외전시",
+                                 "vendor":  "(주)인터메세항공",
+                                 "detail":  "상하이 전시회(NEPCON,SIA) 운영 용역 잔금 30%",
+                                 "amount":  5472080
+                             },
+                             {
                                  "week_label":  "1주차",
                                  "date":  "2026-05-07",
                                  "category":  "강의/진행/인력",
@@ -460,39 +469,12 @@ window.DASHBOARD_DATA = {
                                  "amount":  1144000
                              },
                              {
-                                 "week_label":  "3주차",
-                                 "date":  "2026-05-21",
-                                 "category":  "강의/진행/인력",
-                                 "raw_category":  "진행비",
-                                 "vendor":  "",
-                                 "detail":  "진행비(유일한) *세금계산서 처리",
-                                 "amount":  1000000
-                             },
-                             {
-                                 "week_label":  "6주차",
-                                 "date":  "2026-06-11",
-                                 "category":  "강의/진행/인력",
-                                 "raw_category":  "진행비",
-                                 "vendor":  "주식회사 스마트에이엘",
-                                 "detail":  "진행비(유일한) *세금계산서 처리",
-                                 "amount":  1000000
-                             },
-                             {
                                  "week_label":  "6주차",
                                  "date":  "2026-06-11",
                                  "category":  "강의/진행/인력",
                                  "raw_category":  "강의비",
                                  "vendor":  "이상진",
                                  "detail":  "강사비(이상진)",
-                                 "amount":  1000000
-                             },
-                             {
-                                 "week_label":  "7주차",
-                                 "date":  "2026-06-18",
-                                 "category":  "강의/진행/인력",
-                                 "raw_category":  "강의비",
-                                 "vendor":  "김창원",
-                                 "detail":  "강사비(김창원)",
                                  "amount":  1000000
                              },
                              {
@@ -505,21 +487,39 @@ window.DASHBOARD_DATA = {
                                  "amount":  1000000
                              },
                              {
+                                 "week_label":  "3주차",
+                                 "date":  "2026-05-21",
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "진행비",
+                                 "vendor":  "",
+                                 "detail":  "진행비(유일한) *세금계산서 처리",
+                                 "amount":  1000000
+                             },
+                             {
+                                 "week_label":  "7주차",
+                                 "date":  "2026-06-18",
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "강의비",
+                                 "vendor":  "김창원",
+                                 "detail":  "강사비(김창원)",
+                                 "amount":  1000000
+                             },
+                             {
+                                 "week_label":  "1주차",
+                                 "date":  "2026-05-07",
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "진행비",
+                                 "vendor":  "",
+                                 "detail":  "진행비(유일한)",
+                                 "amount":  1000000
+                             },
+                             {
                                  "week_label":  "8주차",
                                  "date":  "2026-06-25",
                                  "category":  "강의/진행/인력",
                                  "raw_category":  "강의비",
                                  "vendor":  "고영",
                                  "detail":  "강사비(고영)",
-                                 "amount":  1000000
-                             },
-                             {
-                                 "week_label":  "9주차",
-                                 "date":  "2026-07-02",
-                                 "category":  "강의/진행/인력",
-                                 "raw_category":  "진행비",
-                                 "vendor":  "주식회사 스마트에이엘",
-                                 "detail":  "진행비(유일한) *세금계산서 처리",
                                  "amount":  1000000
                              }
                          ],
@@ -760,6 +760,15 @@ window.DASHBOARD_DATA = {
                                  },
                                  {
                                      "week_label":  "5주차",
+                                     "date":  "2026-07-06",
+                                     "category":  "해외전시",
+                                     "raw_category":  "해외전시",
+                                     "vendor":  "(주)인터메세항공",
+                                     "detail":  "상하이 전시회(NEPCON,SIA) 운영 용역 잔금 30%",
+                                     "amount":  5472080
+                                 },
+                                 {
+                                     "week_label":  "5주차",
                                      "date":  "2026-06-03",
                                      "category":  "강의/진행/인력",
                                      "raw_category":  "강의비",
@@ -771,18 +780,18 @@ window.DASHBOARD_DATA = {
                                      "week_label":  "6주차",
                                      "date":  "2026-06-11",
                                      "category":  "강의/진행/인력",
-                                     "raw_category":  "진행비",
-                                     "vendor":  "주식회사 스마트에이엘",
-                                     "detail":  "진행비(유일한) *세금계산서 처리",
+                                     "raw_category":  "강의비",
+                                     "vendor":  "이상진",
+                                     "detail":  "강사비(이상진)",
                                      "amount":  1000000
                                  },
                                  {
                                      "week_label":  "6주차",
                                      "date":  "2026-06-11",
                                      "category":  "강의/진행/인력",
-                                     "raw_category":  "강의비",
-                                     "vendor":  "이상진",
-                                     "detail":  "강사비(이상진)",
+                                     "raw_category":  "진행비",
+                                     "vendor":  "주식회사 스마트에이엘",
+                                     "detail":  "진행비(유일한) *세금계산서 처리",
                                      "amount":  1000000
                                  },
                                  {
