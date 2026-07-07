@@ -268,6 +268,181 @@ body {
   background: rgba(24, 111, 101, 0.18);
 }
 
+/* ---- 4기 운영진 조직도 ---- */
+.org-panel {
+  margin-top: 18px;
+}
+
+.org-chart {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+  padding: 8px 0 4px;
+}
+
+.org-top-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 28px;
+  width: 100%;
+  flex-wrap: wrap;
+}
+
+.org-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.org-card {
+  min-width: 150px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: #fff;
+  box-shadow: 0 6px 18px rgba(14, 34, 54, 0.08);
+  text-align: center;
+}
+
+.org-card p {
+  margin: 0;
+}
+
+.org-role {
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  color: var(--brand);
+}
+
+.org-name {
+  font-size: 18px;
+  font-weight: 800;
+  margin-top: 2px !important;
+}
+
+.org-company {
+  font-size: 12px;
+  color: var(--muted);
+  margin-top: 2px !important;
+}
+
+.org-president {
+  background: linear-gradient(135deg, #186f65 0%, #1d3f72 130%);
+  border: none;
+}
+
+.org-president .org-role,
+.org-president .org-company {
+  color: rgba(255, 255, 255, 0.82);
+}
+
+.org-president .org-name {
+  color: #fff;
+  font-size: 20px;
+}
+
+.org-vice {
+  border-color: rgba(24, 111, 101, 0.35);
+}
+
+.org-line {
+  width: 2px;
+  height: 22px;
+  background: rgba(24, 111, 101, 0.35);
+}
+
+.org-branch-row {
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+  position: relative;
+  padding-top: 14px;
+}
+
+.org-branch-row::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 12%;
+  right: 12%;
+  height: 2px;
+  background: rgba(24, 111, 101, 0.25);
+}
+
+.org-branch-row .org-card {
+  position: relative;
+}
+
+.org-branch-row .org-card::before {
+  content: "";
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  width: 2px;
+  height: 14px;
+  background: rgba(24, 111, 101, 0.25);
+}
+
+.org-group {
+  min-width: 180px;
+  max-width: 230px;
+  padding: 12px 14px;
+  border-radius: 14px;
+  border: 1px dashed rgba(29, 63, 114, 0.35);
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.org-group-title {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  color: var(--brand-3);
+  text-align: center;
+}
+
+.org-group-members {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.org-mini-card {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+}
+
+.org-mini-card strong {
+  font-size: 14px;
+}
+
+.org-mini-card span {
+  font-size: 11px;
+  color: var(--muted);
+  text-align: right;
+}
+
+@media (max-width: 860px) {
+  .org-top-row {
+    flex-direction: column;
+    align-items: center;
+  }
+  .org-group {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
 .table-footer {
   margin-top: 12px;
   display: flex;
