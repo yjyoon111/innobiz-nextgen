@@ -1,6 +1,6 @@
 window.DASHBOARD_DATA = {
     "meta":  {
-                 "generated_at":  "2026-07-27 15:24:07",
+                 "generated_at":  "2026-07-27 15:38:41",
                  "completed_week_range":  "1~11주차",
                  "completed_weeks":  [
                                          1,
@@ -23,12 +23,12 @@ window.DASHBOARD_DATA = {
              },
     "kpis":  {
                  "income_total":  95995080,
-                 "spent_current":  56280580,
+                 "spent_current":  56480580,
                  "spent_prev_same_period":  45554081,
-                 "diff_amount":  10726499,
-                 "diff_rate":  0.235467355822632,
-                 "budget_usage_rate":  0.58628608882871913,
-                 "remaining_budget":  39714500
+                 "diff_amount":  10926499,
+                 "diff_rate":  0.23985774183437045,
+                 "budget_usage_rate":  0.58836952893835814,
+                 "remaining_budget":  39514500
              },
     "weekly_comparison":  [
                               {
@@ -99,9 +99,9 @@ window.DASHBOARD_DATA = {
                                   "week":  9,
                                   "week_label":  "9주차",
                                   "prev_amount":  3265100,
-                                  "current_amount":  2454800,
-                                  "diff_amount":  -810300,
-                                  "diff_rate":  -0.24817004073382132
+                                  "current_amount":  2654800,
+                                  "diff_amount":  -610300,
+                                  "diff_rate":  -0.186916174083489
                               },
                               {
                                   "week":  10,
@@ -152,9 +152,9 @@ window.DASHBOARD_DATA = {
                                 {
                                     "category":  "장소/운영",
                                     "prev_amount":  7373300,
-                                    "current_amount":  550000,
-                                    "diff_amount":  -6823300,
-                                    "diff_rate":  -0.92540653438758769
+                                    "current_amount":  750000,
+                                    "diff_amount":  -6623300,
+                                    "diff_rate":  -0.89828163780125592
                                 },
                                 {
                                     "category":  "기타",
@@ -168,9 +168,9 @@ window.DASHBOARD_DATA = {
                              {
                                  "category":  "실수입 총액",
                                  "budget":  95995080,
-                                 "spent":  56280580,
-                                 "remain":  39714500,
-                                 "usage_rate":  0.58628608882871913
+                                 "spent":  56480580,
+                                 "remain":  39514500,
+                                 "usage_rate":  0.58836952893835814
                              }
                          ],
     "income_summary":  [
@@ -940,12 +940,12 @@ window.DASHBOARD_DATA = {
                                  },
                                  {
                                      "week_label":  "9주차",
-                                     "date":  "2026-07-02",
+                                     "date":  "2026-06-17",
                                      "category":  "장소/운영",
                                      "raw_category":  "운영비",
-                                     "vendor":  "이노밸리",
-                                     "detail":  "회의실 사용료(07/02, 냉방사용료 포함)",
-                                     "amount":  550000
+                                     "vendor":  "판교이노밸리6블럭관리단",
+                                     "detail":  "회의실 임차료(보증금 및 사용료)",
+                                     "amount":  750000
                                  },
                                  {
                                      "week_label":  "9주차",
@@ -979,7 +979,7 @@ window.DASHBOARD_DATA = {
                                      "date":  "2026-07-10",
                                      "category":  "식음료",
                                      "raw_category":  "식비",
-                                     "vendor":  "(주)올리에프앤비",
+                                     "vendor":  "해물꾼조태산",
                                      "detail":  "식비(졸업여행 중식)",
                                      "amount":  274000
                                  },
