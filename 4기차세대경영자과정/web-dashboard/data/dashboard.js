@@ -1,6 +1,6 @@
 window.DASHBOARD_DATA = {
     "meta":  {
-                 "generated_at":  "2026-07-27 15:19:26",
+                 "generated_at":  "2026-07-27 15:24:07",
                  "completed_week_range":  "1~11주차",
                  "completed_weeks":  [
                                          1,
@@ -12,6 +12,7 @@ window.DASHBOARD_DATA = {
                                          7,
                                          8,
                                          9,
+                                         10,
                                          11
                                      ],
                  "source_files":  {
@@ -22,12 +23,12 @@ window.DASHBOARD_DATA = {
              },
     "kpis":  {
                  "income_total":  95995080,
-                 "spent_current":  56006580,
-                 "spent_prev_same_period":  44330681,
-                 "diff_amount":  11675899,
-                 "diff_rate":  0.26338190022391039,
-                 "budget_usage_rate":  0.5834317758785138,
-                 "remaining_budget":  39988500
+                 "spent_current":  56280580,
+                 "spent_prev_same_period":  45554081,
+                 "diff_amount":  10726499,
+                 "diff_rate":  0.235467355822632,
+                 "budget_usage_rate":  0.58628608882871913,
+                 "remaining_budget":  39714500
              },
     "weekly_comparison":  [
                               {
@@ -103,6 +104,14 @@ window.DASHBOARD_DATA = {
                                   "diff_rate":  -0.24817004073382132
                               },
                               {
+                                  "week":  10,
+                                  "week_label":  "10주차",
+                                  "prev_amount":  1223400,
+                                  "current_amount":  274000,
+                                  "diff_amount":  -949400,
+                                  "diff_rate":  -0.77603400359653429
+                              },
+                              {
                                   "week":  11,
                                   "week_label":  "11주차",
                                   "prev_amount":  2547550,
@@ -114,10 +123,10 @@ window.DASHBOARD_DATA = {
     "category_comparison":  [
                                 {
                                     "category":  "강의/진행/인력",
-                                    "prev_amount":  28200000,
+                                    "prev_amount":  29200000,
                                     "current_amount":  24550000,
-                                    "diff_amount":  -3650000,
-                                    "diff_rate":  -0.12943262411347517
+                                    "diff_amount":  -4650000,
+                                    "diff_rate":  -0.15924657534246575
                                 },
                                 {
                                     "category":  "해외전시",
@@ -128,10 +137,10 @@ window.DASHBOARD_DATA = {
                                 },
                                 {
                                     "category":  "식음료",
-                                    "prev_amount":  7810011,
-                                    "current_amount":  5706300,
-                                    "diff_amount":  -2103711,
-                                    "diff_rate":  -0.26936082420370472
+                                    "prev_amount":  8033411,
+                                    "current_amount":  5980300,
+                                    "diff_amount":  -2053111,
+                                    "diff_rate":  -0.255571512524381
                                 },
                                 {
                                     "category":  "준비/인쇄/물품",
@@ -159,9 +168,9 @@ window.DASHBOARD_DATA = {
                              {
                                  "category":  "실수입 총액",
                                  "budget":  95995080,
-                                 "spent":  56006580,
-                                 "remain":  39988500,
-                                 "usage_rate":  0.5834317758785138
+                                 "spent":  56280580,
+                                 "remain":  39714500,
+                                 "usage_rate":  0.58628608882871913
                              }
                          ],
     "income_summary":  [
@@ -966,6 +975,15 @@ window.DASHBOARD_DATA = {
                                      "amount":  48800
                                  },
                                  {
+                                     "week_label":  "10주차",
+                                     "date":  "2026-07-10",
+                                     "category":  "식음료",
+                                     "raw_category":  "식비",
+                                     "vendor":  "(주)올리에프앤비",
+                                     "detail":  "식비(졸업여행 중식)",
+                                     "amount":  274000
+                                 },
+                                 {
                                      "week_label":  "11주차",
                                      "date":  "2026-07-16",
                                      "category":  "강의/진행/인력",
@@ -1062,7 +1080,7 @@ window.DASHBOARD_DATA = {
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "정주용",
+                                  "vendor":  "장재욱",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -1071,7 +1089,7 @@ window.DASHBOARD_DATA = {
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "장재욱",
+                                  "vendor":  "정주용",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -1566,7 +1584,7 @@ window.DASHBOARD_DATA = {
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "장재욱",
+                                  "vendor":  "정주용",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -1575,7 +1593,7 @@ window.DASHBOARD_DATA = {
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "정주용",
+                                  "vendor":  "장재욱",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -1616,6 +1634,51 @@ window.DASHBOARD_DATA = {
                                   "amount":  9900
                               },
                               {
+                                  "week_label":  "10주차",
+                                  "date":  "",
+                                  "category":  "강의/진행/인력",
+                                  "raw_category":  "강사료",
+                                  "vendor":  "정주용",
+                                  "detail":  "액션런닝",
+                                  "amount":  500000
+                              },
+                              {
+                                  "week_label":  "10주차",
+                                  "date":  "",
+                                  "category":  "강의/진행/인력",
+                                  "raw_category":  "강사료",
+                                  "vendor":  "장재욱",
+                                  "detail":  "액션런닝",
+                                  "amount":  500000
+                              },
+                              {
+                                  "week_label":  "10주차",
+                                  "date":  "",
+                                  "category":  "식음료",
+                                  "raw_category":  "다과 및 식비",
+                                  "vendor":  "백합칼국수",
+                                  "detail":  "식비",
+                                  "amount":  178000
+                              },
+                              {
+                                  "week_label":  "10주차",
+                                  "date":  "",
+                                  "category":  "식음료",
+                                  "raw_category":  "다과 및 식비",
+                                  "vendor":  "시화나래휴게소",
+                                  "detail":  "다과비",
+                                  "amount":  40400
+                              },
+                              {
+                                  "week_label":  "10주차",
+                                  "date":  "",
+                                  "category":  "식음료",
+                                  "raw_category":  "다과 및 식비",
+                                  "vendor":  "시화나래휴게소",
+                                  "detail":  "다과비",
+                                  "amount":  5000
+                              },
+                              {
                                   "week_label":  "11주차",
                                   "date":  "",
                                   "category":  "강의/진행/인력",
@@ -1629,7 +1692,7 @@ window.DASHBOARD_DATA = {
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "장재욱",
+                                  "vendor":  "정주용",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
@@ -1638,7 +1701,7 @@ window.DASHBOARD_DATA = {
                                   "date":  "",
                                   "category":  "강의/진행/인력",
                                   "raw_category":  "강사료",
-                                  "vendor":  "정주용",
+                                  "vendor":  "장재욱",
                                   "detail":  "액션런닝",
                                   "amount":  500000
                               },
