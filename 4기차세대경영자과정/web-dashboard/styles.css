@@ -268,6 +268,56 @@ body {
   background: rgba(24, 111, 101, 0.18);
 }
 
+/* ---- 연수 일정(커리큘럼) ---- */
+.curriculum-panel {
+  margin-top: 18px;
+}
+
+.curriculum-figure {
+  margin-top: 12px;
+  display: flex;
+  justify-content: center;
+}
+
+.curriculum-figure img {
+  max-width: 100%;
+  width: auto;
+  height: auto;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgba(14, 34, 54, 0.1);
+  cursor: zoom-in;
+  transition: transform 0.15s ease;
+}
+
+.curriculum-figure img:hover {
+  transform: translateY(-2px);
+}
+
+/* 이미지 확대 오버레이 */
+.img-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 120;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(12, 20, 28, 0.82);
+  cursor: zoom-out;
+}
+
+.img-lightbox.show {
+  display: flex;
+}
+
+.img-lightbox img {
+  max-width: 100%;
+  max-height: 92vh;
+  border-radius: 12px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+}
+
 /* ---- 4기 운영진 조직도 ---- */
 .org-panel {
   margin-top: 18px;
