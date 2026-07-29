@@ -600,28 +600,8 @@ function init() {
   byId("modal-close-btn").addEventListener("click", closeModal);
   byId("modal-close-bg").addEventListener("click", closeModal);
   byId("attendance-download").addEventListener("click", downloadAttendanceExcel);
-
-  const curriculumImg = byId("curriculum-img");
-  const lightbox = byId("img-lightbox");
-  if (curriculumImg && lightbox) {
-    curriculumImg.addEventListener("click", () => {
-      byId("img-lightbox-target").src = curriculumImg.src;
-      lightbox.classList.add("show");
-      lightbox.setAttribute("aria-hidden", "false");
-    });
-    lightbox.addEventListener("click", () => {
-      lightbox.classList.remove("show");
-      lightbox.setAttribute("aria-hidden", "true");
-    });
-  }
   window.addEventListener("keydown", (event) => {
-    if (event.key !== "Escape") return;
-    closeModal();
-    const box = byId("img-lightbox");
-    if (box) {
-      box.classList.remove("show");
-      box.setAttribute("aria-hidden", "true");
-    }
+    if (event.key === "Escape") closeModal();
   });
 
   bindManagedTable("attendance");

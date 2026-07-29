@@ -268,54 +268,66 @@ body {
   background: rgba(24, 111, 101, 0.18);
 }
 
-/* ---- 연수 일정(커리큘럼) ---- */
+/* ---- 연수 일정(커리큘럼) - 접이식 참고자료 ---- */
 .curriculum-panel {
   margin-top: 18px;
 }
 
+.curriculum-panel summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  cursor: pointer;
+  list-style: none;
+  padding: 2px 0;
+}
+
+.curriculum-panel summary::-webkit-details-marker {
+  display: none;
+}
+
+.curriculum-summary-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.curriculum-summary-text strong {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.curriculum-summary-text em {
+  font-style: normal;
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.curriculum-chevron {
+  font-size: 14px;
+  color: var(--brand);
+  transition: transform 0.2s ease;
+}
+
+.curriculum-panel[open] .curriculum-chevron {
+  transform: rotate(180deg);
+}
+
 .curriculum-figure {
-  margin-top: 12px;
+  margin-top: 14px;
+  padding-top: 14px;
+  border-top: 1px solid var(--line);
   display: flex;
   justify-content: center;
 }
 
 .curriculum-figure img {
-  max-width: 100%;
-  width: auto;
+  width: 100%;
+  max-width: 620px;
   height: auto;
-  border-radius: 14px;
-  border: 1px solid var(--line);
-  box-shadow: 0 8px 24px rgba(14, 34, 54, 0.1);
-  cursor: zoom-in;
-  transition: transform 0.15s ease;
-}
-
-.curriculum-figure img:hover {
-  transform: translateY(-2px);
-}
-
-/* 이미지 확대 오버레이 */
-.img-lightbox {
-  position: fixed;
-  inset: 0;
-  z-index: 120;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 24px;
-  background: rgba(12, 20, 28, 0.82);
-  cursor: zoom-out;
-}
-
-.img-lightbox.show {
-  display: flex;
-}
-
-.img-lightbox img {
-  max-width: 100%;
-  max-height: 92vh;
   border-radius: 12px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.45);
+  border: 1px solid var(--line);
 }
 
 /* ---- 4기 운영진 조직도 ---- */
