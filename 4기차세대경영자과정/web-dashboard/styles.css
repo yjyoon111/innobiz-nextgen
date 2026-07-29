@@ -268,56 +268,13 @@ body {
   background: rgba(24, 111, 101, 0.18);
 }
 
-/* ---- 연수 일정(커리큘럼) - 접이식 참고자료 ---- */
+/* ---- 연수 일정(커리큘럼) ---- */
 .curriculum-panel {
   margin-top: 18px;
 }
 
-.curriculum-panel summary {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  cursor: pointer;
-  list-style: none;
-  padding: 2px 0;
-}
-
-.curriculum-panel summary::-webkit-details-marker {
-  display: none;
-}
-
-.curriculum-summary-text {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.curriculum-summary-text strong {
-  font-size: 16px;
-  font-weight: 700;
-}
-
-.curriculum-summary-text em {
-  font-style: normal;
-  font-size: 12px;
-  color: var(--muted);
-}
-
-.curriculum-chevron {
-  font-size: 14px;
-  color: var(--brand);
-  transition: transform 0.2s ease;
-}
-
-.curriculum-panel[open] .curriculum-chevron {
-  transform: rotate(180deg);
-}
-
 .curriculum-figure {
   margin-top: 14px;
-  padding-top: 14px;
-  border-top: 1px solid var(--line);
   display: flex;
   justify-content: center;
 }
