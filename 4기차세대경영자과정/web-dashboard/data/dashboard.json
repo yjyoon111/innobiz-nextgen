@@ -1,6 +1,6 @@
 {
     "meta":  {
-                 "generated_at":  "2026-07-27 15:38:41",
+                 "generated_at":  "2026-08-03 11:24:10",
                  "completed_week_range":  "1~11주차",
                  "completed_weeks":  [
                                          1,
@@ -23,45 +23,45 @@
              },
     "kpis":  {
                  "income_total":  95995080,
-                 "spent_current":  56480580,
+                 "spent_current":  57330580,
                  "spent_prev_same_period":  45554081,
-                 "diff_amount":  10926499,
-                 "diff_rate":  0.23985774183437045,
-                 "budget_usage_rate":  0.58836952893835814,
-                 "remaining_budget":  39514500
+                 "diff_amount":  11776499,
+                 "diff_rate":  0.25851688238425885,
+                 "budget_usage_rate":  0.59722414940432367,
+                 "remaining_budget":  38664500
              },
     "weekly_comparison":  [
                               {
                                   "week":  1,
                                   "week_label":  "1주차",
                                   "prev_amount":  4523900,
-                                  "current_amount":  6944900,
-                                  "diff_amount":  2421000,
-                                  "diff_rate":  0.5351577178982736
+                                  "current_amount":  7144900,
+                                  "diff_amount":  2621000,
+                                  "diff_rate":  0.57936736002122058
                               },
                               {
                                   "week":  2,
                                   "week_label":  "2주차",
                                   "prev_amount":  3614200,
-                                  "current_amount":  2411500,
-                                  "diff_amount":  -1202700,
-                                  "diff_rate":  -0.33277073764595205
+                                  "current_amount":  2501500,
+                                  "diff_amount":  -1112700,
+                                  "diff_rate":  -0.3078689613192408
                               },
                               {
                                   "week":  3,
                                   "week_label":  "3주차",
                                   "prev_amount":  3864100,
-                                  "current_amount":  4207100,
-                                  "diff_amount":  343000,
-                                  "diff_rate":  0.08876581868999249
+                                  "current_amount":  4297100,
+                                  "diff_amount":  433000,
+                                  "diff_rate":  0.11205714137832871
                               },
                               {
                                   "week":  4,
                                   "week_label":  "4주차",
                                   "prev_amount":  13485031,
-                                  "current_amount":  3784500,
-                                  "diff_amount":  -9700531,
-                                  "diff_rate":  -0.71935548386948467
+                                  "current_amount":  3874500,
+                                  "diff_amount":  -9610531,
+                                  "diff_rate":  -0.71268141689848541
                               },
                               {
                                   "week":  5,
@@ -75,17 +75,17 @@
                                   "week":  6,
                                   "week_label":  "6주차",
                                   "prev_amount":  2443600,
-                                  "current_amount":  2819900,
-                                  "diff_amount":  376300,
-                                  "diff_rate":  0.1539941070551645
+                                  "current_amount":  2909900,
+                                  "diff_amount":  466300,
+                                  "diff_rate":  0.19082501227696841
                               },
                               {
                                   "week":  7,
                                   "week_label":  "7주차",
                                   "prev_amount":  3236000,
-                                  "current_amount":  1973100,
-                                  "diff_amount":  -1262900,
-                                  "diff_rate":  -0.39026576019777504
+                                  "current_amount":  2063100,
+                                  "diff_amount":  -1172900,
+                                  "diff_rate":  -0.36245364647713224
                               },
                               {
                                   "week":  8,
@@ -115,9 +115,9 @@
                                   "week":  11,
                                   "week_label":  "11주차",
                                   "prev_amount":  2547550,
-                                  "current_amount":  7870600,
-                                  "diff_amount":  5323050,
-                                  "diff_rate":  2.0894781260426685
+                                  "current_amount":  8070600,
+                                  "diff_amount":  5523050,
+                                  "diff_rate":  2.1679849266942748
                               }
                           ],
     "category_comparison":  [
@@ -152,9 +152,9 @@
                                 {
                                     "category":  "장소/운영",
                                     "prev_amount":  7373300,
-                                    "current_amount":  750000,
-                                    "diff_amount":  -6623300,
-                                    "diff_rate":  -0.89828163780125592
+                                    "current_amount":  1600000,
+                                    "diff_amount":  -5773300,
+                                    "diff_rate":  -0.78300082730934584
                                 },
                                 {
                                     "category":  "기타",
@@ -168,9 +168,9 @@
                              {
                                  "category":  "실수입 총액",
                                  "budget":  95995080,
-                                 "spent":  56480580,
-                                 "remain":  39514500,
-                                 "usage_rate":  0.58836952893835814
+                                 "spent":  57330580,
+                                 "remain":  38664500,
+                                 "usage_rate":  0.59722414940432367
                              }
                          ],
     "income_summary":  [
@@ -505,15 +505,6 @@
                                  "amount":  1144000
                              },
                              {
-                                 "week_label":  "4주차",
-                                 "date":  "2026-05-28",
-                                 "category":  "강의/진행/인력",
-                                 "raw_category":  "진행비",
-                                 "vendor":  "",
-                                 "detail":  "진행비(유일한) *세금계산서 처리",
-                                 "amount":  1000000
-                             },
-                             {
                                  "week_label":  "8주차",
                                  "date":  "2026-06-25",
                                  "category":  "강의/진행/인력",
@@ -523,11 +514,20 @@
                                  "amount":  1000000
                              },
                              {
-                                 "week_label":  "9주차",
-                                 "date":  "2026-07-02",
+                                 "week_label":  "1주차",
+                                 "date":  "2026-05-07",
                                  "category":  "강의/진행/인력",
                                  "raw_category":  "진행비",
-                                 "vendor":  "주식회사 스마트에이엘",
+                                 "vendor":  "",
+                                 "detail":  "진행비(유일한)",
+                                 "amount":  1000000
+                             },
+                             {
+                                 "week_label":  "4주차",
+                                 "date":  "2026-05-28",
+                                 "category":  "강의/진행/인력",
+                                 "raw_category":  "진행비",
+                                 "vendor":  "",
                                  "detail":  "진행비(유일한) *세금계산서 처리",
                                  "amount":  1000000
                              },
@@ -590,6 +590,15 @@
                                  {
                                      "week_label":  "1주차",
                                      "date":  "2026-05-07",
+                                     "category":  "장소/운영",
+                                     "raw_category":  "대관료",
+                                     "vendor":  "이노비즈협회",
+                                     "detail":  "대관료(지하1층 대회의실, 5시간)",
+                                     "amount":  200000
+                                 },
+                                 {
+                                     "week_label":  "1주차",
+                                     "date":  "2026-05-07",
                                      "category":  "식음료",
                                      "raw_category":  "다과비",
                                      "vendor":  "세븐일레븐 판교이노밸리점",
@@ -622,6 +631,15 @@
                                      "vendor":  "우림닭갈비",
                                      "detail":  "치즈닭갈비 16, 콜라 5, 볶음밥 6, 소주 6, 맥주 6, 사이다1",
                                      "amount":  358000
+                                 },
+                                 {
+                                     "week_label":  "2주차",
+                                     "date":  "2026-05-14",
+                                     "category":  "장소/운영",
+                                     "raw_category":  "대관료",
+                                     "vendor":  "이노비즈협회",
+                                     "detail":  "대관료(7층 공용회의실, 9시간)",
+                                     "amount":  90000
                                  },
                                  {
                                      "week_label":  "2주차",
@@ -667,6 +685,15 @@
                                      "vendor":  "군산오징어",
                                      "detail":  "석식비",
                                      "amount":  393000
+                                 },
+                                 {
+                                     "week_label":  "3주차",
+                                     "date":  "2026-05-21",
+                                     "category":  "장소/운영",
+                                     "raw_category":  "대관료",
+                                     "vendor":  "이노비즈협회",
+                                     "detail":  "대관료(7층 공용회의실, 9시간)",
+                                     "amount":  90000
                                  },
                                  {
                                      "week_label":  "3주차",
@@ -743,6 +770,15 @@
                                  {
                                      "week_label":  "4주차",
                                      "date":  "2026-05-28",
+                                     "category":  "장소/운영",
+                                     "raw_category":  "대관료",
+                                     "vendor":  "이노비즈협회",
+                                     "detail":  "대관료(7층 공용회의실, 9시간)",
+                                     "amount":  90000
+                                 },
+                                 {
+                                     "week_label":  "4주차",
+                                     "date":  "2026-05-28",
                                      "category":  "식음료",
                                      "raw_category":  "식비",
                                      "vendor":  "세븐일레븐 판교이노밸리점",
@@ -798,18 +834,18 @@
                                      "week_label":  "6주차",
                                      "date":  "2026-06-11",
                                      "category":  "강의/진행/인력",
-                                     "raw_category":  "진행비",
-                                     "vendor":  "주식회사 스마트에이엘",
-                                     "detail":  "진행비(유일한) *세금계산서 처리",
+                                     "raw_category":  "강의비",
+                                     "vendor":  "이상진",
+                                     "detail":  "강사비(이상진)",
                                      "amount":  1000000
                                  },
                                  {
                                      "week_label":  "6주차",
                                      "date":  "2026-06-11",
                                      "category":  "강의/진행/인력",
-                                     "raw_category":  "강의비",
-                                     "vendor":  "이상진",
-                                     "detail":  "강사비(이상진)",
+                                     "raw_category":  "진행비",
+                                     "vendor":  "주식회사 스마트에이엘",
+                                     "detail":  "진행비(유일한) *세금계산서 처리",
                                      "amount":  1000000
                                  },
                                  {
@@ -820,6 +856,15 @@
                                      "vendor":  "스시가오",
                                      "detail":  "식비(스시가오)",
                                      "amount":  670000
+                                 },
+                                 {
+                                     "week_label":  "6주차",
+                                     "date":  "2026-06-11",
+                                     "category":  "장소/운영",
+                                     "raw_category":  "대관료",
+                                     "vendor":  "이노비즈협회",
+                                     "detail":  "대관료(7층 공용회의실, 9시간)",
+                                     "amount":  90000
                                  },
                                  {
                                      "week_label":  "6주차",
@@ -874,6 +919,15 @@
                                      "vendor":  "소호면가 분당점",
                                      "detail":  "식비(소호면가)",
                                      "amount":  395000
+                                 },
+                                 {
+                                     "week_label":  "7주차",
+                                     "date":  "2026-06-18",
+                                     "category":  "장소/운영",
+                                     "raw_category":  "대관료",
+                                     "vendor":  "이노비즈협회",
+                                     "detail":  "대관료(7층 공용회의실, 9시간)",
+                                     "amount":  90000
                                  },
                                  {
                                      "week_label":  "7주차",
@@ -1036,6 +1090,15 @@
                                      "vendor":  "카페두레브",
                                      "detail":  "다과비(카페두레브)",
                                      "amount":  200700
+                                 },
+                                 {
+                                     "week_label":  "11주차",
+                                     "date":  "2026-07-16",
+                                     "category":  "장소/운영",
+                                     "raw_category":  "대관료",
+                                     "vendor":  "이노비즈협회",
+                                     "detail":  "대관료(지하1층 대회의실, 5시간)",
+                                     "amount":  200000
                                  },
                                  {
                                      "week_label":  "11주차",
