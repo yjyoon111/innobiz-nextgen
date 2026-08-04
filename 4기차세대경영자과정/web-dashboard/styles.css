@@ -268,6 +268,84 @@ body {
   background: rgba(24, 111, 101, 0.18);
 }
 
+/* ---- 탭 ---- */
+.tab-nav {
+  display: flex;
+  gap: 6px;
+  margin: 18px 0 4px;
+  padding: 5px;
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 4px 16px rgba(14, 34, 54, 0.06);
+  overflow-x: auto;
+}
+
+.tab-btn {
+  flex: 1;
+  min-width: 92px;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background: transparent;
+  color: var(--muted);
+  font: inherit;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+}
+
+.tab-btn:hover {
+  background: rgba(24, 111, 101, 0.08);
+  color: var(--brand);
+}
+
+.tab-btn.is-active {
+  background: var(--brand);
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(24, 111, 101, 0.28);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.is-active {
+  display: block;
+}
+
+/* ---- 만족도 ---- */
+.survey-score {
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.comment-group {
+  margin-top: 14px;
+}
+
+.comment-group-title {
+  margin: 0 0 8px;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--brand-3);
+}
+
+.comment-item {
+  padding: 10px 14px;
+  margin-bottom: 8px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 3px solid rgba(24, 111, 101, 0.45);
+  font-size: 13px;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
 /* ---- 표 합계 행 ---- */
 tfoot .total-row td {
   font-weight: 800;

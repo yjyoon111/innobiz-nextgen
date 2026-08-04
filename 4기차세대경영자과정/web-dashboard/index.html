@@ -1,4 +1,4 @@
-﻿<!doctype html>
+<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="utf-8" />
@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260803b" />
+    <link rel="stylesheet" href="./styles.css?v=20260803c" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   </head>
@@ -33,21 +33,29 @@
         </div>
       </header>
 
-      <section class="kpi-grid" id="kpi-grid"></section>
+      <nav class="tab-nav" id="tab-nav">
+        <button class="tab-btn is-active" type="button" data-tab="expense">지출 현황</button>
+        <button class="tab-btn" type="button" data-tab="attend">출석 현황</button>
+        <button class="tab-btn" type="button" data-tab="survey">만족도</button>
+        <button class="tab-btn" type="button" data-tab="info">과정 정보</button>
+      </nav>
 
-      <section class="chart-grid">
-        <article class="panel">
-          <h2>주차별 지출 비교</h2>
-          <canvas id="weeklyChart"></canvas>
-        </article>
-        <article class="panel">
-          <h2>카테고리별 지출 구성 (4기)</h2>
-          <canvas id="categoryChart"></canvas>
-        </article>
-      </section>
+      <!-- ===== 지출 현황 ===== -->
+      <div class="tab-panel is-active" id="panel-expense">
+        <section class="kpi-grid" id="kpi-grid"></section>
 
-      <section class="chart-grid">
-        <article class="panel budget-panel">
+        <section class="chart-grid">
+          <article class="panel">
+            <h2>주차별 지출 비교</h2>
+            <canvas id="weeklyChart"></canvas>
+          </article>
+          <article class="panel">
+            <h2>카테고리별 지출 구성 (4기)</h2>
+            <canvas id="categoryChart"></canvas>
+          </article>
+        </section>
+
+        <section class="panel budget-panel">
           <div class="panel-headline">
             <div>
               <h2>실수입 대비 지출 현황</h2>
@@ -61,40 +69,107 @@
               <table id="budget-table"></table>
             </div>
           </div>
-        </article>
-        <article class="panel">
-          <h2>주차별 출석률</h2>
-          <p class="panel-note">점을 클릭하면 해당 주차 출석/불참 명단을 확인할 수 있습니다. (해외연수 주차는 출석률에서 제외되며, 개인 출석횟수 클릭 시 참가 여부 확인 가능)</p>
-          <canvas id="attendanceChart"></canvas>
-        </article>
-      </section>
+        </section>
 
-      <section class="chart-grid">
-        <article class="panel table-panel">
-          <h2>주차별 상세 비교표</h2>
+        <section class="chart-grid">
+          <article class="panel table-panel">
+            <h2>주차별 상세 비교표</h2>
+            <p class="panel-note">
+              3기는 <strong>동일 구간(1~11주차)</strong>만 비교합니다. 3기 전체 지출 75,465,941원 중 12주차·공통비용·교육전
+              준비비 29,911,860원은 4기에 대응 주차가 없어 제외됩니다.
+            </p>
+            <div class="table-wrap">
+              <table id="weekly-table"></table>
+            </div>
+          </article>
+          <article class="panel table-panel">
+            <h2>카테고리별 비교표</h2>
+            <div class="table-wrap">
+              <table id="category-table"></table>
+            </div>
+          </article>
+        </section>
+
+        <section class="chart-grid">
+          <article class="panel table-panel">
+            <div class="panel-headline table-headline">
+              <div>
+                <h2>실수입 구성표</h2>
+                <p class="panel-note">실수입 내역을 항목별로 정리해 지출 판단 기준으로 바로 쓸 수 있습니다.</p>
+              </div>
+              <div class="table-toolbar">
+                <input id="income-search" class="toolbar-input" type="search" placeholder="이름/구분 검색" />
+                <select id="income-sort" class="toolbar-select">
+                  <option value="amount_desc">금액 높은 순</option>
+                  <option value="amount_asc">금액 낮은 순</option>
+                  <option value="name_asc">이름순</option>
+                  <option value="category_asc">구분순</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table id="income-table"></table>
+            </div>
+            <div class="table-footer">
+              <span id="income-count" class="table-count"></span>
+              <button id="income-more" class="more-btn" type="button">더보기</button>
+            </div>
+          </article>
+          <article class="panel table-panel">
+            <div class="panel-headline table-headline">
+              <div>
+                <h2>4기 주요 지출 Top 15</h2>
+                <p class="panel-note">금액 기준 정렬과 검색이 가능한 상세 지출 목록입니다.</p>
+              </div>
+              <div class="table-toolbar">
+                <input id="top-search" class="toolbar-input" type="search" placeholder="주차/내역/거래처 검색" />
+                <select id="top-sort" class="toolbar-select">
+                  <option value="amount_desc">금액 높은 순</option>
+                  <option value="amount_asc">금액 낮은 순</option>
+                  <option value="week_asc">주차순</option>
+                  <option value="detail_asc">내역순</option>
+                </select>
+              </div>
+            </div>
+            <div class="table-wrap">
+              <table id="top-table"></table>
+            </div>
+            <div class="table-footer">
+              <span id="top-count" class="table-count"></span>
+              <button id="top-more" class="more-btn" type="button">더보기</button>
+            </div>
+          </article>
+        </section>
+      </div>
+
+      <!-- ===== 출석 현황 ===== -->
+      <div class="tab-panel" id="panel-attend">
+        <section class="panel">
+          <h2>주차별 출석률</h2>
           <p class="panel-note">
-            3기는 <strong>동일 구간(1~11주차)</strong>만 비교합니다. 3기 전체 지출 75,465,941원 중 12주차·공통비용·교육전 준비비
-            29,911,860원은 4기에 대응 주차가 없어 제외됩니다.
+            점을 클릭하면 해당 주차 출석/불참 명단을 확인할 수 있습니다. (해외연수 주차는 출석률에서 제외되며, 개인
+            출석횟수 클릭 시 참가 여부 확인 가능)
           </p>
-          <div class="table-wrap">
-            <table id="weekly-table"></table>
-          </div>
-        </article>
-        <article class="panel table-panel">
+          <canvas id="attendanceChart"></canvas>
+        </section>
+
+        <section class="panel table-panel">
           <div class="panel-headline table-headline">
             <div>
               <h2>출석률 점검(전체)</h2>
               <p class="panel-note">기본 10명만 먼저 보여주고 더보기로 전체를 펼칠 수 있습니다.</p>
             </div>
             <div class="table-toolbar">
-              <button id="attendance-download" class="more-btn" type="button" title="개인별/주차별 출석현황을 엑셀 파일로 저장">📥 엑셀 다운로드</button>
+              <button id="attendance-download" class="more-btn" type="button" title="개인별/주차별 출석현황을 엑셀 파일로 저장">
+                📥 엑셀 다운로드
+              </button>
               <input id="attendance-search" class="toolbar-input" type="search" placeholder="이름/업체 검색" />
-            <select id="attendance-sort" class="toolbar-select">
-              <option value="rate_desc">출석률 높은 순</option>
-              <option value="rate_asc">출석률 낮은 순</option>
-              <option value="attend_desc">출석횟수 많은 순</option>
-              <option value="name_asc">이름순</option>
-            </select>
+              <select id="attendance-sort" class="toolbar-select">
+                <option value="rate_desc">출석률 높은 순</option>
+                <option value="rate_asc">출석률 낮은 순</option>
+                <option value="attend_desc">출석횟수 많은 순</option>
+                <option value="name_asc">이름순</option>
+              </select>
             </div>
           </div>
           <div class="table-wrap">
@@ -104,139 +179,119 @@
             <span id="attendance-count" class="table-count"></span>
             <button id="attendance-more" class="more-btn" type="button">더보기</button>
           </div>
-        </article>
-      </section>
+        </section>
+      </div>
 
-      <section class="panel org-panel">
-        <h2>4기 운영진</h2>
-        <div class="org-chart">
-          <div class="org-top-row">
-            <div class="org-group org-advisors">
-              <p class="org-group-title">고문</p>
-              <div class="org-group-members">
-                <div class="org-mini-card"><strong>강신호</strong><span>(주)페타네트워크</span></div>
-                <div class="org-mini-card"><strong>김민석</strong><span>주식회사 현성베스코</span></div>
-                <div class="org-mini-card"><strong>박정임</strong><span>(주)제이앤제이건설산업개발</span></div>
-                <div class="org-mini-card"><strong>정은정</strong><span>주식회사 콤위즈</span></div>
-              </div>
-            </div>
-            <div class="org-center">
-              <div class="org-card org-president">
-                <p class="org-role">회장</p>
-                <p class="org-name">김보미</p>
-                <p class="org-company">주식회사 쉬엔비</p>
-              </div>
-              <div class="org-line"></div>
-              <div class="org-card org-vice">
-                <p class="org-role">부회장</p>
-                <p class="org-name">주우형</p>
-                <p class="org-company">(주)유진인프라코어</p>
-              </div>
-            </div>
-            <div class="org-group org-auditors">
-              <p class="org-group-title">감사</p>
-              <div class="org-group-members">
-                <div class="org-mini-card"><strong>이기택</strong><span>삼도관세법인</span></div>
-                <div class="org-mini-card"><strong>한규호</strong><span>(주)제우스켐</span></div>
-                <div class="org-mini-card"><strong>이은솔</strong><span>(주)엔에스미디어</span></div>
-              </div>
-            </div>
-          </div>
-          <div class="org-line"></div>
-          <div class="org-branch-row">
-            <div class="org-card">
-              <p class="org-role">사무총장</p>
-              <p class="org-name">김영찬</p>
-              <p class="org-company">(주)에스엠테크</p>
-            </div>
-            <div class="org-card">
-              <p class="org-role">사무국장</p>
-              <p class="org-name">김미수</p>
-              <p class="org-company">주식회사와이엠알티씨</p>
-            </div>
-            <div class="org-card">
-              <p class="org-role">재무</p>
-              <p class="org-name">한지희</p>
-              <p class="org-company">(주)비씨상사</p>
-            </div>
-            <div class="org-card">
-              <p class="org-role">체육부장</p>
-              <p class="org-name">김경목</p>
-              <p class="org-company">파르팜</p>
-            </div>
-          </div>
-        </div>
-      </section>
+      <!-- ===== 만족도 ===== -->
+      <div class="tab-panel" id="panel-survey">
+        <section class="kpi-grid" id="survey-kpi"></section>
 
-      <section class="chart-grid">
-        <article class="panel table-panel">
-          <h2>카테고리별 비교표</h2>
-          <div class="table-wrap">
-            <table id="category-table"></table>
-          </div>
-        </article>
-        <article class="panel table-panel">
+        <section class="chart-grid">
+          <article class="panel">
+            <h2>주차별 강의 만족도</h2>
+            <p class="panel-note">5점 만점 평균. 불참 응답은 계산에서 제외했습니다.</p>
+            <canvas id="surveyWeeklyChart"></canvas>
+          </article>
+          <article class="panel table-panel">
+            <h2>강사별 만족도</h2>
+            <p class="panel-note">강의 내용 전달력 및 열의 (5점 만점, 높은 순)</p>
+            <div class="table-wrap">
+              <table id="survey-lecturer-table"></table>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel table-panel">
           <div class="panel-headline table-headline">
             <div>
-              <h2>실수입 구성표</h2>
-              <p class="panel-note">실수입 내역을 항목별로 정리해 지출 판단 기준으로 바로 쓸 수 있습니다.</p>
+              <h2>주관식 의견</h2>
+              <p class="panel-note" id="survey-comment-note"></p>
             </div>
             <div class="table-toolbar">
-              <input id="income-search" class="toolbar-input" type="search" placeholder="이름/구분 검색" />
-            <select id="income-sort" class="toolbar-select">
-              <option value="amount_desc">금액 높은 순</option>
-              <option value="amount_asc">금액 낮은 순</option>
-              <option value="name_asc">이름순</option>
-              <option value="category_asc">구분순</option>
-            </select>
+              <select id="survey-comment-filter" class="toolbar-select">
+                <option value="all">전체 보기</option>
+              </select>
             </div>
           </div>
-          <div class="table-wrap">
-            <table id="income-table"></table>
-          </div>
-          <div class="table-footer">
-            <span id="income-count" class="table-count"></span>
-            <button id="income-more" class="more-btn" type="button">더보기</button>
-          </div>
-        </article>
-      </section>
+          <div id="survey-comments"></div>
+        </section>
+      </div>
 
-      <section class="panel table-panel">
-        <div class="panel-headline table-headline">
-          <div>
-            <h2>4기 주요 지출 Top 15</h2>
-            <p class="panel-note">금액 기준 정렬과 검색이 가능한 상세 지출 목록입니다.</p>
+      <!-- ===== 과정 정보 ===== -->
+      <div class="tab-panel" id="panel-info">
+        <section class="panel org-panel">
+          <h2>4기 운영진</h2>
+          <div class="org-chart">
+            <div class="org-top-row">
+              <div class="org-group org-advisors">
+                <p class="org-group-title">고문</p>
+                <div class="org-group-members">
+                  <div class="org-mini-card"><strong>강신호</strong><span>(주)페타네트워크</span></div>
+                  <div class="org-mini-card"><strong>김민석</strong><span>주식회사 현성베스코</span></div>
+                  <div class="org-mini-card"><strong>박정임</strong><span>(주)제이앤제이건설산업개발</span></div>
+                  <div class="org-mini-card"><strong>정은정</strong><span>주식회사 콤위즈</span></div>
+                </div>
+              </div>
+              <div class="org-center">
+                <div class="org-card org-president">
+                  <p class="org-role">회장</p>
+                  <p class="org-name">김보미</p>
+                  <p class="org-company">주식회사 쉬엔비</p>
+                </div>
+                <div class="org-line"></div>
+                <div class="org-card org-vice">
+                  <p class="org-role">부회장</p>
+                  <p class="org-name">주우형</p>
+                  <p class="org-company">(주)유진인프라코어</p>
+                </div>
+              </div>
+              <div class="org-group org-auditors">
+                <p class="org-group-title">감사</p>
+                <div class="org-group-members">
+                  <div class="org-mini-card"><strong>이기택</strong><span>삼도관세법인</span></div>
+                  <div class="org-mini-card"><strong>한규호</strong><span>(주)제우스켐</span></div>
+                  <div class="org-mini-card"><strong>이은솔</strong><span>(주)엔에스미디어</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="org-line"></div>
+            <div class="org-branch-row">
+              <div class="org-card">
+                <p class="org-role">사무총장</p>
+                <p class="org-name">김영찬</p>
+                <p class="org-company">(주)에스엠테크</p>
+              </div>
+              <div class="org-card">
+                <p class="org-role">사무국장</p>
+                <p class="org-name">김미수</p>
+                <p class="org-company">주식회사와이엠알티씨</p>
+              </div>
+              <div class="org-card">
+                <p class="org-role">재무</p>
+                <p class="org-name">한지희</p>
+                <p class="org-company">(주)비씨상사</p>
+              </div>
+              <div class="org-card">
+                <p class="org-role">체육부장</p>
+                <p class="org-name">김경목</p>
+                <p class="org-company">파르팜</p>
+              </div>
+            </div>
           </div>
-          <div class="table-toolbar">
-            <input id="top-search" class="toolbar-input" type="search" placeholder="주차/내역/거래처 검색" />
-            <select id="top-sort" class="toolbar-select">
-              <option value="amount_desc">금액 높은 순</option>
-              <option value="amount_asc">금액 낮은 순</option>
-              <option value="week_asc">주차순</option>
-              <option value="detail_asc">내역순</option>
-            </select>
-          </div>
-        </div>
-        <div class="table-wrap">
-          <table id="top-table"></table>
-        </div>
-        <div class="table-footer">
-          <span id="top-count" class="table-count"></span>
-          <button id="top-more" class="more-btn" type="button">더보기</button>
-        </div>
-      </section>
+        </section>
 
-      <section class="panel curriculum-panel">
-        <h2>연수 일정 (전체 커리큘럼)</h2>
-        <p class="panel-note">2026.05.07 ~ 07.16 · 총 11주차 · 강사 및 주제</p>
-        <div class="curriculum-figure">
-          <img
-            src="./assets/curriculum.png?v=20260727"
-            alt="제4기 차세대 경영자 아카데미 연수 일정표 - 1주차부터 11주차까지 일자, 구분, 강사, 주제"
-            id="curriculum-img"
-          />
-        </div>
-      </section>
+        <section class="panel curriculum-panel">
+          <h2>연수 일정 (전체 커리큘럼)</h2>
+          <p class="panel-note">2026.05.07 ~ 07.16 · 총 11주차 · 강사 및 주제</p>
+          <div class="curriculum-figure">
+            <img
+              src="./assets/curriculum.png?v=20260727"
+              alt="제4기 차세대 경영자 아카데미 연수 일정표 - 1주차부터 11주차까지 일자, 구분, 강사, 주제"
+              id="curriculum-img"
+            />
+          </div>
+        </section>
+      </div>
     </main>
 
     <div id="detail-modal" class="modal" aria-hidden="true">
@@ -252,7 +307,7 @@
       </div>
     </div>
 
-    <script src="./data/dashboard.js?v=20260803b"></script>
-    <script src="./app.js?v=20260803b"></script>
+    <script src="./data/dashboard.js?v=20260803c"></script>
+    <script src="./app.js?v=20260803c"></script>
   </body>
 </html>

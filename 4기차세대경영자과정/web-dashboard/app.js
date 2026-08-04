@@ -401,6 +401,114 @@ function bindAttendanceChart(rows) {
   });
 }
 
+let surveyWeeklyChart;
+
+function renderSurvey(survey) {
+  if (!survey || !survey.available) {
+    byId("panel-survey").innerHTML = `<section class="panel"><p class="panel-note">만족도 조사 데이터가 없습니다.</p></section>`;
+    return;
+  }
+
+  byId("survey-kpi").innerHTML = [
+    ["전반적 만족도", `${survey.overall_avg} / 5`, "positive"],
+    ["액션러닝 만족도", `${survey.action_avg} / 5`, ""],
+    ["응답 인원", `${survey.respondents}명`, ""],
+    ["주관식 의견", `${(survey.comments || []).length}건`, ""],
+  ]
+    .map(
+      ([label, value, cls]) => `
+        <article class="kpi-card">
+          <p class="kpi-label">${label}</p>
+          <p class="kpi-value ${cls}">${value}</p>
+        </article>`,
+    )
+    .join("");
+
+  // 주차별 강의 만족도
+  const weekly = survey.weekly || [];
+  if (surveyWeeklyChart) surveyWeeklyChart.destroy();
+  surveyWeeklyChart = new Chart(byId("surveyWeeklyChart"), {
+    type: "bar",
+    data: {
+      labels: weekly.map((w) => w.label.replace(/^(\d+주)\.\s*/, "$1 ")),
+      datasets: [{ label: "만족도", data: weekly.map((w) => w.avg), backgroundColor: "#186f65", borderRadius: 8 }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      indexAxis: "y",
+      plugins: {
+        legend: { display: false },
+        tooltip: {
+          callbacks: {
+            label: (ctx) => {
+              const row = weekly[ctx.dataIndex];
+              return `평균 ${row.avg}점 (응답 ${row.n}명, 불참 ${row.absent}명)`;
+            },
+          },
+        },
+      },
+      scales: { x: { beginAtZero: true, max: 5, ticks: { stepSize: 1 } } },
+    },
+  });
+
+  renderSimpleTable(
+    "survey-lecturer-table",
+    [
+      { key: "label", label: "강사", render: (v) => clipText(v, 24) },
+      { key: "avg", label: "만족도", render: (v) => `<span class="survey-score">${v} / 5</span>` },
+      { key: "n", label: "응답", render: (v) => `${v}명` },
+    ],
+    survey.lecturer || [],
+  );
+
+  // 주관식 의견
+  const comments = survey.comments || [];
+  const topics = [...new Set(comments.map((c) => c.topic))];
+  const filter = byId("survey-comment-filter");
+  filter.innerHTML =
+    `<option value="all">전체 보기 (${comments.length}건)</option>` +
+    topics.map((t) => `<option value="${escapeHtml(t)}">${escapeHtml(t)} (${comments.filter((c) => c.topic === t).length}건)</option>`).join("");
+  byId("survey-comment-note").textContent = `응답자 ${survey.respondents}명이 남긴 의견 ${comments.length}건입니다.`;
+
+  const draw = (sel) => {
+    const list = sel === "all" ? comments : comments.filter((c) => c.topic === sel);
+    byId("survey-comments").innerHTML = topics
+      .filter((t) => list.some((c) => c.topic === t))
+      .map(
+        (t) => `
+        <div class="comment-group">
+          <p class="comment-group-title">${escapeHtml(t)}</p>
+          ${list
+            .filter((c) => c.topic === t)
+            .map((c) => `<div class="comment-item">${escapeHtml(c.text)}</div>`)
+            .join("")}
+        </div>`,
+      )
+      .join("");
+  };
+  draw("all");
+  filter.addEventListener("change", (e) => draw(e.target.value));
+}
+
+function bindTabs() {
+  const buttons = [...document.querySelectorAll(".tab-btn")];
+  buttons.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      buttons.forEach((b) => b.classList.toggle("is-active", b === btn));
+      document.querySelectorAll(".tab-panel").forEach((p) => {
+        p.classList.toggle("is-active", p.id === `panel-${btn.dataset.tab}`);
+      });
+      // 숨겨진 상태로 그려진 차트는 크기가 0이므로 표시 직후 재계산
+      [weeklyChart, categoryChart, attendanceChart, surveyWeeklyChart].forEach((c) => {
+        if (c) c.resize();
+      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    });
+  });
+}
+
 function loadDashboardData() {
   if (window.DASHBOARD_DATA) return Promise.resolve(window.DASHBOARD_DATA);
   return fetch(`./data/dashboard.json?t=${Date.now()}`).then((response) => {
@@ -640,6 +748,7 @@ function init() {
     if (event.key === "Escape") closeModal();
   });
 
+  bindTabs();
   bindManagedTable("attendance");
   bindManagedTable("income");
   bindManagedTable("top");
@@ -655,6 +764,7 @@ function init() {
       bindAttendanceChart(data.attendance.weekly);
       renderBudgetSummary(data);
       renderIncomeSummaryTable(data);
+      renderSurvey(data.survey);
 
       renderSimpleTable(
         "weekly-table",
