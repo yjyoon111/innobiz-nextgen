@@ -268,6 +268,24 @@ body {
   background: rgba(24, 111, 101, 0.18);
 }
 
+/* ---- 표 합계 행 ---- */
+tfoot .total-row td {
+  font-weight: 800;
+  background: rgba(24, 111, 101, 0.07);
+  border-top: 2px solid rgba(24, 111, 101, 0.35);
+}
+
+/* ---- 운영진 카드 클릭 ---- */
+.org-clickable {
+  cursor: pointer;
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.org-clickable:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 22px rgba(14, 34, 54, 0.16);
+}
+
 /* ---- 연수 일정(커리큘럼) ---- */
 .curriculum-panel {
   margin-top: 18px;

@@ -57,7 +57,7 @@ function renderKpis(kpis) {
     .join("");
 }
 
-function renderSimpleTable(tableId, columns, rows) {
+function renderSimpleTable(tableId, columns, rows, totalRow) {
   const table = byId(tableId);
   const header = `<thead><tr>${columns.map((column) => `<th>${escapeHtml(column.label)}</th>`).join("")}</tr></thead>`;
   const body = `<tbody>${rows
@@ -72,7 +72,17 @@ function renderSimpleTable(tableId, columns, rows) {
           .join("")}</tr>`,
     )
     .join("")}</tbody>`;
-  table.innerHTML = `${header}${body}`;
+  const foot = totalRow
+    ? `<tfoot><tr class="total-row">${columns
+        .map((column) => {
+          const value = totalRow[column.key];
+          if (value === undefined || value === null) return `<td></td>`;
+          if (column.render) return `<td>${column.render(value, totalRow)}</td>`;
+          return `<td>${escapeHtml(value)}</td>`;
+        })
+        .join("")}</tr></tfoot>`
+    : "";
+  table.innerHTML = `${header}${body}${foot}`;
 }
 
 function openModal(title, columns, rows) {
@@ -100,8 +110,24 @@ function showMemberDetail(name) {
   });
   const attendCount = rows.filter((row) => row.status === "출석").length;
   const tripCount = rows.filter((row) => row.status === "참가").length;
+  const member = (dashboardData.attendance.members_all || []).find((m) => m.name === name);
+  const roleEl = [...document.querySelectorAll(".org-panel .org-card, .org-panel .org-mini-card")].find(
+    (el) => (el.querySelector(".org-name, strong") || {}).textContent === name,
+  );
+  const role = roleEl ? (roleEl.querySelector(".org-role") || {}).textContent : null;
+  const groupTitle = roleEl && roleEl.classList.contains("org-mini-card")
+    ? (roleEl.closest(".org-group").querySelector(".org-group-title") || {}).textContent
+    : null;
+  const roleText = role || groupTitle;
+  const head = [
+    roleText ? `[${roleText}]` : null,
+    name,
+    member && member.company ? `· ${member.company}` : null,
+  ]
+    .filter(Boolean)
+    .join(" ");
   openModal(
-    `${name} 주차별 출석 현황 — 정규 ${attendCount}회${tripCount ? " (+해외연수 참가)" : ""}`,
+    `${head} — 정규 ${attendCount}회${tripCount ? " (+해외연수 참가)" : ""}${member ? ` · 출석률 ${(member.rate * 100).toFixed(1)}%` : ""}`,
     [
       { key: "week_label", label: "주차", render: (value, row) => (row.trip ? `${value} (해외연수)` : value) },
       { key: "date", label: "일자" },
@@ -168,9 +194,34 @@ function downloadAttendanceExcel() {
   XLSX.writeFile(workbook, `차경4기_출석현황_${today}.xlsx`);
 }
 
+// 막대 위에 금액(만원 단위) 표시
+const barValueLabels = {
+  id: "barValueLabels",
+  afterDatasetsDraw(chart) {
+    const { ctx } = chart;
+    ctx.save();
+    ctx.font = "600 10px Pretendard, sans-serif";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "bottom";
+    chart.data.datasets.forEach((dataset, di) => {
+      const meta = chart.getDatasetMeta(di);
+      if (meta.hidden) return;
+      ctx.fillStyle = di === 0 ? "#5c6b78" : "#12564e";
+      meta.data.forEach((bar, i) => {
+        const value = Number(dataset.data[i] || 0);
+        if (!value) return;
+        const text = value >= 10000 ? `${Math.round(value / 10000).toLocaleString("ko-KR")}만` : `${nfmt.format(value)}`;
+        ctx.fillText(text, bar.x, bar.y - 3);
+      });
+    });
+    ctx.restore();
+  },
+};
+
 function bindWeeklyChart(rows) {
   if (weeklyChart) weeklyChart.destroy();
   weeklyChart = new Chart(byId("weeklyChart"), {
+    plugins: [barValueLabels],
     type: "bar",
     data: {
       labels: rows.map((row) => row.week_label),
@@ -600,6 +651,16 @@ function init() {
   byId("modal-close-btn").addEventListener("click", closeModal);
   byId("modal-close-bg").addEventListener("click", closeModal);
   byId("attendance-download").addEventListener("click", downloadAttendanceExcel);
+
+  // 운영진 조직도: 카드 클릭 시 해당 인원 상세(직책·업체·주차별 출석)
+  document.querySelectorAll(".org-panel .org-card, .org-panel .org-mini-card").forEach((card) => {
+    const nameEl = card.querySelector(".org-name, strong");
+    if (!nameEl) return;
+    const name = nameEl.textContent.trim();
+    card.classList.add("org-clickable");
+    card.setAttribute("title", `${name} 상세 보기`);
+    card.addEventListener("click", () => showMemberDetail(name));
+  });
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeModal();
   });
@@ -638,6 +699,18 @@ function init() {
           },
         ],
         data.weekly_comparison,
+        (() => {
+          const prev = data.weekly_comparison.reduce((s, r) => s + Number(r.prev_amount || 0), 0);
+          const curr = data.weekly_comparison.reduce((s, r) => s + Number(r.current_amount || 0), 0);
+          const diff = curr - prev;
+          return {
+            week_label: "합계",
+            prev_amount: prev,
+            current_amount: curr,
+            diff_amount: diff,
+            diff_rate: prev ? diff / prev : 0,
+          };
+        })(),
       );
 
       renderManagedTable("attendance");
