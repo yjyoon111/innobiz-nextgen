@@ -116,7 +116,7 @@ body {
 .kpi-grid {
   margin-top: 22px;
   display: grid;
-  grid-template-columns: repeat(7, minmax(120px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(146px, 1fr));
   gap: 12px;
 }
 
@@ -136,9 +136,10 @@ body {
 
 .kpi-value {
   margin: 0;
-  font-size: clamp(18px, 2vw, 24px);
+  font-size: clamp(15px, 1.45vw, 22px);
   font-weight: 700;
-  letter-spacing: -0.01em;
+  letter-spacing: -0.02em;
+  white-space: nowrap; /* 금액과 '원'이 분리되지 않도록 */
 }
 
 .kpi-value.negative {
@@ -344,6 +345,185 @@ body {
   font-size: 13px;
   line-height: 1.55;
   white-space: pre-wrap;
+}
+
+/* ---- 5기 제언 ---- */
+.finding-hero {
+  background: linear-gradient(135deg, #12564e 0%, #1d3f72 130%);
+  border: none;
+  color: #fff;
+}
+
+.finding-eyebrow {
+  margin: 0 0 4px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+.finding-hero h2 {
+  color: #fff;
+  margin: 0 0 14px;
+}
+
+.finding-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.finding-stat {
+  flex: 1;
+  min-width: 150px;
+  padding: 12px 14px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.finding-stat span {
+  display: block;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.75);
+  margin-bottom: 4px;
+}
+
+.finding-stat strong {
+  font-size: 22px;
+  font-weight: 800;
+  white-space: nowrap;
+}
+
+.finding-stat strong em {
+  font-style: normal;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+.finding-stat .positive {
+  color: #7ee6a8;
+}
+
+.finding-stat .negative {
+  color: #ffb4a2;
+}
+
+.finding-lead {
+  margin: 0;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+.reco-list {
+  list-style: none;
+  margin: 14px 0 0;
+  padding: 0;
+  display: grid;
+  gap: 12px;
+}
+
+.reco-item {
+  padding: 14px 16px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--brand);
+}
+
+.reco-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.reco-num {
+  width: 24px;
+  height: 24px;
+  flex: none;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--brand);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.reco-head h3 {
+  margin: 0;
+  font-size: 15px;
+}
+
+.reco-item p {
+  margin: 0 0 6px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.reco-item b {
+  display: inline-block;
+  min-width: 34px;
+  margin-right: 6px;
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--brand-3);
+}
+
+.reco-action b {
+  color: var(--brand-2);
+}
+
+.reco-voice {
+  margin: 8px 0 0;
+  padding: 8px 12px;
+  border-radius: 8px;
+  background: rgba(24, 111, 101, 0.06);
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.checklist {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 14px;
+}
+
+.check-group-title {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--brand-3);
+}
+
+.check-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  padding: 8px 10px;
+  margin-bottom: 6px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid var(--line);
+  font-size: 13px;
+  line-height: 1.5;
+  cursor: pointer;
+}
+
+.check-item input {
+  margin-top: 2px;
+  accent-color: var(--brand);
+  flex: none;
+}
+
+.check-item input:checked + span {
+  text-decoration: line-through;
+  color: var(--muted);
 }
 
 /* ---- 표 합계 행 ---- */

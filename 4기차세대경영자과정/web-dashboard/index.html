@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260803c" />
+    <link rel="stylesheet" href="./styles.css?v=20260803d" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   </head>
@@ -38,6 +38,7 @@
         <button class="tab-btn" type="button" data-tab="attend">출석 현황</button>
         <button class="tab-btn" type="button" data-tab="survey">만족도</button>
         <button class="tab-btn" type="button" data-tab="info">과정 정보</button>
+        <button class="tab-btn" type="button" data-tab="next">5기 제언</button>
       </nav>
 
       <!-- ===== 지출 현황 ===== -->
@@ -292,6 +293,58 @@
           </div>
         </section>
       </div>
+      <!-- ===== 5기 제언 ===== -->
+      <div class="tab-panel" id="panel-next">
+        <section class="panel finding-hero">
+          <p class="finding-eyebrow">4기 데이터가 말하는 핵심</p>
+          <h2>만족도는 높은데, 절반만 나왔습니다</h2>
+          <div class="finding-stats">
+            <div class="finding-stat">
+              <span>전반 만족도</span>
+              <strong class="positive">4.76 <em>/ 5</em></strong>
+            </div>
+            <div class="finding-stat">
+              <span>평균 출석률</span>
+              <strong class="negative">63.3<em>%</em></strong>
+            </div>
+            <div class="finding-stat">
+              <span>초반 3회 → 후반 3회</span>
+              <strong class="negative">73.2% → 57.5%</strong>
+            </div>
+          </div>
+          <p class="finding-lead">
+            강의가 별로여서 안 나온 것이 <strong>아닙니다.</strong> 후반부 만족도는 오히려 더 높았습니다(6주 4.86, 7주 4.88).
+            <strong>내용이 아니라 참석 환경의 문제</strong>이며, 5기에서 가장 크게 개선할 수 있는 지점입니다.
+          </p>
+        </section>
+
+        <section class="panel">
+          <h2>개선 과제 5가지</h2>
+          <p class="panel-note">각 항목은 4기 출석·만족도 데이터와 원우 의견(주관식 31건)에 근거합니다.</p>
+          <ol class="reco-list" id="reco-list"></ol>
+        </section>
+
+        <section class="chart-grid">
+          <article class="panel">
+            <h2>참여 양극화</h2>
+            <p class="panel-note">29명 중 절반 가까이가 절반도 참석하지 못했습니다.</p>
+            <canvas id="nextDistChart"></canvas>
+          </article>
+          <article class="panel">
+            <h2>지출 구조</h2>
+            <p class="panel-note">해외연수가 전체의 1/3을 차지합니다. 5기 예산 설계 시 참고.</p>
+            <div class="table-wrap">
+              <table id="next-cost-table"></table>
+            </div>
+          </article>
+        </section>
+
+        <section class="panel">
+          <h2>5기 모집·운영 체크리스트</h2>
+          <p class="panel-note">결과보고서 개선사항 항목에 그대로 활용할 수 있습니다.</p>
+          <div class="checklist" id="next-checklist"></div>
+        </section>
+      </div>
     </main>
 
     <div id="detail-modal" class="modal" aria-hidden="true">
@@ -307,7 +360,7 @@
       </div>
     </div>
 
-    <script src="./data/dashboard.js?v=20260803c"></script>
-    <script src="./app.js?v=20260803c"></script>
+    <script src="./data/dashboard.js?v=20260803d"></script>
+    <script src="./app.js?v=20260803d"></script>
   </body>
 </html>

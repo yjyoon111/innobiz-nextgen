@@ -492,6 +492,120 @@ function renderSurvey(survey) {
   filter.addEventListener("change", (e) => draw(e.target.value));
 }
 
+let nextDistChart;
+
+function renderNextCohort(data) {
+  const recos = [
+    {
+      title: "운영 요일·시간 재검토",
+      problem: "후반부로 갈수록 출석률이 15.8%p 하락(73.2%→57.5%). 만족도는 오히려 상승해 내용 문제가 아님.",
+      action: "목요일 → 금요일 이전 검토. 또는 오후 시작 시간을 늦춰 실무 부담 완화.",
+      voice: "목요일 보다는 시간적 여유가 있는 금요일이 좋지 않을까 싶습니다.",
+    },
+    {
+      title: "강의 중 휴식시간 확보",
+      problem: "액션러닝 전 강의 호흡이 길어 중도 이탈이 발생. 후반 출석률 하락과 직결.",
+      action: "주제 종료마다 5~10분 휴식 명시. 강사 계약 시 커리큘럼에 휴식 포함 요청.",
+      voice: "호흡이 길어 중도에 나가시는 분들이 많을정도로 힘듭니다. 적어도 한 주제가 끝나면 5분에서 10분은 쉬어가는 타임이 필요합니다.",
+    },
+    {
+      title: "AI·AX 주제 정합성 강화",
+      problem: "과정명은 AX인데 무관한 강의가 있다는 지적. 4주차 만족도 4.44로 최저.",
+      action: "강사 섭외 시 'AI/AX 실무 접목' 필수 조건 명시. 사전 강의계획서 검토 절차 추가.",
+      voice: "AI, 그리고 AX와 관련없는 내용이 너무 많았습니다. 이 둘을 결합한 과정이라 들었는데…",
+    },
+    {
+      title: "액션러닝 시간 확대·수준 조정",
+      problem: "만족도 4.41로 전반(4.76) 대비 낮음. '시간이 짧다'와 '수준이 낮다'가 동시 지적.",
+      action: "2시간 → 3시간 확대 검토, 경영자 대상에 맞는 실제 기업 과제 기반으로 재설계.",
+      voice: "너무 짧은 시간 내에 이뤄지다 보니 많은 내용을 담지 못하는 부분은 아쉬웠습니다.",
+    },
+    {
+      title: "기업 방문·네트워킹 확대",
+      problem: "9주차 기업방문 출석률 37.9%로 최저였으나 만족도는 4.69로 높음. 참여 접근성 문제.",
+      action: "기업방문 일정을 조기 공지하고 이동 지원 검토. 원우 간 프로그램·총동문회 요구 반영.",
+      voice: "강사님들께서 근무하시는 회사에 방문하여 어떻게 운영되는지 직접 볼 수 있다면 좋겠습니다. / 차경아 총동문회를 서둘러 만들어주세요.",
+    },
+  ];
+
+  byId("reco-list").innerHTML = recos
+    .map(
+      (r, i) => `
+      <li class="reco-item">
+        <div class="reco-head"><span class="reco-num">${i + 1}</span><h3>${escapeHtml(r.title)}</h3></div>
+        <p class="reco-problem"><b>진단</b> ${escapeHtml(r.problem)}</p>
+        <p class="reco-action"><b>제안</b> ${escapeHtml(r.action)}</p>
+        <blockquote class="reco-voice">“${escapeHtml(r.voice)}”</blockquote>
+      </li>`,
+    )
+    .join("");
+
+  // 참여 양극화 분포
+  const members = data.attendance.members_all || [];
+  const buckets = [
+    { label: "100% (개근)", n: members.filter((m) => m.rate >= 1).length, color: "#0f8b4c" },
+    { label: "70~99%", n: members.filter((m) => m.rate >= 0.7 && m.rate < 1).length, color: "#186f65" },
+    { label: "50~69%", n: members.filter((m) => m.rate >= 0.5 && m.rate < 0.7).length, color: "#e0a33e" },
+    { label: "50% 미만", n: members.filter((m) => m.rate < 0.5).length, color: "#c33b2f" },
+  ];
+  if (nextDistChart) nextDistChart.destroy();
+  nextDistChart = new Chart(byId("nextDistChart"), {
+    type: "doughnut",
+    data: {
+      labels: buckets.map((b) => `${b.label} · ${b.n}명`),
+      datasets: [{ data: buckets.map((b) => b.n), backgroundColor: buckets.map((b) => b.color), borderWidth: 0 }],
+    },
+    options: {
+      responsive: true,
+      maintainAspectRatio: false,
+      animation: false,
+      plugins: {
+        tooltip: { callbacks: { label: (c) => `${c.label} (${((c.raw / members.length) * 100).toFixed(0)}%)` } },
+      },
+    },
+  });
+
+  // 지출 구조
+  const spent = data.kpis.spent_current || 1;
+  renderSimpleTable(
+    "next-cost-table",
+    [
+      { key: "category", label: "항목" },
+      { key: "current_amount", label: "금액", render: (v) => fmtMoney(v) },
+      { key: "share", label: "비중", render: (v) => fmtPercent(v) },
+    ],
+    (data.category_comparison || []).map((c) => ({ ...c, share: c.current_amount / spent })),
+    { category: "합계", current_amount: spent, share: 1 },
+  );
+
+  // 체크리스트
+  const checks = [
+    ["모집", "AX 실무 접목 커리큘럼임을 모집 요강에 명시 (4기 지적사항)"],
+    ["모집", "목요일 외 요일 가능성 사전 수요조사"],
+    ["강사", "강사 계약 시 AI/AX 연계 및 휴식시간 포함 조건 명시"],
+    ["강사", "만족도 상위 강사 우선 재섭외 (김창원 4.93 · 이상진 4.80 · 김대식 4.77)"],
+    ["운영", "주제별 5~10분 휴식 편성"],
+    ["운영", "액션러닝 시간 확대 및 경영자 수준 과제로 재설계"],
+    ["운영", "기업방문·해외연수 일정 조기 확정 및 사전 공지"],
+    ["예산", `1인당 지출 ${nfmt.format(Math.round(spent / (members.length || 1)))}원 기준으로 5기 단가 설계`],
+    ["예산", "해외연수가 전체 지출의 33.5% — 참가비 구조 재검토"],
+    ["사후", "원우회·총동문회 구성 지원 (수료생 요청사항)"],
+  ];
+  const groups = [...new Set(checks.map((c) => c[0]))];
+  byId("next-checklist").innerHTML = groups
+    .map(
+      (g) => `
+      <div class="check-group">
+        <p class="check-group-title">${g}</p>
+        ${checks
+          .filter((c) => c[0] === g)
+          .map((c) => `<label class="check-item"><input type="checkbox" /><span>${escapeHtml(c[1])}</span></label>`)
+          .join("")}
+      </div>`,
+    )
+    .join("");
+}
+
 function bindTabs() {
   const buttons = [...document.querySelectorAll(".tab-btn")];
   buttons.forEach((btn) => {
@@ -501,7 +615,7 @@ function bindTabs() {
         p.classList.toggle("is-active", p.id === `panel-${btn.dataset.tab}`);
       });
       // 숨겨진 상태로 그려진 차트는 크기가 0이므로 표시 직후 재계산
-      [weeklyChart, categoryChart, attendanceChart, surveyWeeklyChart].forEach((c) => {
+      [weeklyChart, categoryChart, attendanceChart, surveyWeeklyChart, nextDistChart].forEach((c) => {
         if (c) c.resize();
       });
       window.scrollTo({ top: 0, behavior: "smooth" });
@@ -765,6 +879,7 @@ function init() {
       renderBudgetSummary(data);
       renderIncomeSummaryTable(data);
       renderSurvey(data.survey);
+      renderNextCohort(data);
 
       renderSimpleTable(
         "weekly-table",
