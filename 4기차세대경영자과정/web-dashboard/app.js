@@ -515,16 +515,20 @@ function renderNextCohort(data) {
       voice: "AI, 그리고 AX와 관련없는 내용이 너무 많았습니다. 이 둘을 결합한 과정이라 들었는데…",
     },
     {
-      title: "액션러닝 시간 확대·수준 조정",
-      problem: "만족도 4.41로 전반(4.76) 대비 낮음. '시간이 짧다'와 '수준이 낮다'가 동시 지적.",
-      action: "2시간 → 3시간 확대 검토, 경영자 대상에 맞는 실제 기업 과제 기반으로 재설계.",
-      voice: "너무 짧은 시간 내에 이뤄지다 보니 많은 내용을 담지 못하는 부분은 아쉬웠습니다.",
+      title: "액션러닝 사전 준비 강화 및 시간 확대",
+      problem:
+        "만족도 4.41로 전반(4.76) 대비 가장 낮음. 새로운 시도 자체는 의미 있었으나 진행 방식이 충분히 다듬어지지 않은 상태로 운영되어, 수강생 입장에서 목적을 파악하기 어려웠다는 의견이 있었음. 운영 측면에서도 회차별 준비물 조달 부담이 컸음.",
+      action:
+        "① 커리큘럼·진행 시나리오를 사전에 확정하고 리허설 진행 ② 2시간 → 3시간 확대 ③ 경영자 대상에 맞는 실제 기업 과제로 재설계 ④ 준비물은 운영사 일괄 제공으로 계약 조건 명시.",
+      voice: "액션러닝의 존재 이유를 모르겠습니다. 취지는 이해되지만 대학생 조별과제 체험처럼 진행된 것이 아쉽습니다. / 짧은 시간 내에 이뤄지다 보니 많은 내용을 담지 못한 점이 아쉬웠습니다.",
     },
     {
-      title: "기업 방문·네트워킹 확대",
-      problem: "9주차 기업방문 출석률 37.9%로 최저였으나 만족도는 4.69로 높음. 참여 접근성 문제.",
-      action: "기업방문 일정을 조기 공지하고 이동 지원 검토. 원우 간 프로그램·총동문회 요구 반영.",
-      voice: "강사님들께서 근무하시는 회사에 방문하여 어떻게 운영되는지 직접 볼 수 있다면 좋겠습니다. / 차경아 총동문회를 서둘러 만들어주세요.",
+      title: "기업 방문 프로그램 실행 (4기 미실시)",
+      problem:
+        "당초 9주차에 기업 방문을 계획했으나 기업 섭외가 성사되지 않아 현장 강의로 대체함. 해당 회차 출석률은 37.9%로 전 회차 중 가장 낮았음. 수료생 주관식에서도 기업 방문 요구가 제기됨.",
+      action:
+        "5기에서는 방문 기업을 과정 시작 전 확정하고 일정에 명시. 원우 소속 기업 또는 강사 소속 기업을 우선 후보로 사전 협의. 총동문회 구성 요청도 함께 검토.",
+      voice: "강사님들께서 운영하시거나 근무하시는 회사에 방문하여 어떤 식으로 기업이 운영되고 있는지 직접 볼 수 있다면 좋을 것 같습니다. / 차경아 총동문회를 서둘러 만들어주세요.",
     },
   ];
 
@@ -543,10 +547,10 @@ function renderNextCohort(data) {
   // 참여 양극화 분포
   const members = data.attendance.members_all || [];
   const buckets = [
-    { label: "100% (개근)", n: members.filter((m) => m.rate >= 1).length, color: "#0f8b4c" },
-    { label: "70~99%", n: members.filter((m) => m.rate >= 0.7 && m.rate < 1).length, color: "#186f65" },
-    { label: "50~69%", n: members.filter((m) => m.rate >= 0.5 && m.rate < 0.7).length, color: "#e0a33e" },
-    { label: "50% 미만", n: members.filter((m) => m.rate < 0.5).length, color: "#c33b2f" },
+    { label: "전 회차 출석", n: members.filter((m) => m.rate >= 1).length, color: "#0f8b4c" },
+    { label: "대부분 출석 (70~99%)", n: members.filter((m) => m.rate >= 0.7 && m.rate < 1).length, color: "#186f65" },
+    { label: "절반 정도 출석 (50~69%)", n: members.filter((m) => m.rate >= 0.5 && m.rate < 0.7).length, color: "#e0a33e" },
+    { label: "절반 미만 출석", n: members.filter((m) => m.rate < 0.5).length, color: "#c33b2f" },
   ];
   if (nextDistChart) nextDistChart.destroy();
   nextDistChart = new Chart(byId("nextDistChart"), {
@@ -585,8 +589,10 @@ function renderNextCohort(data) {
     ["강사", "강사 계약 시 AI/AX 연계 및 휴식시간 포함 조건 명시"],
     ["강사", "만족도 상위 강사 우선 재섭외 (김창원 4.93 · 이상진 4.80 · 김대식 4.77)"],
     ["운영", "주제별 5~10분 휴식 편성"],
+    ["운영", "액션러닝 진행 시나리오 사전 확정 및 리허설 (4기 준비 부족 지적)"],
     ["운영", "액션러닝 시간 확대 및 경영자 수준 과제로 재설계"],
-    ["운영", "기업방문·해외연수 일정 조기 확정 및 사전 공지"],
+    ["운영", "기업 방문처 사전 확정 (4기는 섭외 불발로 현장 강의 대체)"],
+    ["운영", "해외연수 일정 조기 확정 및 사전 공지"],
     ["예산", `1인당 지출 ${nfmt.format(Math.round(spent / (members.length || 1)))}원 기준으로 5기 단가 설계`],
     ["예산", "해외연수가 전체 지출의 33.5% — 참가비 구조 재검토"],
     ["사후", "원우회·총동문회 구성 지원 (수료생 요청사항)"],
@@ -635,6 +641,53 @@ async function captureSection(btn) {
     btn.style.visibility = prevVisibility;
     btn.disabled = false;
   }
+}
+
+function renderStaff(staff) {
+  if (!staff || !staff.length) return;
+  const byName = new Map(staff.map((s) => [s.name, s]));
+
+  document.querySelectorAll(".org-panel .org-card, .org-panel .org-mini-card").forEach((card) => {
+    const nameEl = card.querySelector(".org-name, strong");
+    if (!nameEl) return;
+    const info = byName.get(nameEl.textContent.trim());
+    if (!info) return;
+    card.classList.add("org-clickable");
+    card.title = `${info.name} 연락처 보기`;
+    card.addEventListener("click", () => {
+      openModal(
+        `${info.role} ${info.name} · ${info.company}`,
+        [
+          { key: "label", label: "구분" },
+          { key: "value", label: "내용" },
+        ],
+        [
+          { label: "업체명", value: info.company },
+          { label: "연락처", value: info.phone },
+          { label: "이메일", value: info.email },
+        ],
+      );
+    });
+  });
+
+  const btn = byId("staff-download");
+  if (!btn) return;
+  btn.addEventListener("click", () => {
+    if (typeof XLSX === "undefined") return;
+    const rows = staff.map((s, i) => ({
+      번호: i + 1,
+      직책: s.role,
+      성명: s.name,
+      업체명: s.company,
+      연락처: s.phone,
+      이메일: s.email,
+    }));
+    const sheet = XLSX.utils.json_to_sheet(rows);
+    sheet["!cols"] = [{ wch: 5 }, { wch: 10 }, { wch: 8 }, { wch: 24 }, { wch: 16 }, { wch: 26 }];
+    const book = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(book, sheet, "4기 운영진");
+    XLSX.writeFile(book, `차경4기_운영진연락처_${new Date().toISOString().slice(0, 10)}.xlsx`);
+  });
 }
 
 function bindCaptureButtons() {
@@ -1007,6 +1060,7 @@ function startDashboard(loaded) {
       renderIncomeSummaryTable(data);
       renderSurvey(data.survey);
       renderNextCohort(data);
+      renderStaff(data.staff);
 
       renderSimpleTable(
         "weekly-table",

@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260804c" />
+    <link rel="stylesheet" href="./styles.css?v=20260805a" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
@@ -263,7 +263,13 @@
       <!-- ===== 과정 정보 ===== -->
       <div class="tab-panel" id="panel-info">
         <section class="panel org-panel">
-          <h2>4기 운영진</h2>
+          <div class="panel-headline">
+            <div>
+              <h2>4기 운영진</h2>
+              <p class="panel-note">이름을 클릭하면 연락처를 볼 수 있습니다.</p>
+            </div>
+            <button type="button" id="staff-download" class="more-btn">📥 연락처 엑셀 다운로드</button>
+          </div>
           <div class="org-chart">
             <div class="org-top-row">
               <div class="org-group org-advisors">
@@ -341,7 +347,7 @@
           <div class="panel-headline">
             <div>
               <p class="finding-eyebrow">4기 데이터가 말하는 핵심</p>
-              <h2>만족도는 높은데, 절반만 나왔습니다</h2>
+              <h2>강의 평가는 좋았지만, 실제 출석은 갈수록 줄었습니다</h2>
             </div>
             <button type="button" class="capture-btn capture-btn-dark" data-capture-target="capture-finding" data-capture-name="핵심요약">
               🖼️ 저장
@@ -362,8 +368,9 @@
             </div>
           </div>
           <p class="finding-lead">
-            강의가 별로여서 안 나온 것이 <strong>아닙니다.</strong> 후반부 만족도는 오히려 더 높았습니다(6주 4.86, 7주 4.88).
-            <strong>내용이 아니라 참석 환경의 문제</strong>이며, 5기에서 가장 크게 개선할 수 있는 지점입니다.
+            수료생 29명 기준으로 매 회차 평균 <strong>18명(63.3%)</strong>만 참석했고, 특히 <strong>과정 후반부로 갈수록 출석이 줄었습니다.</strong>
+            그런데 강의 만족도는 후반부가 오히려 더 높았습니다(6주 4.86점, 7주 4.88점).
+            즉 <strong>강의 내용 때문이 아니라 참석하기 어려운 여건</strong> 때문이며, 5기에서 가장 크게 개선할 수 있는 부분입니다.
           </p>
         </section>
 
@@ -384,8 +391,8 @@
           <article class="panel" id="capture-dist">
             <div class="panel-headline">
               <div>
-                <h2>참여 양극화</h2>
-                <p class="panel-note">29명 중 절반 가까이가 절반도 참석하지 못했습니다.</p>
+                <h2>수료생별 출석률 분포</h2>
+                <p class="panel-note">29명을 출석률 구간별로 나눈 것입니다. 꾸준히 나온 그룹과 거의 못 나온 그룹으로 갈립니다.</p>
               </div>
               <button type="button" class="capture-btn" data-capture-target="capture-dist" data-capture-name="참여양극화">
                 🖼️ 저장
@@ -437,6 +444,6 @@
       </div>
     </div>
 
-    <script src="./app.js?v=20260804d"></script>
+    <script src="./app.js?v=20260805a"></script>
   </body>
 </html>
