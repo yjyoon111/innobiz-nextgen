@@ -9,7 +9,7 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260803d" />
+    <link rel="stylesheet" href="./styles.css?v=20260804a" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   </head>
@@ -18,7 +18,30 @@
     <div class="bg-orb orb-b"></div>
     <div class="bg-orb orb-c"></div>
 
-    <main class="page">
+    <!-- 비밀번호 게이트 -->
+    <div id="gate" class="gate">
+      <form class="gate-card" id="gate-form" autocomplete="off">
+        <p class="gate-eyebrow">INNOBIZ ACADEMY</p>
+        <h1 class="gate-title">제4기 차세대 경영자 아카데미</h1>
+        <p class="gate-desc">운영 대시보드입니다. 열람하려면 비밀번호를 입력해 주세요.</p>
+        <input
+          id="gate-input"
+          class="gate-input"
+          type="password"
+          placeholder="비밀번호"
+          autocomplete="current-password"
+          aria-label="비밀번호"
+        />
+        <label class="gate-remember">
+          <input type="checkbox" id="gate-remember" checked />
+          <span>이 브라우저에서 기억하기</span>
+        </label>
+        <button class="gate-btn" type="submit" id="gate-submit">열람하기</button>
+        <p class="gate-error" id="gate-error"></p>
+      </form>
+    </div>
+
+    <main class="page" id="page" hidden>
       <header class="hero">
         <div>
           <p class="eyebrow">INNOBIZ ACADEMY FINANCE MONITOR</p>
@@ -30,6 +53,7 @@
           <p class="mini-value">전년도(3기) 동일 주차 대비</p>
           <p class="mini-title">데이터 갱신</p>
           <p class="mini-value">엑셀 수정 후 update_web_dashboard.bat 실행</p>
+          <button type="button" id="logout-btn" class="logout-btn">🔒 잠그기</button>
         </div>
       </header>
 
@@ -360,7 +384,6 @@
       </div>
     </div>
 
-    <script src="./data/dashboard.js?v=20260803d"></script>
-    <script src="./app.js?v=20260803d"></script>
+    <script src="./app.js?v=20260804a"></script>
   </body>
 </html>

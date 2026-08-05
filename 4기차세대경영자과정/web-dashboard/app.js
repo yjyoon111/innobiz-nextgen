@@ -623,12 +623,46 @@ function bindTabs() {
   });
 }
 
-function loadDashboardData() {
-  if (window.DASHBOARD_DATA) return Promise.resolve(window.DASHBOARD_DATA);
-  return fetch(`./data/dashboard.json?t=${Date.now()}`).then((response) => {
-    if (!response.ok) throw new Error("대시보드 데이터를 불러오지 못했습니다.");
-    return response.json();
-  });
+const STORAGE_KEY = "innobiz4th.pw";
+
+function b64ToBytes(b64) {
+  const bin = atob(b64);
+  const out = new Uint8Array(bin.length);
+  for (let i = 0; i < bin.length; i += 1) out[i] = bin.charCodeAt(i);
+  return out;
+}
+
+// 비밀번호로 암호화된 대시보드 데이터를 복호화한다.
+// 비밀번호가 틀리면 복호화가 실패하거나 검증 표식이 맞지 않아 오류를 던진다.
+async function loadDashboardData(password) {
+  const response = await fetch(`./data/dashboard.enc.json?t=${Date.now()}`);
+  if (!response.ok) throw new Error("데이터 파일을 불러오지 못했습니다.");
+  const enc = await response.json();
+
+  const baseKey = await crypto.subtle.importKey(
+    "raw",
+    new TextEncoder().encode(password),
+    "PBKDF2",
+    false,
+    ["deriveKey"],
+  );
+  const key = await crypto.subtle.deriveKey(
+    { name: "PBKDF2", salt: b64ToBytes(enc.salt), iterations: enc.iterations, hash: "SHA-256" },
+    baseKey,
+    { name: "AES-CBC", length: 256 },
+    false,
+    ["decrypt"],
+  );
+
+  let plain;
+  try {
+    const buf = await crypto.subtle.decrypt({ name: "AES-CBC", iv: b64ToBytes(enc.iv) }, key, b64ToBytes(enc.data));
+    plain = new TextDecoder().decode(buf);
+  } catch (e) {
+    throw new Error("WRONG_PASSWORD");
+  }
+  if (!plain.startsWith("INNOBIZ-OK|")) throw new Error("WRONG_PASSWORD");
+  return JSON.parse(plain.slice("INNOBIZ-OK|".length));
 }
 
 function sortRows(rows, state, sorters) {
@@ -852,11 +886,66 @@ function renderIncomeSummaryTable(data) {
 }
 
 function init() {
+  const gate = byId("gate");
+  const form = byId("gate-form");
+  const input = byId("gate-input");
+  const errorEl = byId("gate-error");
+  const submitBtn = byId("gate-submit");
+
+  const unlock = async (password, fromStorage) => {
+    errorEl.textContent = "";
+    submitBtn.disabled = true;
+    submitBtn.textContent = "확인 중...";
+    try {
+      const data = await loadDashboardData(password);
+      if (byId("gate-remember").checked) {
+        localStorage.setItem(STORAGE_KEY, password);
+      } else {
+        localStorage.removeItem(STORAGE_KEY);
+      }
+      gate.remove();
+      byId("page").hidden = false;
+      startDashboard(data);
+    } catch (e) {
+      if (fromStorage) {
+        localStorage.removeItem(STORAGE_KEY);
+      } else {
+        errorEl.textContent =
+          e.message === "WRONG_PASSWORD" ? "비밀번호가 올바르지 않습니다." : `오류가 발생했습니다. (${e.message})`;
+        input.value = "";
+        input.focus();
+      }
+    } finally {
+      submitBtn.disabled = false;
+      submitBtn.textContent = "열람하기";
+    }
+  };
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const value = input.value.trim();
+    if (!value) return;
+    unlock(value, false);
+  });
+
+  const saved = localStorage.getItem(STORAGE_KEY);
+  if (saved) {
+    unlock(saved, true);
+  } else {
+    input.focus();
+  }
+}
+
+function startDashboard(loaded) {
   modalEl = byId("detail-modal");
   modalTitleEl = byId("modal-title");
   byId("modal-close-btn").addEventListener("click", closeModal);
   byId("modal-close-bg").addEventListener("click", closeModal);
   byId("attendance-download").addEventListener("click", downloadAttendanceExcel);
+  byId("logout-btn").addEventListener("click", () => {
+    localStorage.removeItem(STORAGE_KEY);
+    location.reload();
+  });
 
   window.addEventListener("keydown", (event) => {
     if (event.key === "Escape") closeModal();
@@ -867,7 +956,7 @@ function init() {
   bindManagedTable("income");
   bindManagedTable("top");
 
-  loadDashboardData()
+  Promise.resolve(loaded)
     .then((data) => {
       dashboardData = data;
       byId("meta-line").textContent = `기준: ${data.meta.completed_week_range} | 갱신: ${data.meta.generated_at} | 원본: ${data.meta.source_files.settlement_4th}`;
