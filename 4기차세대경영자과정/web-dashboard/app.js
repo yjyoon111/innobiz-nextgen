@@ -606,6 +606,44 @@ function renderNextCohort(data) {
     .join("");
 }
 
+async function captureSection(btn) {
+  const targetId = btn.dataset.captureTarget;
+  const target = byId(targetId);
+  if (!target || typeof html2canvas === "undefined") return;
+
+  const originalText = btn.textContent;
+  btn.disabled = true;
+  btn.textContent = "저장 중...";
+  const toolbar = target.querySelector(".capture-toolbar");
+  const prevDisplay = toolbar ? toolbar.style.display : null;
+  if (toolbar) toolbar.style.display = "none";
+
+  try {
+    const canvas = await html2canvas(target, {
+      backgroundColor: "#f7f5f0",
+      scale: 2,
+      useCORS: true,
+    });
+    const link = document.createElement("a");
+    const today = new Date().toISOString().slice(0, 10);
+    link.download = `${btn.dataset.captureName || "대시보드"}_${today}.png`;
+    link.href = canvas.toDataURL("image/png");
+    link.click();
+  } catch (e) {
+    alert("이미지 저장에 실패했습니다. 잠시 후 다시 시도해 주세요.");
+  } finally {
+    if (toolbar) toolbar.style.display = prevDisplay;
+    btn.disabled = false;
+    btn.textContent = originalText;
+  }
+}
+
+function bindCaptureButtons() {
+  document.querySelectorAll(".capture-btn").forEach((btn) => {
+    btn.addEventListener("click", () => captureSection(btn));
+  });
+}
+
 function bindTabs() {
   const buttons = [...document.querySelectorAll(".tab-btn")];
   buttons.forEach((btn) => {
@@ -952,6 +990,7 @@ function startDashboard(loaded) {
   });
 
   bindTabs();
+  bindCaptureButtons();
   bindManagedTable("attendance");
   bindManagedTable("income");
   bindManagedTable("top");

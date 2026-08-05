@@ -9,9 +9,10 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css"
     />
-    <link rel="stylesheet" href="./styles.css?v=20260804a" />
+    <link rel="stylesheet" href="./styles.css?v=20260804b" />
     <script src="https://cdn.jsdelivr.net/npm/chart.js@4.5.1/dist/chart.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
   </head>
   <body>
     <div class="bg-orb orb-a"></div>
@@ -209,6 +210,11 @@
 
       <!-- ===== 만족도 ===== -->
       <div class="tab-panel" id="panel-survey">
+        <div class="capture-toolbar">
+          <button type="button" class="capture-btn" data-capture-target="panel-survey" data-capture-name="4기_만족도조사">
+            🖼️ 이미지로 저장
+          </button>
+        </div>
         <section class="kpi-grid" id="survey-kpi"></section>
 
         <section class="chart-grid">
@@ -319,6 +325,11 @@
       </div>
       <!-- ===== 5기 제언 ===== -->
       <div class="tab-panel" id="panel-next">
+        <div class="capture-toolbar">
+          <button type="button" class="capture-btn" data-capture-target="panel-next" data-capture-name="5기_제언">
+            🖼️ 이미지로 저장
+          </button>
+        </div>
         <section class="panel finding-hero">
           <p class="finding-eyebrow">4기 데이터가 말하는 핵심</p>
           <h2>만족도는 높은데, 절반만 나왔습니다</h2>
@@ -384,6 +395,6 @@
       </div>
     </div>
 
-    <script src="./app.js?v=20260804a"></script>
+    <script src="./app.js?v=20260804b"></script>
   </body>
 </html>
