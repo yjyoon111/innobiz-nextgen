@@ -23,6 +23,9 @@ body {
     radial-gradient(circle at 90% 10%, #dff4ef 0, transparent 38%),
     linear-gradient(135deg, #f6f5f2 0%, #eef3f8 100%);
   color: var(--ink);
+  /* 한글이 어절 중간에서 끊기지 않도록(예: "여건 때/문이며") 전역 적용 */
+  word-break: keep-all;
+  overflow-wrap: break-word;
 }
 
 .bg-orb {
@@ -913,8 +916,10 @@ tfoot .total-row td {
 table {
   width: 100%;
   border-collapse: collapse;
-  min-width: 0;
-  table-layout: fixed;
+  /* 셀 내용(예: 58,897,080원)이 잘리지 않도록 최소 폭을 내용에 맞춘다.
+     좁아지면 .table-wrap 의 overflow:auto 가 가로 스크롤을 제공한다. */
+  min-width: max-content;
+  table-layout: auto;
 }
 
 th,
