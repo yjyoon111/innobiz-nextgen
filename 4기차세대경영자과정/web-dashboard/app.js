@@ -611,14 +611,14 @@ async function captureSection(btn) {
   const target = byId(targetId);
   if (!target || typeof html2canvas === "undefined") return;
 
-  const originalText = btn.textContent;
   btn.disabled = true;
-  btn.textContent = "저장 중...";
-  const toolbar = target.querySelector(".capture-toolbar");
-  const prevDisplay = toolbar ? toolbar.style.display : null;
-  if (toolbar) toolbar.style.display = "none";
+  // 캡처 결과물에서 버튼 자체가 보이지 않도록 완전히 숨긴다(텍스트만 바꾸면 "저장 중"이 그대로 찍힘)
+  const prevVisibility = btn.style.visibility;
+  btn.style.visibility = "hidden";
 
   try {
+    // 숨김 반영을 위해 잠시 대기 후 캡처 (requestAnimationFrame은 백그라운드 탭에서 지연될 수 있어 setTimeout 사용)
+    await new Promise((resolve) => setTimeout(resolve, 30));
     const canvas = await html2canvas(target, {
       backgroundColor: "#f7f5f0",
       scale: 2,
@@ -632,9 +632,8 @@ async function captureSection(btn) {
   } catch (e) {
     alert("이미지 저장에 실패했습니다. 잠시 후 다시 시도해 주세요.");
   } finally {
-    if (toolbar) toolbar.style.display = prevDisplay;
+    btn.style.visibility = prevVisibility;
     btn.disabled = false;
-    btn.textContent = originalText;
   }
 }
 
