@@ -441,22 +441,18 @@ body {
   display: block;
 }
 
-/* ---- 이미지 저장 ---- */
-.capture-toolbar {
-  display: flex;
-  justify-content: flex-end;
-  margin-bottom: 10px;
-}
-
+/* ---- 이미지 저장 (블록별) ---- */
 .capture-btn {
-  padding: 8px 14px;
+  flex: none;
+  padding: 7px 12px;
   border: 1px solid rgba(24, 111, 101, 0.28);
-  border-radius: 10px;
+  border-radius: 9px;
   background: #fff;
   color: var(--brand);
   font: inherit;
-  font-size: 12.5px;
+  font-size: 12px;
   font-weight: 700;
+  white-space: nowrap;
   cursor: pointer;
   transition: background 0.15s ease;
 }
@@ -468,6 +464,16 @@ body {
 .capture-btn:disabled {
   opacity: 0.6;
   cursor: default;
+}
+
+.capture-btn-dark {
+  border-color: rgba(255, 255, 255, 0.4);
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+}
+
+.capture-btn-dark:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.24);
 }
 
 /* ---- 만족도 ---- */
