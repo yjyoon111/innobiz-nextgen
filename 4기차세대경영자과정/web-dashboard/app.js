@@ -300,10 +300,30 @@ function bindCategoryChart(rows) {
   });
 }
 
+// 꺾은선 위에 출석률(%) 표시
+const lineValueLabels = {
+  id: "lineValueLabels",
+  afterDatasetsDraw(chart) {
+    const { ctx } = chart;
+    ctx.save();
+    ctx.font = "700 11px Pretendard, sans-serif";
+    ctx.fillStyle = "#12564e";
+    ctx.textAlign = "center";
+    ctx.textBaseline = "bottom";
+    chart.getDatasetMeta(0).data.forEach((pt, i) => {
+      const v = chart.data.datasets[0].data[i];
+      if (v == null) return;
+      ctx.fillText(`${Math.round(v)}%`, pt.x, pt.y - 12);
+    });
+    ctx.restore();
+  },
+};
+
 function bindAttendanceChart(rows) {
   if (attendanceChart) attendanceChart.destroy();
   rows = rows.filter((row) => !row.trip); // 해외연수(5주차)는 출석률이 아니므로 차트에서 제외
   attendanceChart = new Chart(byId("attendanceChart"), {
+    plugins: [lineValueLabels],
     type: "line",
     data: {
       labels: rows.map((row) => row.week_label),
@@ -515,12 +535,12 @@ function renderNextCohort(data) {
       voice: "AI, 그리고 AX와 관련없는 내용이 너무 많았습니다. 이 둘을 결합한 과정이라 들었는데…",
     },
     {
-      title: "액션러닝 사전 준비 강화 및 시간 확대",
+      title: "액션러닝 콘텐츠의 대상 적합성 제고",
       problem:
-        "만족도 4.41로 전반(4.76) 대비 가장 낮음. 새로운 시도 자체는 의미 있었으나 진행 방식이 충분히 다듬어지지 않은 상태로 운영되어, 수강생 입장에서 목적을 파악하기 어려웠다는 의견이 있었음. 운영 측면에서도 회차별 준비물 조달 부담이 컸음.",
+        "액션러닝을 통해 원우 간 친밀감을 형성하고 가까워질 수 있는 시간을 마련한 점은 긍정적으로 평가되었음. 다만 만족도는 4.41로 전반 만족도(4.76) 대비 낮았으며, 이는 차세대 경영진에 직접 관련된 실습이 아니라 일반 워크숍·조별과제 방식으로 진행된 점, 계획한 시간 안에 내용을 충분히 소화하기 어려웠던 점에 기인한 것으로 분석됨.",
       action:
-        "① 커리큘럼·진행 시나리오를 사전에 확정하고 리허설 진행 ② 2시간 → 3시간 확대 ③ 경영자 대상에 맞는 실제 기업 과제로 재설계 ④ 준비물은 운영사 일괄 제공으로 계약 조건 명시.",
-      voice: "액션러닝의 존재 이유를 모르겠습니다. 취지는 이해되지만 대학생 조별과제 체험처럼 진행된 것이 아쉽습니다. / 짧은 시간 내에 이뤄지다 보니 많은 내용을 담지 못한 점이 아쉬웠습니다.",
+        "① 경영 현안을 다루는 실제 기업 과제 기반으로 콘텐츠 재설계 ② 진행 시간을 2시간에서 3시간으로 확대하여 과제 소화 시간 확보 ③ 회차별 학습 목표를 사전 안내하여 참여 목적을 명확히 전달.",
+      voice: "어색했던 원우들과 아이스브레이킹 및 더 편안하게 가까워질 수 있어서 좋았습니다. / 취지는 이해되지만 대학생들이 참여하는 교류회나 조별과제 체험처럼 진행된 점이 아쉽습니다. / 짧은 시간 내에 이뤄지다 보니 많은 내용을 담지 못한 점이 아쉬웠습니다.",
     },
     {
       title: "기업 방문 프로그램 실행 (4기 미실시)",
@@ -589,8 +609,8 @@ function renderNextCohort(data) {
     ["강사", "강사 계약 시 AI/AX 연계 및 휴식시간 포함 조건 명시"],
     ["강사", "만족도 상위 강사 우선 재섭외 (김창원 4.93 · 이상진 4.80 · 김대식 4.77)"],
     ["운영", "주제별 5~10분 휴식 편성"],
-    ["운영", "액션러닝 진행 시나리오 사전 확정 및 리허설 (4기 준비 부족 지적)"],
-    ["운영", "액션러닝 시간 확대 및 경영자 수준 과제로 재설계"],
+    ["운영", "액션러닝을 경영 현안 중심 실제 기업 과제로 재설계"],
+    ["운영", "액션러닝 진행 시간 확대(2시간 → 3시간) 및 회차별 학습목표 사전 안내"],
     ["운영", "기업 방문처 사전 확정 (4기는 섭외 불발로 현장 강의 대체)"],
     ["운영", "해외연수 일정 조기 확정 및 사전 공지"],
     ["예산", `1인당 지출 ${nfmt.format(Math.round(spent / (members.length || 1)))}원 기준으로 5기 단가 설계`],
@@ -678,20 +698,88 @@ function renderFinanceReport(data) {
     ],
   );
 
-  // 항목별 지출 (대분류 기준, 금액 큰 순)
-  const cats = [...(data.category_comparison || [])]
-    .map((c) => ({ category: c.category, amount: c.current_amount, share: c.current_amount / (spent || 1) }))
-    .filter((c) => c.amount > 0)
-    .sort((a, b) => b.amount - a.amount);
+  // 항목별 지출 — 결과보고서 양식(대분류 → 소분류 → 세부내역)
+  const tx = data.current_transactions || [];
+  const sumBy = (fn) => tx.filter(fn).reduce((s, t) => s + Number(t.amount || 0), 0);
+  const raw = (name) => (t) => t.raw_category === name;
+
+  const groups = [
+    {
+      group: "강사료",
+      items: [
+        { label: "강사료", filter: (t) => t.raw_category === "강의비" || t.raw_category === "강의비,진행비", note: "11회 강사료" },
+        { label: "진행비", filter: raw("진행비"), note: "액션러닝 진행비" },
+      ],
+    },
+    {
+      group: "인쇄비",
+      items: [
+        { label: "교재·인쇄물", filter: raw("준비비"), note: "교재 제본, 회원수첩, 홍보물, 현수막" },
+        { label: "수료식 인쇄", filter: raw("인쇄비"), note: "수료식 현수막, 수료증" },
+      ],
+    },
+    {
+      group: "다과 및 식비",
+      items: [
+        { label: "다과비", filter: raw("다과비"), note: "교육기간 커피, 다과 등" },
+        { label: "식비", filter: raw("식비"), note: "교육 후 석식 등" },
+      ],
+    },
+    {
+      group: "해외연수비",
+      items: [{ label: "운영 용역비", filter: raw("해외전시"), note: "상하이 전시회 운영(선금 70% + 잔금 30%)" }],
+    },
+    {
+      group: "수료식",
+      items: [{ label: "기념품", filter: raw("기념품"), note: "수료생 선물세트 60개" }],
+    },
+    {
+      group: "교육장 임대",
+      items: [
+        { label: "대관료", filter: raw("대관료"), note: "7개 회차 강의실 대관" },
+        { label: "회의실 임차료", filter: (t) => t.raw_category === "운영비" && t.detail.includes("회의실"), note: "9주차 보증금 및 사용료" },
+      ],
+    },
+    {
+      group: "주차비",
+      items: [{ label: "주차비", filter: raw("주차비"), note: "9개 회차 관리비 정산" }],
+    },
+    {
+      group: "기타",
+      items: [{ label: "운영비", filter: (t) => t.raw_category === "운영비" && !t.detail.includes("회의실"), note: "행사 운영 물품" }],
+    },
+  ];
+
+  const rows = [];
+  groups.forEach((g) => {
+    const items = g.items.map((it) => ({ ...it, amount: sumBy(it.filter) })).filter((it) => it.amount > 0);
+    if (!items.length) return;
+    const groupTotal = items.reduce((s, it) => s + it.amount, 0);
+    rows.push({ level: "group", name: g.group, amount: groupTotal, note: "" });
+    // 소분류가 하나뿐이고 이름이 그룹과 같으면 중복 행을 만들지 않는다
+    if (!(items.length === 1 && items[0].label === g.group)) {
+      items.forEach((it) => rows.push({ level: "item", name: it.label, amount: it.amount, note: it.note }));
+    } else {
+      rows[rows.length - 1].note = items[0].note;
+    }
+  });
+
   renderSimpleTable(
     "finance-category-table",
     [
-      { key: "category", label: "항목" },
-      { key: "amount", label: "금액", render: (v) => fmtMoney(v) },
-      { key: "share", label: "비중", render: (v) => fmtPercent(v) },
+      {
+        key: "name",
+        label: "구분",
+        render: (v, row) =>
+          row.level === "group"
+            ? `<strong>${escapeHtml(v)}</strong>`
+            : `<span class="sub-item">${escapeHtml(v)}</span>`,
+      },
+      { key: "amount", label: "금액", render: (v, row) => (row.level === "group" ? `<strong>${fmtMoney(v)}</strong>` : fmtMoney(v)) },
+      { key: "note", label: "세부내역", render: (v) => `<span class="cell-note">${escapeHtml(v || "")}</span>` },
     ],
-    cats,
-    { category: "합계", amount: spent, share: 1 },
+    rows,
+    { name: "합계", amount: spent, note: "" },
   );
 
   // 주차별 지출 + 참석인원 + 강사
@@ -791,6 +879,67 @@ function renderWeeklyReport(data) {
       },
     ],
   );
+}
+
+// 참여 명단 및 구성 (회원사/비회원사/이노비즈 인증)
+function renderRoster(roster) {
+  if (!roster || !roster.list || !roster.list.length) return;
+  const s = roster.summary || {};
+
+  byId("roster-note").textContent =
+    `총 ${s.total}명 · 평균연령 만 ${s.avgAge}세(한국식 ${s.avgAgeKr}세, 생년 확인 ${s.ageSample}명 기준)`;
+
+  byId("roster-kpi").innerHTML = [
+    ["총 참여인원", `${s.total}명`, ""],
+    ["회원사", `${s.member}명`, "positive"],
+    ["비회원사", `${s.nonMember}명`, ""],
+    ["이노비즈 인증사", `${s.certified}명`, "positive"],
+    ["평균연령", `만 ${s.avgAge}세`, ""],
+  ]
+    .map(
+      ([label, value, cls]) => `
+        <article class="kpi-card">
+          <p class="kpi-label">${label}</p>
+          <p class="kpi-value ${cls}">${value}</p>
+        </article>`,
+    )
+    .join("");
+
+  const mark = (ok) => (ok ? `<span class="chip chip-on">O</span>` : `<span class="chip">-</span>`);
+  renderSimpleTable(
+    "roster-table",
+    [
+      { key: "idx", label: "번호" },
+      { key: "name", label: "성명" },
+      { key: "title", label: "직위" },
+      { key: "company", label: "업체명", render: (v) => clipText(v, 20) },
+      { key: "member", label: "회원사", render: (v) => mark(v) },
+      { key: "certified", label: "이노비즈 인증", render: (v) => mark(v) },
+      { key: "staffRole", label: "운영진", render: (v) => (v ? `<strong>${escapeHtml(v)}</strong>` : "-") },
+    ],
+    roster.list.map((m, i) => ({ ...m, idx: i + 1 })),
+  );
+
+  const btn = byId("roster-download");
+  if (btn) {
+    btn.addEventListener("click", () => {
+      if (typeof XLSX === "undefined") return;
+      const rows = roster.list.map((m, i) => ({
+        번호: i + 1,
+        성명: m.name,
+        직위: m.title,
+        업체명: m.company,
+        회원사: m.member ? "O" : "",
+        "이노비즈 인증": m.certified ? "O" : "",
+        운영진: m.staffRole || "",
+      }));
+      const sheet = XLSX.utils.json_to_sheet(rows);
+      sheet["!cols"] = [{ wch: 5 }, { wch: 8 }, { wch: 8 }, { wch: 26 }, { wch: 8 }, { wch: 12 }, { wch: 10 }];
+      const book = XLSX.utils.book_new();
+      XLSX.utils.book_append_sheet(book, sheet, "4기 참여명단");
+      XLSX.writeFile(book, `차경4기_참여명단_${new Date().toISOString().slice(0, 10)}.xlsx`);
+    });
+  }
 }
 
 function renderStaff(staff) {
@@ -1213,6 +1362,7 @@ function startDashboard(loaded) {
       renderStaff(data.staff);
       renderFinanceReport(data);
       renderWeeklyReport(data);
+      renderRoster(data.roster);
 
       renderSimpleTable(
         "weekly-table",
