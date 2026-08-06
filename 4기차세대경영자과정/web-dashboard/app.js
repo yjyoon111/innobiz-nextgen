@@ -643,6 +643,156 @@ async function captureSection(btn) {
   }
 }
 
+// 주차별 강사 (연수일정표 기준)
+const WEEK_LECTURERS = {
+  1: "신제구 교수 (입학식)",
+  2: "유일한 대표",
+  3: "류재언 변호사",
+  4: "김용진 대표",
+  5: "고영 대표 (해외연수)",
+  6: "이상진 본부장",
+  7: "김창원 교수",
+  8: "고영 대표",
+  9: "한웅 대표이사",
+  10: "졸업여행 (원우회 주관)",
+  11: "김대식 교수 (수료식)",
+};
+
+// 결과보고서 「연수 수지」 표
+function renderFinanceReport(data) {
+  const kpis = data.kpis;
+  const income = Number(kpis.income_total || 0);
+  const spent = Number(kpis.spent_current || 0);
+
+  renderSimpleTable(
+    "finance-summary-table",
+    [
+      { key: "label", label: "구분" },
+      { key: "value", label: "금액", render: (v) => fmtMoney(v) },
+      { key: "note", label: "비고" },
+    ],
+    [
+      { label: "수입", value: income, note: "교육비 + 해외연수 참가비" },
+      { label: "지출", value: spent, note: "1~11주차 집행액" },
+      { label: "수익", value: income - spent, note: `집행률 ${fmtPercent(kpis.budget_usage_rate)}` },
+    ],
+  );
+
+  // 항목별 지출 (대분류 기준, 금액 큰 순)
+  const cats = [...(data.category_comparison || [])]
+    .map((c) => ({ category: c.category, amount: c.current_amount, share: c.current_amount / (spent || 1) }))
+    .filter((c) => c.amount > 0)
+    .sort((a, b) => b.amount - a.amount);
+  renderSimpleTable(
+    "finance-category-table",
+    [
+      { key: "category", label: "항목" },
+      { key: "amount", label: "금액", render: (v) => fmtMoney(v) },
+      { key: "share", label: "비중", render: (v) => fmtPercent(v) },
+    ],
+    cats,
+    { category: "합계", amount: spent, share: 1 },
+  );
+
+  // 주차별 지출 + 참석인원 + 강사
+  const attendByWeek = new Map((data.attendance.weekly || []).map((w) => [w.week, w]));
+  const weeks = (data.weekly_comparison || []).map((w) => {
+    const a = attendByWeek.get(w.week);
+    return {
+      week_label: w.week_label,
+      lecturer: WEEK_LECTURERS[w.week] || "-",
+      amount: w.current_amount,
+      attend: a ? a.attend : null,
+    };
+  });
+  renderSimpleTable(
+    "finance-weekly-table",
+    [
+      { key: "week_label", label: "구분" },
+      { key: "lecturer", label: "강사 / 내용" },
+      { key: "amount", label: "금액", render: (v) => fmtMoney(v) },
+      { key: "attend", label: "참석인원", render: (v) => (v === null ? "-" : `${v}명`) },
+    ],
+    weeks,
+    { week_label: "총합계", amount: spent },
+  );
+}
+
+// 결과보고서 「차수별 출석률 및 만족도」 표
+function renderWeeklyReport(data) {
+  const survey = data.survey || {};
+  const satByWeek = new Map();
+  (survey.weekly || []).forEach((w) => {
+    const m = w.label.match(/^(\d+)주/);
+    if (m) satByWeek.set(Number(m[1]), w.avg);
+  });
+
+  const rows = (data.attendance.weekly || []).map((w) => {
+    const total = w.attend + w.absent;
+    return {
+      week_label: w.week_label,
+      lecturer: WEEK_LECTURERS[w.week] || "-",
+      rate: w.trip ? "해외연수" : fmtPercent(w.rate),
+      attend: w.trip ? `${w.attend}명 참가` : `${w.attend}/${total}명`,
+      sat: satByWeek.has(w.week) ? satByWeek.get(w.week).toFixed(2) : "-",
+    };
+  });
+
+  renderSimpleTable(
+    "report-weekly-table",
+    [
+      { key: "week_label", label: "구분" },
+      { key: "lecturer", label: "강사" },
+      { key: "attend", label: "출석" },
+      { key: "rate", label: "출석률" },
+      { key: "sat", label: "만족도" },
+    ],
+    rows,
+    {
+      week_label: "평균",
+      rate: fmtPercent(
+        (data.attendance.members_all || []).reduce((s, m) => s + m.rate, 0) /
+          ((data.attendance.members_all || []).length || 1),
+      ),
+      sat: survey.overall_avg ? String(survey.overall_avg) : "-",
+    },
+  );
+
+  // 이전 기수 비교 (3기 이하 수치는 결과보고서 기재값)
+  const lecturerAvg =
+    (survey.lecturer || []).reduce((s, l) => s + l.avg, 0) / ((survey.lecturer || []).length || 1);
+  const attendAvg =
+    (data.attendance.members_all || []).reduce((s, m) => s + m.rate, 0) /
+    ((data.attendance.members_all || []).length || 1);
+
+  renderSimpleTable(
+    "report-cohort-table",
+    [
+      { key: "cohort", label: "구분" },
+      { key: "lecture", label: "강의 만족도" },
+      { key: "action", label: "액션러닝 만족도" },
+      { key: "attend", label: "출석률" },
+    ],
+    [
+      {
+        cohort: "4기",
+        lecture: lecturerAvg.toFixed(2),
+        action: survey.action_avg ? String(survey.action_avg) : "-",
+        attend: fmtPercent(attendAvg),
+      },
+      { cohort: "3기", lecture: "4.6", action: "4.5", attend: "73.0%" },
+      { cohort: "2기", lecture: "4.7", action: "4.5", attend: "76.0%" },
+      { cohort: "1기", lecture: "4.7", action: "4.8", attend: "73.0%" },
+      {
+        cohort: "3기 대비",
+        lecture: `${lecturerAvg - 4.6 >= 0 ? "▲" : "▼"}${Math.abs(lecturerAvg - 4.6).toFixed(2)}`,
+        action: `${survey.action_avg - 4.5 >= 0 ? "▲" : "▼"}${Math.abs(survey.action_avg - 4.5).toFixed(2)}`,
+        attend: `${attendAvg - 0.73 >= 0 ? "▲" : "▼"}${Math.abs((attendAvg - 0.73) * 100).toFixed(1)}%p`,
+      },
+    ],
+  );
+}
+
 function renderStaff(staff) {
   if (!staff || !staff.length) return;
   const byName = new Map(staff.map((s) => [s.name, s]));
@@ -1061,6 +1211,8 @@ function startDashboard(loaded) {
       renderSurvey(data.survey);
       renderNextCohort(data);
       renderStaff(data.staff);
+      renderFinanceReport(data);
+      renderWeeklyReport(data);
 
       renderSimpleTable(
         "weekly-table",
