@@ -572,21 +572,47 @@ function renderNextCohort(data) {
     { label: "절반 정도 출석 (50~69%)", n: members.filter((m) => m.rate >= 0.5 && m.rate < 0.7).length, color: "#e0a33e" },
     { label: "절반 미만 출석", n: members.filter((m) => m.rate < 0.5).length, color: "#c33b2f" },
   ];
+  const total = members.length || 1;
   if (nextDistChart) nextDistChart.destroy();
   nextDistChart = new Chart(byId("nextDistChart"), {
-    type: "doughnut",
+    type: "bar",
     data: {
-      labels: buckets.map((b) => `${b.label} · ${b.n}명`),
-      datasets: [{ data: buckets.map((b) => b.n), backgroundColor: buckets.map((b) => b.color), borderWidth: 0 }],
+      labels: buckets.map((b) => b.label),
+      datasets: [{ data: buckets.map((b) => b.n), backgroundColor: buckets.map((b) => b.color), borderRadius: 8 }],
     },
     options: {
       responsive: true,
       maintainAspectRatio: false,
       animation: false,
+      indexAxis: "y",
+      layout: { padding: { right: 56 } },
       plugins: {
-        tooltip: { callbacks: { label: (c) => `${c.label} (${((c.raw / members.length) * 100).toFixed(0)}%)` } },
+        legend: { display: false },
+        tooltip: { callbacks: { label: (c) => `${c.raw}명 (${((c.raw / total) * 100).toFixed(0)}%)` } },
+      },
+      scales: {
+        x: { beginAtZero: true, max: Math.max(...buckets.map((b) => b.n)) + 3, ticks: { stepSize: 5 } },
+        y: { ticks: { font: { size: 12 } } },
       },
     },
+    plugins: [
+      {
+        id: "distLabels",
+        afterDatasetsDraw(chart) {
+          const { ctx } = chart;
+          ctx.save();
+          ctx.font = "800 13px Pretendard, sans-serif";
+          ctx.textAlign = "left";
+          ctx.textBaseline = "middle";
+          chart.getDatasetMeta(0).data.forEach((bar, i) => {
+            const n = buckets[i].n;
+            ctx.fillStyle = buckets[i].color;
+            ctx.fillText(`${n}명 (${Math.round((n / total) * 100)}%)`, bar.x + 8, bar.y);
+          });
+          ctx.restore();
+        },
+      },
+    ],
   });
 
   // 지출 구조
@@ -714,7 +740,7 @@ function renderFinanceReport(data) {
     {
       group: "인쇄비",
       items: [
-        { label: "교재·인쇄물", filter: raw("준비비"), note: "교재 제본, 회원수첩, 홍보물, 현수막" },
+        { label: "교재·인쇄물", filter: raw("준비비"), note: "교재 제본, 회원수첩, 홍보용 웹포스터·E브로슈어, 현수막·배너" },
         { label: "수료식 인쇄", filter: raw("인쇄비"), note: "수료식 현수막, 수료증" },
       ],
     },
