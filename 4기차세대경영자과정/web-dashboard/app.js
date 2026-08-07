@@ -430,8 +430,8 @@ function renderSurvey(survey) {
   }
 
   byId("survey-kpi").innerHTML = [
-    ["전반적 만족도", `${survey.overall_avg} / 5`, "positive"],
-    ["액션러닝 만족도", `${survey.action_avg} / 5`, ""],
+    ["전반적 만족도", `${Number(survey.overall_avg).toFixed(1)} / 5`, "positive"],
+    ["액션러닝 만족도", `${Number(survey.action_avg).toFixed(1)} / 5`, ""],
     ["응답 인원", `${survey.respondents}명`, ""],
     ["주관식 의견", `${(survey.comments || []).length}건`, ""],
   ]
@@ -458,26 +458,44 @@ function renderSurvey(survey) {
       maintainAspectRatio: false,
       animation: false,
       indexAxis: "y",
+      layout: { padding: { right: 40 } },
       plugins: {
         legend: { display: false },
         tooltip: {
           callbacks: {
             label: (ctx) => {
               const row = weekly[ctx.dataIndex];
-              return `평균 ${row.avg}점 (응답 ${row.n}명, 불참 ${row.absent}명)`;
+              return `평균 ${Number(row.avg).toFixed(1)}점 (응답 ${row.n}명, 불참 ${row.absent}명)`;
             },
           },
         },
       },
       scales: { x: { beginAtZero: true, max: 5, ticks: { stepSize: 1 } } },
     },
+    plugins: [
+      {
+        id: "satLabels",
+        afterDatasetsDraw(chart) {
+          const { ctx } = chart;
+          ctx.save();
+          ctx.font = "800 12px Pretendard, sans-serif";
+          ctx.fillStyle = "#186f65";
+          ctx.textAlign = "left";
+          ctx.textBaseline = "middle";
+          chart.getDatasetMeta(0).data.forEach((bar, i) => {
+            ctx.fillText(Number(weekly[i].avg).toFixed(1), bar.x + 6, bar.y);
+          });
+          ctx.restore();
+        },
+      },
+    ],
   });
 
   renderSimpleTable(
     "survey-lecturer-table",
     [
       { key: "label", label: "강사", render: (v) => clipText(v, 24) },
-      { key: "avg", label: "만족도", render: (v) => `<span class="survey-score">${v} / 5</span>` },
+      { key: "avg", label: "만족도", render: (v) => `<span class="survey-score">${Number(v).toFixed(1)} / 5</span>` },
       { key: "n", label: "응답", render: (v) => `${v}명` },
     ],
     survey.lecturer || [],
@@ -537,7 +555,7 @@ function renderNextCohort(data) {
     {
       title: "액션러닝 콘텐츠 대상 적합성 제고",
       problem:
-        "액션러닝을 통해 원우 간 친밀감을 형성하고 가까워질 수 있는 시간을 마련한 점은 긍정적으로 평가되었음. 다만 만족도는 4.41로 전반 만족도(4.76) 대비 낮았으며, 이는 차세대 경영진에 직접 관련된 실습이 아니라 일반 워크숍·조별과제 방식으로 진행된 점, 계획한 시간 안에 내용을 충분히 소화하기 어려웠던 점에 기인한 것으로 분석됨.",
+        "액션러닝을 통해 원우 간 친밀감을 형성하고 가까워질 수 있는 시간을 마련한 점은 긍정적으로 평가되었음. 다만 만족도는 4.4로 전반 만족도(4.8) 대비 낮았으며, 이는 차세대 경영진에 직접 관련된 실습이 아니라 일반 워크숍·조별과제 방식으로 진행된 점, 계획한 시간 안에 내용을 충분히 소화하기 어려웠던 점에 기인한 것으로 분석됨.",
       action:
         "① 경영 현안을 다루는 실제 기업 과제 기반으로 콘텐츠 재설계 ② 진행 시간을 2시간에서 3시간으로 확대하여 과제 소화 시간 확보 ③ 회차별 학습 목표를 사전 안내하여 참여 목적을 명확히 전달.",
       voice: "어색했던 원우들과 아이스브레이킹 및 더 편안하게 가까워질 수 있어서 좋았습니다. / 취지는 이해되지만 대학생들이 참여하는 교류회나 조별과제 체험처럼 진행된 점이 아쉽습니다. / 짧은 시간 내에 이뤄지다 보니 많은 내용을 담지 못한 점이 아쉬웠습니다.",
@@ -633,7 +651,7 @@ function renderNextCohort(data) {
     ["모집", "AX 실무 접목 커리큘럼임을 모집 요강에 명시 (4기 지적사항)"],
     ["모집", "목요일 외 요일 가능성 사전 수요조사"],
     ["강사", "강사 계약 시 AI/AX 연계 및 휴식시간 포함 조건 명시"],
-    ["강사", "만족도 상위 강사 우선 재섭외 (김창원 4.88 · 이상진 4.86 · 김대식 4.71)"],
+    ["강사", "만족도 상위 강사 우선 재섭외 (김창원 4.9 · 이상진 4.8 · 김대식 4.8)"],
     ["운영", "주제별 5~10분 휴식 편성"],
     ["운영", "액션러닝을 경영 현안 중심 실제 기업 과제로 재설계"],
     ["운영", "액션러닝 진행 시간 확대(2시간 → 3시간) 및 회차별 학습목표 사전 안내"],
@@ -857,7 +875,7 @@ function renderWeeklyReport(data) {
       lecturer: WEEK_LECTURERS[w.week] || "-",
       rate: w.trip ? "해외연수" : fmtPercent(w.rate),
       attend: w.trip ? `${w.attend}명 참가` : `${w.attend}/${total}명`,
-      sat: satByWeek.has(w.week) ? satByWeek.get(w.week).toFixed(2) : "-",
+      sat: satByWeek.has(w.week) ? satByWeek.get(w.week).toFixed(1) : "-",
     };
   });
 
@@ -877,7 +895,7 @@ function renderWeeklyReport(data) {
         (data.attendance.members_all || []).reduce((s, m) => s + m.rate, 0) /
           ((data.attendance.members_all || []).length || 1),
       ),
-      sat: survey.overall_avg ? String(survey.overall_avg) : "-",
+      sat: survey.overall_avg ? Number(survey.overall_avg).toFixed(1) : "-",
     },
   );
 
@@ -899,8 +917,8 @@ function renderWeeklyReport(data) {
     [
       {
         cohort: "4기",
-        lecture: lecturerAvg.toFixed(2),
-        action: survey.action_avg ? String(survey.action_avg) : "-",
+        lecture: lecturerAvg.toFixed(1),
+        action: survey.action_avg ? Number(survey.action_avg).toFixed(1) : "-",
         attend: fmtPercent(attendAvg),
       },
       { cohort: "3기", lecture: "4.6", action: "4.5", attend: "73.0%" },
@@ -908,8 +926,8 @@ function renderWeeklyReport(data) {
       { cohort: "1기", lecture: "4.7", action: "4.8", attend: "73.0%" },
       {
         cohort: "3기 대비",
-        lecture: `${lecturerAvg - 4.6 >= 0 ? "▲" : "▼"}${Math.abs(lecturerAvg - 4.6).toFixed(2)}`,
-        action: `${survey.action_avg - 4.5 >= 0 ? "▲" : "▼"}${Math.abs(survey.action_avg - 4.5).toFixed(2)}`,
+        lecture: `${lecturerAvg - 4.6 >= 0 ? "▲" : "▼"}${Math.abs(lecturerAvg - 4.6).toFixed(1)}`,
+        action: `${survey.action_avg - 4.5 >= 0 ? "▲" : "▼"}${Math.abs(survey.action_avg - 4.5).toFixed(1)}`,
         attend: `${attendAvg - 0.73 >= 0 ? "▲" : "▼"}${Math.abs((attendAvg - 0.73) * 100).toFixed(1)}%p`,
       },
     ],
