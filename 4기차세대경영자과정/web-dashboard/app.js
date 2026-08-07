@@ -939,6 +939,8 @@ function renderRoster(roster) {
       { key: "name", label: "성명" },
       { key: "title", label: "직위" },
       { key: "company", label: "업체명", render: (v) => clipText(v, 20) },
+      { key: "birthYear", label: "생년", render: (v) => (v ? `${v}년` : "-") },
+      { key: "age", label: "나이", render: (v) => (v ? `만 ${v}세` : "-") },
       { key: "member", label: "회원사", render: (v) => mark(v) },
       { key: "certified", label: "이노비즈 인증", render: (v) => mark(v) },
       { key: "staffRole", label: "운영진", render: (v) => (v ? `<strong>${escapeHtml(v)}</strong>` : "-") },
@@ -955,12 +957,14 @@ function renderRoster(roster) {
         성명: m.name,
         직위: m.title,
         업체명: m.company,
+        생년: m.birthYear ? `${m.birthYear}년` : "-",
+        나이: m.age ? `만 ${m.age}세` : "-",
         회원사: m.member ? "O" : "",
         "이노비즈 인증": m.certified ? "O" : "",
         운영진: m.staffRole || "",
       }));
       const sheet = XLSX.utils.json_to_sheet(rows);
-      sheet["!cols"] = [{ wch: 5 }, { wch: 8 }, { wch: 8 }, { wch: 26 }, { wch: 8 }, { wch: 12 }, { wch: 10 }];
+      sheet["!cols"] = [{ wch: 5 }, { wch: 8 }, { wch: 8 }, { wch: 26 }, { wch: 8 }, { wch: 8 }, { wch: 8 }, { wch: 12 }, { wch: 10 }];
       const book = XLSX.utils.book_new();
       XLSX.utils.book_append_sheet(book, sheet, "4기 참여명단");
       XLSX.writeFile(book, `차경4기_참여명단_${new Date().toISOString().slice(0, 10)}.xlsx`);
