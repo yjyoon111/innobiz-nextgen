@@ -892,8 +892,7 @@ function renderWeeklyReport(data) {
     {
       week_label: "평균",
       rate: fmtPercent(
-        (data.attendance.members_all || []).reduce((s, m) => s + m.rate, 0) /
-          ((data.attendance.members_all || []).length || 1),
+        (data.attendance.weekly || []).reduce((s, w) => s + w.rate, 0) / ((data.attendance.weekly || []).length || 1),
       ),
       sat: survey.overall_avg ? Number(survey.overall_avg).toFixed(1) : "-",
     },
@@ -903,8 +902,7 @@ function renderWeeklyReport(data) {
   const lecturerAvg =
     (survey.lecturer || []).reduce((s, l) => s + l.avg, 0) / ((survey.lecturer || []).length || 1);
   const attendAvg =
-    (data.attendance.members_all || []).reduce((s, m) => s + m.rate, 0) /
-    ((data.attendance.members_all || []).length || 1);
+    (data.attendance.weekly || []).reduce((s, w) => s + w.rate, 0) / ((data.attendance.weekly || []).length || 1);
 
   renderSimpleTable(
     "report-cohort-table",
