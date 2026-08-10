@@ -859,6 +859,126 @@ function renderFinanceReport(data) {
   );
 }
 
+// 당초 품의 계획 대비 (품의서 "소요예산" 계획금액 vs 실제 집행)
+function renderBudgetCompare(data) {
+  const tx = data.current_transactions || [];
+  const sumBy = (fn) => tx.filter(fn).reduce((s, t) => s + Number(t.amount || 0), 0);
+  const raw = (name) => (t) => t.raw_category === name;
+  const diffCell = (plan, actual) => {
+    const diff = actual - plan;
+    const sign = diff >= 0 ? "▲" : "▼";
+    return `${sign}${fmtMoney(Math.abs(diff))}`;
+  };
+  const rateCell = (plan, actual) => (plan ? fmtPercent(actual / plan) : "-");
+
+  // 수입 비교
+  const incomePlan = { 교육비: 75400000, 전시회참가비: 12390000 };
+  const incomeActual = { 교육비: 81000000, 전시회참가비: 11410000 + 3585080 };
+  const incomeRows = Object.keys(incomePlan).map((k) => ({
+    item: k,
+    plan: incomePlan[k],
+    actual: incomeActual[k],
+    diff: diffCell(incomePlan[k], incomeActual[k]),
+    rate: rateCell(incomePlan[k], incomeActual[k]),
+  }));
+  const incomePlanTotal = Object.values(incomePlan).reduce((s, v) => s + v, 0);
+  const incomeActualTotal = Object.values(incomeActual).reduce((s, v) => s + v, 0);
+
+  renderSimpleTable(
+    "budget-income-table",
+    [
+      { key: "item", label: "구분" },
+      { key: "plan", label: "당초 계획", render: (v) => fmtMoney(v) },
+      { key: "actual", label: "실제", render: (v) => fmtMoney(v) },
+      { key: "diff", label: "차이(실제-계획)" },
+      { key: "rate", label: "달성률" },
+    ],
+    incomeRows,
+    {
+      item: "합계",
+      plan: incomePlanTotal,
+      actual: incomeActualTotal,
+      diff: diffCell(incomePlanTotal, incomeActualTotal),
+      rate: rateCell(incomePlanTotal, incomeActualTotal),
+    },
+  );
+
+  // 지출 비교 (품의서 "소요예산" 항목 기준, 실제는 결과보고서 항목별 지출과 매칭)
+  const actualByItem = {
+    강사비: sumBy((t) => t.raw_category === "강의비" || t.raw_category === "강의비,진행비" || t.raw_category === "진행비"),
+    인쇄비: sumBy(raw("준비비")) + sumBy(raw("인쇄비")),
+    "다과 및 식비": sumBy(raw("다과비")) + sumBy(raw("식비")),
+    사무용품: 0,
+    "해외전시회 참가": 19738080,
+    졸업식: sumBy(raw("기념품")),
+    "교육장임차 및 회원수첩": sumBy(raw("대관료")) + sumBy((t) => t.raw_category === "운영비" && t.detail.includes("회의실")),
+    주차비: sumBy(raw("주차비")),
+    예비비: sumBy((t) => t.raw_category === "운영비" && !t.detail.includes("회의실")),
+  };
+  const expensePlan = {
+    강사비: 27750000,
+    인쇄비: 4000000,
+    "다과 및 식비": 6600000,
+    사무용품: 300000,
+    "해외전시회 참가": 21585000,
+    졸업식: 4600000,
+    "교육장임차 및 회원수첩": 912000,
+    주차비: 3000000,
+    예비비: 2000000,
+  };
+  const expenseRows = Object.keys(expensePlan).map((k) => ({
+    item: k,
+    plan: expensePlan[k],
+    actual: actualByItem[k],
+    diff: diffCell(expensePlan[k], actualByItem[k]),
+    rate: rateCell(expensePlan[k], actualByItem[k]),
+  }));
+  const expensePlanTotal = Object.values(expensePlan).reduce((s, v) => s + v, 0);
+  const expenseActualTotal = Object.values(actualByItem).reduce((s, v) => s + v, 0);
+
+  renderSimpleTable(
+    "budget-expense-table",
+    [
+      { key: "item", label: "구분" },
+      { key: "plan", label: "당초 계획", render: (v) => fmtMoney(v) },
+      { key: "actual", label: "실제", render: (v) => fmtMoney(v) },
+      { key: "diff", label: "차이(실제-계획)" },
+      { key: "rate", label: "집행률" },
+    ],
+    expenseRows,
+    {
+      item: "합계",
+      plan: expensePlanTotal,
+      actual: expenseActualTotal,
+      diff: diffCell(expensePlanTotal, expenseActualTotal),
+      rate: rateCell(expensePlanTotal, expenseActualTotal),
+    },
+  );
+
+  byId("budget-note").innerHTML = [
+    "해외전시회 참가는 계획 12명(선정) 대비 실제 참가 8명으로 축소되어 계획보다 낮게 집행됨",
+    "교육장임차 및 회원수첩(계획)의 회원수첩 비용은 실제 집행 시 인쇄비 항목으로 편성되어 근사 비교임",
+    "예비비(계획)는 실제 결산상 '기타(운영비)' 집행분에 대응",
+  ]
+    .map((t) => `<li>${escapeHtml(t)}</li>`)
+    .join("");
+
+  byId("budget-kpi").innerHTML = [
+    ["당초 계획 예산", fmtMoney(expensePlanTotal), ""],
+    ["실제 지출", fmtMoney(expenseActualTotal), "positive"],
+    ["차액(절감)", fmtMoney(expensePlanTotal - expenseActualTotal), "positive"],
+    ["집행률", fmtPercent(expenseActualTotal / expensePlanTotal), ""],
+  ]
+    .map(
+      ([label, value, cls]) => `
+        <article class="kpi-card">
+          <p class="kpi-label">${label}</p>
+          <p class="kpi-value ${cls}">${value}</p>
+        </article>`,
+    )
+    .join("");
+}
+
 // 결과보고서 「차수별 출석률 및 만족도」 표
 function renderWeeklyReport(data) {
   const survey = data.survey || {};
@@ -1416,6 +1536,7 @@ function startDashboard(loaded) {
       renderNextCohort(data);
       renderStaff(data.staff);
       renderFinanceReport(data);
+      renderBudgetCompare(data);
       renderWeeklyReport(data);
       renderRoster(data.roster);
 
