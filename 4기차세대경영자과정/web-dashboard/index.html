@@ -61,6 +61,7 @@
       <nav class="tab-nav" id="tab-nav">
         <button class="tab-btn is-active" type="button" data-tab="expense">지출 현황</button>
         <button class="tab-btn" type="button" data-tab="budget">계획 대비</button>
+        <button class="tab-btn" type="button" data-tab="verify">내역 검증</button>
         <button class="tab-btn" type="button" data-tab="attend">출석 현황</button>
         <button class="tab-btn" type="button" data-tab="survey">만족도</button>
         <button class="tab-btn" type="button" data-tab="info">과정 정보</button>
@@ -181,13 +182,7 @@
           <div class="table-wrap">
             <table id="finance-summary-table"></table>
           </div>
-          <p class="panel-note report-sub">
-            항목별 지출
-            <span class="panel-note-hint">("세부내역" 칸을 클릭해서 바로 고칠 수 있어요 · 이 브라우저에만 저장됨)</span>
-            <button type="button" id="finance-note-reset" class="more-btn note-reset-btn" title="세부내역 수정 내용을 전부 원래대로 되돌립니다">
-              메모 초기화
-            </button>
-          </p>
+          <p class="panel-note report-sub">항목별 지출</p>
           <div class="table-wrap">
             <table id="finance-category-table"></table>
           </div>
@@ -231,6 +226,36 @@
             <table id="budget-expense-table"></table>
           </div>
           <ul class="report-footnote" id="budget-note"></ul>
+        </section>
+      </div>
+
+      <!-- ===== 내역 검증 ===== -->
+      <div class="tab-panel" id="panel-verify">
+        <section class="panel table-panel">
+          <div class="panel-headline table-headline">
+            <div>
+              <h2>전체 사용내역 검증</h2>
+              <p class="panel-note">
+                항목을 체크하면 아래 체크 합계가 바로 계산됩니다. 필터로 원하는 항목만 걸러서 확인하세요.
+              </p>
+            </div>
+          </div>
+          <div class="table-toolbar verify-toolbar">
+            <select id="verify-filter-cat" class="toolbar-select">
+              <option value="all">대분류 전체</option>
+            </select>
+            <select id="verify-filter-week" class="toolbar-select">
+              <option value="all">주차 전체</option>
+            </select>
+            <input id="verify-search" class="toolbar-input" type="search" placeholder="내역/거래처 검색" />
+            <button type="button" id="verify-check-all" class="more-btn">화면에 보이는 항목 전체 체크</button>
+            <button type="button" id="verify-uncheck-all" class="more-btn">화면에 보이는 항목 전체 해제</button>
+            <button type="button" id="verify-reset" class="more-btn note-reset-btn">체크 전체 초기화</button>
+          </div>
+          <div id="verify-summary" class="verify-summary"></div>
+          <div class="table-wrap">
+            <table id="verify-table"></table>
+          </div>
         </section>
       </div>
 
@@ -557,6 +582,6 @@
       </div>
     </div>
 
-    <script src="./app.js?v=20260807p"></script>
+    <script src="./app.js?v=20260807q"></script>
   </body>
 </html>

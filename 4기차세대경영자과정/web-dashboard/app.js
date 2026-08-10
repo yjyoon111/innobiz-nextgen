@@ -6,32 +6,6 @@ const fmtMoney = (value) => `${nfmt.format(Number(value || 0))}${KRW}`;
 const fmtPercent = (value) => `${pfmt.format(Number(value || 0) * 100)}%`;
 const fmtCount = (value) => `${nfmt.format(Number(value || 0))}명`;
 
-// 세부내역(메모) 인라인 수정 - 이 브라우저에만 저장됨(로컬 임시 편집용, 원본 데이터는 바뀌지 않음)
-const NOTE_OVERRIDE_KEY = "financeNoteOverrides_v1";
-function loadNoteOverrides() {
-  try {
-    return JSON.parse(localStorage.getItem(NOTE_OVERRIDE_KEY) || "{}");
-  } catch {
-    return {};
-  }
-}
-function saveNoteOverride(key, text) {
-  const overrides = loadNoteOverrides();
-  if (text) overrides[key] = text;
-  else delete overrides[key];
-  localStorage.setItem(NOTE_OVERRIDE_KEY, JSON.stringify(overrides));
-}
-function bindEditableNotes(tableId) {
-  const table = byId(tableId);
-  if (!table || table.dataset.noteEditBound) return;
-  table.dataset.noteEditBound = "1";
-  table.addEventListener("focusout", (e) => {
-    const el = e.target.closest("[data-notekey]");
-    if (!el) return;
-    saveNoteOverride(el.dataset.notekey, el.textContent.trim());
-  });
-}
-
 let weeklyChart;
 let categoryChart;
 let attendanceChart;
@@ -863,18 +837,10 @@ function renderFinanceReport(data) {
     rows.push({ level: "group", name: g.group, amount: groupTotal, note: "" });
     // 소분류가 하나뿐이고 이름이 그룹과 같으면 중복 행을 만들지 않는다
     if (!(items.length === 1 && items[0].label === g.group)) {
-      items.forEach((it) =>
-        rows.push({ level: "item", name: it.label, amount: it.amount, note: it.note, noteKey: `${g.group}::${it.label}` }),
-      );
+      items.forEach((it) => rows.push({ level: "item", name: it.label, amount: it.amount, note: it.note }));
     } else {
       rows[rows.length - 1].note = items[0].note;
-      rows[rows.length - 1].noteKey = `${g.group}::${items[0].label}`;
     }
-  });
-
-  const noteOverrides = loadNoteOverrides();
-  rows.forEach((r) => {
-    if (r.noteKey && noteOverrides[r.noteKey] !== undefined) r.note = noteOverrides[r.noteKey];
   });
 
   renderSimpleTable(
@@ -889,29 +855,11 @@ function renderFinanceReport(data) {
             : `<span class="sub-item">${escapeHtml(v)}</span>`,
       },
       { key: "amount", label: "금액", render: (v, row) => (row.level === "group" ? `<strong>${fmtMoney(v)}</strong>` : fmtMoney(v)) },
-      {
-        key: "note",
-        label: "세부내역",
-        render: (v, row) =>
-          row.level === "item"
-            ? `<span class="cell-note" contenteditable="true" data-notekey="${escapeHtml(row.noteKey)}">${escapeHtml(v || "")}</span>`
-            : "",
-      },
+      { key: "note", label: "세부내역", render: (v) => `<span class="cell-note">${escapeHtml(v || "")}</span>` },
     ],
     rows,
     { name: "합계", amount: spent, note: "" },
   );
-  bindEditableNotes("finance-category-table");
-
-  const resetBtn = byId("finance-note-reset");
-  if (resetBtn && !resetBtn.dataset.bound) {
-    resetBtn.dataset.bound = "1";
-    resetBtn.addEventListener("click", () => {
-      if (!confirm("세부내역에 직접 입력한 수정 내용을 전부 지울까요?")) return;
-      localStorage.removeItem(NOTE_OVERRIDE_KEY);
-      renderFinanceReport(dashboardData);
-    });
-  }
 
   // 주차별 지출 + 참석인원 + 강사
   const attendByWeek = new Map((data.attendance.weekly || []).map((w) => [w.week, w]));
@@ -938,6 +886,120 @@ function renderFinanceReport(data) {
 }
 
 // 당초 품의 계획 대비 (품의서 "소요예산" 계획금액 vs 실제 집행)
+// 전체 사용내역 검증 - 체크한 항목의 합계를 바로 계산 (체크 상태는 이 브라우저에만 저장)
+const VERIFY_CHECK_KEY = "verifyChecked_v1";
+
+function loadVerifyChecked() {
+  try {
+    return new Set(JSON.parse(localStorage.getItem(VERIFY_CHECK_KEY) || "[]"));
+  } catch {
+    return new Set();
+  }
+}
+
+function renderVerifyTab(data) {
+  const tx = (data.current_transactions || []).map((t, i) => ({ ...t, _key: `${i}` }));
+  if (!tx.length) return;
+
+  const checked = loadVerifyChecked();
+  const saveChecked = () => localStorage.setItem(VERIFY_CHECK_KEY, JSON.stringify([...checked]));
+
+  const catSel = byId("verify-filter-cat");
+  const weekSel = byId("verify-filter-week");
+  const searchInput = byId("verify-search");
+
+  const cats = [...new Set(tx.map((t) => t.raw_category))].sort((a, b) => a.localeCompare(b, "ko"));
+  catSel.innerHTML =
+    `<option value="all">대분류 전체</option>` + cats.map((c) => `<option value="${escapeHtml(c)}">${escapeHtml(c)}</option>`).join("");
+
+  const weeks = [...new Set(tx.map((t) => t.week_label))].sort(
+    (a, b) => (parseInt(a, 10) || 0) - (parseInt(b, 10) || 0),
+  );
+  weekSel.innerHTML =
+    `<option value="all">주차 전체</option>` + weeks.map((w) => `<option value="${escapeHtml(w)}">${escapeHtml(w)}</option>`).join("");
+
+  const visibleRows = () => {
+    const cat = catSel.value;
+    const week = weekSel.value;
+    const q = (searchInput.value || "").trim().toLowerCase();
+    return tx.filter((t) => {
+      if (cat !== "all" && t.raw_category !== cat) return false;
+      if (week !== "all" && t.week_label !== week) return false;
+      if (q && !`${t.detail} ${t.vendor}`.toLowerCase().includes(q)) return false;
+      return true;
+    });
+  };
+
+  const draw = () => {
+    const rows = visibleRows();
+    renderSimpleTable(
+      "verify-table",
+      [
+        {
+          key: "_key",
+          label: "확인",
+          render: (v) =>
+            `<input type="checkbox" class="verify-checkbox" data-verifykey="${escapeHtml(v)}" ${checked.has(v) ? "checked" : ""} />`,
+        },
+        { key: "week_label", label: "주차" },
+        { key: "date", label: "일자" },
+        { key: "raw_category", label: "대분류" },
+        { key: "detail", label: "내역" },
+        { key: "vendor", label: "거래처" },
+        { key: "amount", label: "금액", render: (v) => fmtMoney(v) },
+      ],
+      rows,
+      { week_label: "표시 합계", amount: rows.reduce((s, t) => s + Number(t.amount || 0), 0) },
+    );
+
+    [...byId("verify-table").querySelectorAll("tbody tr")].forEach((tr, i) => {
+      tr.classList.toggle("verify-row-checked", checked.has(rows[i]._key));
+    });
+
+    const checkedRows = tx.filter((t) => checked.has(t._key));
+    const checkedSum = checkedRows.reduce((s, t) => s + Number(t.amount || 0), 0);
+    const total = tx.reduce((s, t) => s + Number(t.amount || 0), 0);
+    byId("verify-summary").innerHTML = [
+      `체크한 항목 <strong>${checkedRows.length}건</strong> / 전체 ${tx.length}건`,
+      `체크 합계 <strong>${fmtMoney(checkedSum)}</strong>`,
+      `미체크 합계 <strong>${fmtMoney(total - checkedSum)}</strong>`,
+      `전체 합계 <strong>${fmtMoney(total)}</strong>`,
+    ]
+      .map((t) => `<span>${t}</span>`)
+      .join("");
+  };
+
+  byId("verify-table").addEventListener("change", (e) => {
+    const box = e.target.closest("[data-verifykey]");
+    if (!box) return;
+    if (box.checked) checked.add(box.dataset.verifykey);
+    else checked.delete(box.dataset.verifykey);
+    saveChecked();
+    draw();
+  });
+
+  [catSel, weekSel].forEach((el) => el.addEventListener("change", draw));
+  searchInput.addEventListener("input", draw);
+
+  byId("verify-check-all").addEventListener("click", () => {
+    visibleRows().forEach((t) => checked.add(t._key));
+    saveChecked();
+    draw();
+  });
+  byId("verify-uncheck-all").addEventListener("click", () => {
+    visibleRows().forEach((t) => checked.delete(t._key));
+    saveChecked();
+    draw();
+  });
+  byId("verify-reset").addEventListener("click", () => {
+    checked.clear();
+    saveChecked();
+    draw();
+  });
+
+  draw();
+}
+
 function renderBudgetCompare(data) {
   const tx = data.current_transactions || [];
   const sumBy = (fn) => tx.filter(fn).reduce((s, t) => s + Number(t.amount || 0), 0);
@@ -1618,6 +1680,7 @@ function startDashboard(loaded) {
       renderStaff(data.staff);
       renderFinanceReport(data);
       renderBudgetCompare(data);
+      renderVerifyTab(data);
       renderWeeklyReport(data);
       renderRoster(data.roster);
 
