@@ -751,8 +751,16 @@ function renderFinanceReport(data) {
     {
       group: "강사료",
       items: [
-        { label: "강사료", filter: (t) => t.raw_category === "강의비" || t.raw_category === "강의비,진행비", note: "11회 강사료" },
-        { label: "진행비", filter: raw("진행비"), note: "액션러닝 진행비" },
+        {
+          label: "강사료",
+          filter: (t) => t.raw_category === "강의비" || t.raw_category === "강의비,진행비",
+          note: "10회차 강사료(10주차 졸업여행 제외). 2주차는 강사료+진행비를 한 건(2,000,000원)으로 세금계산서 처리",
+        },
+        {
+          label: "진행비",
+          filter: raw("진행비"),
+          note: "액션러닝 진행비 8건 — 유일한 대표 5회(1~4·6·9주차 중 5회, 각 1,000,000원) + 강사 직접 진행 3회(7주차 김창원·8주차 고영·11주차 김은정, 각 500,000원). 2주차분은 강사료에 합산 처리되어 미포함",
+        },
       ],
     },
     {
@@ -925,7 +933,7 @@ function renderVerifyTab(data) {
     return tx.filter((t) => {
       if (cat !== "all" && t.raw_category !== cat) return false;
       if (week !== "all" && t.week_label !== week) return false;
-      if (q && !`${t.detail} ${t.vendor}`.toLowerCase().includes(q)) return false;
+      if (q && !`${t.detail} ${t.vendor} ${t.raw_category} ${t.week_label}`.toLowerCase().includes(q)) return false;
       return true;
     });
   };
