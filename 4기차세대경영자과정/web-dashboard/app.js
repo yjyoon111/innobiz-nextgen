@@ -797,7 +797,10 @@ function renderFinanceReport(data) {
     },
     {
       group: "기타",
-      items: [{ label: "운영비", filter: (t) => t.raw_category === "운영비" && !t.detail.includes("회의실"), note: "행사 운영 물품" }],
+      items: [
+        { label: "운영비", filter: (t) => t.raw_category === "운영비" && !t.detail.includes("회의실"), note: "행사 운영 물품" },
+        { label: "원우회 웹사이트 관리비", filter: raw("사이트관리비"), note: "원우회 홈페이지 1년 웹호스팅" },
+      ],
     },
   ];
 
@@ -914,6 +917,7 @@ function renderBudgetCompare(data) {
     "교육장임차 및 회원수첩": sumBy(raw("대관료")) + sumBy((t) => t.raw_category === "운영비" && t.detail.includes("회의실")),
     주차비: sumBy(raw("주차비")),
     예비비: sumBy((t) => t.raw_category === "운영비" && !t.detail.includes("회의실")),
+    "원우회 웹사이트 관리비(계획外)": sumBy(raw("사이트관리비")),
   };
   const expensePlan = {
     강사비: 27750000,
@@ -925,6 +929,7 @@ function renderBudgetCompare(data) {
     "교육장임차 및 회원수첩": 912000,
     주차비: 3000000,
     예비비: 2000000,
+    "원우회 웹사이트 관리비(계획外)": 0,
   };
   const expenseRows = Object.keys(expensePlan).map((k) => ({
     item: k,
@@ -959,6 +964,7 @@ function renderBudgetCompare(data) {
     "해외전시회 참가는 계획 12명(선정) 대비 실제 참가 8명으로 축소되어 계획보다 낮게 집행됨",
     "교육장임차 및 회원수첩(계획)의 회원수첩 비용은 실제 집행 시 인쇄비 항목으로 편성되어 근사 비교임",
     "예비비(계획)는 실제 결산상 '기타(운영비)' 집행분에 대응",
+    "졸업식(계획)은 기념품 등 수료식 고유 소모품만 비교한 값입니다. 11주차(수료식) 실제 총지출은 별도로 발생한 강사비·다과비·인쇄비·임차료·주차비를 포함해 8,582,600원이며, 이 비용들은 각각 강사비·다과및식비·인쇄비·교육장임차·주차비 항목에 이미 포함되어 있어 중복 계산을 피하기 위해 이렇게 나눔",
   ]
     .map((t) => `<li>${escapeHtml(t)}</li>`)
     .join("");
