@@ -799,7 +799,7 @@ function renderFinanceReport(data) {
       group: "기타",
       items: [
         { label: "운영비", filter: (t) => t.raw_category === "운영비" && !t.detail.includes("회의실"), note: "행사 운영 물품" },
-        { label: "원우회 웹사이트 관리비", filter: raw("사이트관리비"), note: "원우회 홈페이지 1년 웹호스팅" },
+        { label: "원우회 온라인 수첩 사이트 유지비", filter: raw("사이트관리비"), note: "온라인 수첩 사이트 웹호스팅(1년)" },
       ],
     },
   ];
@@ -917,7 +917,7 @@ function renderBudgetCompare(data) {
     "교육장임차 및 회원수첩": sumBy(raw("대관료")) + sumBy((t) => t.raw_category === "운영비" && t.detail.includes("회의실")),
     주차비: sumBy(raw("주차비")),
     예비비: sumBy((t) => t.raw_category === "운영비" && !t.detail.includes("회의실")),
-    "원우회 웹사이트 관리비(계획外)": sumBy(raw("사이트관리비")),
+    "원우회 온라인 수첩 사이트 유지비(계획外)": sumBy(raw("사이트관리비")),
   };
   const expensePlan = {
     강사비: 27750000,
@@ -929,7 +929,7 @@ function renderBudgetCompare(data) {
     "교육장임차 및 회원수첩": 912000,
     주차비: 3000000,
     예비비: 2000000,
-    "원우회 웹사이트 관리비(계획外)": 0,
+    "원우회 온라인 수첩 사이트 유지비(계획外)": 0,
   };
   const expenseRows = Object.keys(expensePlan).map((k) => ({
     item: k,
