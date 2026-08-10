@@ -181,7 +181,13 @@
           <div class="table-wrap">
             <table id="finance-summary-table"></table>
           </div>
-          <p class="panel-note report-sub">항목별 지출</p>
+          <p class="panel-note report-sub">
+            항목별 지출
+            <span class="panel-note-hint">("세부내역" 칸을 클릭해서 바로 고칠 수 있어요 · 이 브라우저에만 저장됨)</span>
+            <button type="button" id="finance-note-reset" class="more-btn note-reset-btn" title="세부내역 수정 내용을 전부 원래대로 되돌립니다">
+              메모 초기화
+            </button>
+          </p>
           <div class="table-wrap">
             <table id="finance-category-table"></table>
           </div>
@@ -551,6 +557,6 @@
       </div>
     </div>
 
-    <script src="./app.js?v=20260807n"></script>
+    <script src="./app.js?v=20260807o"></script>
   </body>
 </html>

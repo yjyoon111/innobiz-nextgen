@@ -6,6 +6,32 @@ const fmtMoney = (value) => `${nfmt.format(Number(value || 0))}${KRW}`;
 const fmtPercent = (value) => `${pfmt.format(Number(value || 0) * 100)}%`;
 const fmtCount = (value) => `${nfmt.format(Number(value || 0))}명`;
 
+// 세부내역(메모) 인라인 수정 - 이 브라우저에만 저장됨(로컬 임시 편집용, 원본 데이터는 바뀌지 않음)
+const NOTE_OVERRIDE_KEY = "financeNoteOverrides_v1";
+function loadNoteOverrides() {
+  try {
+    return JSON.parse(localStorage.getItem(NOTE_OVERRIDE_KEY) || "{}");
+  } catch {
+    return {};
+  }
+}
+function saveNoteOverride(key, text) {
+  const overrides = loadNoteOverrides();
+  if (text) overrides[key] = text;
+  else delete overrides[key];
+  localStorage.setItem(NOTE_OVERRIDE_KEY, JSON.stringify(overrides));
+}
+function bindEditableNotes(tableId) {
+  const table = byId(tableId);
+  if (!table || table.dataset.noteEditBound) return;
+  table.dataset.noteEditBound = "1";
+  table.addEventListener("focusout", (e) => {
+    const el = e.target.closest("[data-notekey]");
+    if (!el) return;
+    saveNoteOverride(el.dataset.notekey, el.textContent.trim());
+  });
+}
+
 let weeklyChart;
 let categoryChart;
 let attendanceChart;
@@ -766,7 +792,11 @@ function renderFinanceReport(data) {
       group: "다과 및 식비",
       items: [
         { label: "다과비", filter: raw("다과비"), note: "교육기간 커피, 다과 등" },
-        { label: "식비", filter: raw("식비"), note: "교육 후 석식 등" },
+        {
+          label: "식비",
+          filter: (t) => t.raw_category === "식비" && !t.detail.includes("삼겹살두루치기"),
+          note: "9회 석식비(1~4·6~10주차, 5주차 해외연수·11주차 수료식 제외)",
+        },
       ],
     },
     {
@@ -782,7 +812,14 @@ function renderFinanceReport(data) {
     },
     {
       group: "수료식",
-      items: [{ label: "기념품", filter: raw("기념품"), note: "수료생 선물세트 60개" }],
+      items: [
+        { label: "기념품", filter: raw("기념품"), note: "수료생 선물세트 60개" },
+        {
+          label: "종강파티(식비)",
+          filter: (t) => t.raw_category === "식비" && t.detail.includes("삼겹살두루치기"),
+          note: "11주차 수료식 뒤풀이 회식",
+        },
+      ],
     },
     {
       group: "교육장 임대",
@@ -801,7 +838,7 @@ function renderFinanceReport(data) {
         {
           label: "행사 운영비",
           filter: (t) => t.raw_category === "운영비" && !t.detail.includes("회의실") && !t.detail.includes("수첩"),
-          note: "투썸 기프트카드(답례품 등)",
+          note: "6주차, 투썸 기프트카드(답례품 등)",
         },
         {
           label: "원우회 온라인 수첩 사이트 유지비",
@@ -822,10 +859,18 @@ function renderFinanceReport(data) {
     rows.push({ level: "group", name: g.group, amount: groupTotal, note: "" });
     // 소분류가 하나뿐이고 이름이 그룹과 같으면 중복 행을 만들지 않는다
     if (!(items.length === 1 && items[0].label === g.group)) {
-      items.forEach((it) => rows.push({ level: "item", name: it.label, amount: it.amount, note: it.note }));
+      items.forEach((it) =>
+        rows.push({ level: "item", name: it.label, amount: it.amount, note: it.note, noteKey: `${g.group}::${it.label}` }),
+      );
     } else {
       rows[rows.length - 1].note = items[0].note;
+      rows[rows.length - 1].noteKey = `${g.group}::${items[0].label}`;
     }
+  });
+
+  const noteOverrides = loadNoteOverrides();
+  rows.forEach((r) => {
+    if (r.noteKey && noteOverrides[r.noteKey] !== undefined) r.note = noteOverrides[r.noteKey];
   });
 
   renderSimpleTable(
@@ -840,11 +885,29 @@ function renderFinanceReport(data) {
             : `<span class="sub-item">${escapeHtml(v)}</span>`,
       },
       { key: "amount", label: "금액", render: (v, row) => (row.level === "group" ? `<strong>${fmtMoney(v)}</strong>` : fmtMoney(v)) },
-      { key: "note", label: "세부내역", render: (v) => `<span class="cell-note">${escapeHtml(v || "")}</span>` },
+      {
+        key: "note",
+        label: "세부내역",
+        render: (v, row) =>
+          row.level === "item"
+            ? `<span class="cell-note" contenteditable="true" data-notekey="${escapeHtml(row.noteKey)}">${escapeHtml(v || "")}</span>`
+            : "",
+      },
     ],
     rows,
     { name: "합계", amount: spent, note: "" },
   );
+  bindEditableNotes("finance-category-table");
+
+  const resetBtn = byId("finance-note-reset");
+  if (resetBtn && !resetBtn.dataset.bound) {
+    resetBtn.dataset.bound = "1";
+    resetBtn.addEventListener("click", () => {
+      if (!confirm("세부내역에 직접 입력한 수정 내용을 전부 지울까요?")) return;
+      localStorage.removeItem(NOTE_OVERRIDE_KEY);
+      renderFinanceReport(dashboardData);
+    });
+  }
 
   // 주차별 지출 + 참석인원 + 강사
   const attendByWeek = new Map((data.attendance.weekly || []).map((w) => [w.week, w]));
@@ -918,10 +981,10 @@ function renderBudgetCompare(data) {
   const actualByItem = {
     강사비: sumBy((t) => t.raw_category === "강의비" || t.raw_category === "강의비,진행비" || t.raw_category === "진행비"),
     인쇄비: sumBy(raw("준비비")) + sumBy(raw("인쇄비")),
-    "다과 및 식비": sumBy(raw("다과비")) + sumBy(raw("식비")),
+    "다과 및 식비": sumBy(raw("다과비")) + sumBy((t) => t.raw_category === "식비" && !t.detail.includes("삼겹살두루치기")),
     사무용품: 0,
     "해외전시회 참가": 19738080,
-    졸업식: sumBy(raw("기념품")),
+    졸업식: sumBy(raw("기념품")) + sumBy((t) => t.raw_category === "식비" && t.detail.includes("삼겹살두루치기")),
     "교육장임차 및 회원수첩": sumBy(raw("대관료")) + sumBy((t) => t.raw_category === "운영비" && t.detail.includes("회의실")),
     주차비: sumBy(raw("주차비")),
     예비비: sumBy((t) => t.raw_category === "운영비" && !t.detail.includes("회의실")),
@@ -970,7 +1033,7 @@ function renderBudgetCompare(data) {
     "해외전시회 참가는 계획 12명(선정) 대비 실제 참가 8명으로 축소되어 계획보다 낮게 집행됨",
     "교육장임차 및 회원수첩(계획)의 회원수첩 비용은 실제 집행 시 인쇄비 항목으로 편성되어 근사 비교임",
     "예비비(계획)는 실제 결산상 '운영비'(행사 운영비+원우회 온라인 수첩 사이트 유지비) 집행분에 대응",
-    "졸업식(계획)은 기념품 등 수료식 고유 소모품만 비교한 값입니다. 11주차(수료식) 실제 총지출은 별도로 발생한 강사비·다과비·인쇄비·임차료·주차비를 포함해 8,582,600원이며, 이 비용들은 각각 강사비·다과및식비·인쇄비·교육장임차·주차비 항목에 이미 포함되어 있어 중복 계산을 피하기 위해 이렇게 나눔",
+    "졸업식(계획)은 '졸업선물 및 종강파티'로 명시되어 있어, 실제도 기념품(2,310,000원)+종강파티 회식비(11주차 삼겹살두루치기, 932,000원)로 매칭. 그 외 11주차에 발생한 강사비·다과비(교육기간분)·인쇄비·임차료·주차비는 각각 강사비·다과및식비·인쇄비·교육장임차·주차비 항목에 포함되어 있어 중복 계산을 피하기 위해 이렇게 나눔(11주차 실제 총지출은 8,582,600원)",
   ]
     .map((t) => `<li>${escapeHtml(t)}</li>`)
     .join("");
