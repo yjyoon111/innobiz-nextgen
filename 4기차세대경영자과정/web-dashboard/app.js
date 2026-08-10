@@ -791,10 +791,14 @@ function renderFinanceReport(data) {
     {
       group: "다과 및 식비",
       items: [
-        { label: "다과비", filter: raw("다과비"), note: "교육기간 커피, 다과 등" },
+        {
+          label: "다과비",
+          filter: (t) => t.raw_category === "다과비" && t.week_label !== "11주차",
+          note: "교육기간 커피, 다과 등(11주차 수료식 제외)",
+        },
         {
           label: "식비",
-          filter: (t) => t.raw_category === "식비" && !t.detail.includes("삼겹살두루치기"),
+          filter: (t) => t.raw_category === "식비" && t.week_label !== "11주차",
           note: "9회 석식비(1~4·6~10주차, 5주차 해외연수·11주차 수료식 제외)",
         },
       ],
@@ -815,9 +819,9 @@ function renderFinanceReport(data) {
       items: [
         { label: "기념품", filter: raw("기념품"), note: "수료생 선물세트 60개" },
         {
-          label: "종강파티(식비)",
-          filter: (t) => t.raw_category === "식비" && t.detail.includes("삼겹살두루치기"),
-          note: "11주차 수료식 뒤풀이 회식",
+          label: "종강파티(다과·식비)",
+          filter: (t) => (t.raw_category === "다과비" || t.raw_category === "식비") && t.week_label === "11주차",
+          note: "11주차 수료식 다과·뒤풀이 회식",
         },
       ],
     },
@@ -981,10 +985,12 @@ function renderBudgetCompare(data) {
   const actualByItem = {
     강사비: sumBy((t) => t.raw_category === "강의비" || t.raw_category === "강의비,진행비" || t.raw_category === "진행비"),
     인쇄비: sumBy(raw("준비비")) + sumBy(raw("인쇄비")),
-    "다과 및 식비": sumBy(raw("다과비")) + sumBy((t) => t.raw_category === "식비" && !t.detail.includes("삼겹살두루치기")),
+    "다과 및 식비":
+      sumBy((t) => t.raw_category === "다과비" && t.week_label !== "11주차") +
+      sumBy((t) => t.raw_category === "식비" && t.week_label !== "11주차"),
     사무용품: 0,
     "해외전시회 참가": 19738080,
-    졸업식: sumBy(raw("기념품")) + sumBy((t) => t.raw_category === "식비" && t.detail.includes("삼겹살두루치기")),
+    졸업식: sumBy(raw("기념품")) + sumBy((t) => (t.raw_category === "다과비" || t.raw_category === "식비") && t.week_label === "11주차"),
     "교육장임차 및 회원수첩": sumBy(raw("대관료")) + sumBy((t) => t.raw_category === "운영비" && t.detail.includes("회의실")),
     주차비: sumBy(raw("주차비")),
     예비비: sumBy((t) => t.raw_category === "운영비" && !t.detail.includes("회의실")),
@@ -1033,7 +1039,7 @@ function renderBudgetCompare(data) {
     "해외전시회 참가는 계획 12명(선정) 대비 실제 참가 8명으로 축소되어 계획보다 낮게 집행됨",
     "교육장임차 및 회원수첩(계획)의 회원수첩 비용은 실제 집행 시 인쇄비 항목으로 편성되어 근사 비교임",
     "예비비(계획)는 실제 결산상 '운영비'(행사 운영비+원우회 온라인 수첩 사이트 유지비) 집행분에 대응",
-    "졸업식(계획)은 '졸업선물 및 종강파티'로 명시되어 있어, 실제도 기념품(2,310,000원)+종강파티 회식비(11주차 삼겹살두루치기, 932,000원)로 매칭. 그 외 11주차에 발생한 강사비·다과비(교육기간분)·인쇄비·임차료·주차비는 각각 강사비·다과및식비·인쇄비·교육장임차·주차비 항목에 포함되어 있어 중복 계산을 피하기 위해 이렇게 나눔(11주차 실제 총지출은 8,582,600원)",
+    "졸업식(계획)은 '졸업선물 및 종강파티'로 명시되어 있어, 실제도 기념품(2,310,000원)+11주차 다과·회식비(1,293,100원)로 매칭. 그 외 11주차에 발생한 강사비·인쇄비·임차료·주차비는 각각 강사비·인쇄비·교육장임차·주차비 항목에 포함되어 있어 중복 계산을 피하기 위해 이렇게 나눔(11주차 실제 총지출은 8,582,600원)",
   ]
     .map((t) => `<li>${escapeHtml(t)}</li>`)
     .join("");
