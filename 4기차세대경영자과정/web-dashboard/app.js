@@ -956,6 +956,20 @@ function renderVerifyTab(data) {
       tr.classList.toggle("verify-row-checked", checked.has(rows[i]._key));
     });
 
+    // 헤더의 전체선택 체크박스 (현재 목록 기준)
+    const checkedInView = rows.filter((t) => checked.has(t._key)).length;
+    const headCell = byId("verify-table").querySelector("thead th");
+    headCell.innerHTML = `<input type="checkbox" class="verify-checkbox" id="verify-master" title="현재 목록 전체 선택" />`;
+    const master = byId("verify-master");
+    master.checked = rows.length > 0 && checkedInView === rows.length;
+    master.indeterminate = checkedInView > 0 && checkedInView < rows.length;
+    master.addEventListener("change", () => {
+      if (master.checked) rows.forEach((t) => checked.add(t._key));
+      else rows.forEach((t) => checked.delete(t._key));
+      saveChecked();
+      draw();
+    });
+
     const checkedRows = tx.filter((t) => checked.has(t._key));
     const checkedSum = checkedRows.reduce((s, t) => s + Number(t.amount || 0), 0);
     const total = tx.reduce((s, t) => s + Number(t.amount || 0), 0);
