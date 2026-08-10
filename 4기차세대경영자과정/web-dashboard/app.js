@@ -981,16 +981,6 @@ function renderVerifyTab(data) {
   [catSel, weekSel].forEach((el) => el.addEventListener("change", draw));
   searchInput.addEventListener("input", draw);
 
-  byId("verify-check-all").addEventListener("click", () => {
-    visibleRows().forEach((t) => checked.add(t._key));
-    saveChecked();
-    draw();
-  });
-  byId("verify-uncheck-all").addEventListener("click", () => {
-    visibleRows().forEach((t) => checked.delete(t._key));
-    saveChecked();
-    draw();
-  });
   byId("verify-reset").addEventListener("click", () => {
     checked.clear();
     saveChecked();
