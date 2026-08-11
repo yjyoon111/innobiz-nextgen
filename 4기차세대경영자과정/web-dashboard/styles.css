@@ -704,6 +704,7 @@ body {
 .cell-note {
   color: var(--muted);
   font-size: 12px;
+  white-space: pre-line;
 }
 
 .cell-note[contenteditable="true"] {
