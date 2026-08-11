@@ -858,7 +858,7 @@ function renderFinanceReport(data) {
         {
           label: "회의실 임차료",
           filter: (t) => t.raw_category === "운영비" && t.detail.includes("회의실"),
-          note: "- 9주차 C동 보증금 및 사용료(3)",
+          note: "- 9주차 C동 회의실 사용료(냉방료 포함, 환급 예정인 보증금 20만원 별도)(3)",
         },
         {
           label: "사회비",
