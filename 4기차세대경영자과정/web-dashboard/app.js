@@ -707,6 +707,22 @@ async function captureSection(btn) {
   }
 }
 
+// 표 위주 섹션은 이미지 대신 엑셀로 다운로드 (모바일에서 이미지 저장이 깨지는 문제 회피)
+function exportSectionExcel(btn) {
+  const target = byId(btn.dataset.captureTarget);
+  if (!target || typeof XLSX === "undefined") return;
+  const tables = [...target.querySelectorAll("table")].filter((t) => t.rows.length);
+  if (!tables.length) return;
+  const wb = XLSX.utils.book_new();
+  tables.forEach((t, i) => {
+    const ws = XLSX.utils.table_to_sheet(t);
+    const name = (t.dataset.sheetName || `표${i + 1}`).slice(0, 31);
+    XLSX.utils.book_append_sheet(wb, ws, name);
+  });
+  const today = new Date().toISOString().slice(0, 10);
+  XLSX.writeFile(wb, `${btn.dataset.captureName || "대시보드"}_${today}.xlsx`);
+}
+
 // 주차별 강사 (연수일정표 기준)
 const WEEK_LECTURERS = {
   1: "신제구 교수 (입학식)",
@@ -1379,7 +1395,8 @@ function renderStaff(staff) {
 
 function bindCaptureButtons() {
   document.querySelectorAll(".capture-btn").forEach((btn) => {
-    btn.addEventListener("click", () => captureSection(btn));
+    if (btn.dataset.export === "excel") btn.addEventListener("click", () => exportSectionExcel(btn));
+    else btn.addEventListener("click", () => captureSection(btn));
   });
 }
 

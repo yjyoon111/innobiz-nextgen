@@ -175,21 +175,21 @@
               <h2>연수 수지 (결과보고서용)</h2>
               <p class="panel-note">결과보고서 「연수 수지」 항목에 그대로 옮겨 쓸 수 있는 형식입니다. 단위: 원</p>
             </div>
-            <button type="button" class="capture-btn" data-capture-target="capture-finance" data-capture-name="연수수지">
-              🖼️ 저장
+            <button type="button" class="capture-btn" data-export="excel" data-capture-target="capture-finance" data-capture-name="연수수지">
+              📥 엑셀
             </button>
           </div>
           <div class="table-wrap">
-            <table id="finance-summary-table"></table>
+            <table id="finance-summary-table" data-sheet-name="수입지출수익"></table>
           </div>
           <p class="panel-note report-sub">항목별 지출</p>
           <div class="table-wrap">
-            <table id="finance-category-table"></table>
+            <table id="finance-category-table" data-sheet-name="항목별지출"></table>
           </div>
           <ul class="report-footnote" id="finance-category-note"></ul>
           <p class="panel-note report-sub">주차별 지출</p>
           <div class="table-wrap">
-            <table id="finance-weekly-table"></table>
+            <table id="finance-weekly-table" data-sheet-name="주차별지출"></table>
           </div>
         </section>
       </div>
@@ -204,12 +204,12 @@
               <h2>수입 비교 (당초 품의 계획 대비)</h2>
               <p class="panel-note">최초 품의서 계획금액과 실제 확정 수입을 비교합니다.</p>
             </div>
-            <button type="button" class="capture-btn" data-capture-target="capture-budget-income" data-capture-name="수입_계획대비">
-              🖼️ 저장
+            <button type="button" class="capture-btn" data-export="excel" data-capture-target="capture-budget-income" data-capture-name="수입_계획대비">
+              📥 엑셀
             </button>
           </div>
           <div class="table-wrap">
-            <table id="budget-income-table"></table>
+            <table id="budget-income-table" data-sheet-name="수입_계획대비"></table>
           </div>
         </section>
 
@@ -219,12 +219,12 @@
               <h2>지출 비교 (당초 품의 계획 대비)</h2>
               <p class="panel-note">계획 항목과 실제 집행 항목의 분류 기준이 달라 일부는 근사 매칭입니다. 자세한 내용은 하단 비고 참고.</p>
             </div>
-            <button type="button" class="capture-btn" data-capture-target="capture-budget-expense" data-capture-name="지출_계획대비">
-              🖼️ 저장
+            <button type="button" class="capture-btn" data-export="excel" data-capture-target="capture-budget-expense" data-capture-name="지출_계획대비">
+              📥 엑셀
             </button>
           </div>
           <div class="table-wrap">
-            <table id="budget-expense-table"></table>
+            <table id="budget-expense-table" data-sheet-name="지출_계획대비"></table>
           </div>
           <ul class="report-footnote" id="budget-note"></ul>
         </section>
@@ -321,12 +321,12 @@
                 <h2>강사별 만족도</h2>
                 <p class="panel-note">강의 내용 전달력 및 열의 (5점 만점, 높은 순)</p>
               </div>
-              <button type="button" class="capture-btn" data-capture-target="capture-survey-lecturer" data-capture-name="강사별_만족도">
-                🖼️ 저장
+              <button type="button" class="capture-btn" data-export="excel" data-capture-target="capture-survey-lecturer" data-capture-name="강사별_만족도">
+                📥 엑셀
               </button>
             </div>
             <div class="table-wrap">
-              <table id="survey-lecturer-table"></table>
+              <table id="survey-lecturer-table" data-sheet-name="강사별만족도"></table>
             </div>
           </article>
         </section>
@@ -425,12 +425,12 @@
               <h2>차수별 출석률 및 만족도 (결과보고서용)</h2>
               <p class="panel-note">결과보고서 「차수별 출석률 및 만족도」 항목 형식입니다. 만족도는 5점 척도.</p>
             </div>
-            <button type="button" class="capture-btn" data-capture-target="capture-weekly-report" data-capture-name="차수별_출석률_만족도">
-              🖼️ 저장
+            <button type="button" class="capture-btn" data-export="excel" data-capture-target="capture-weekly-report" data-capture-name="차수별_출석률_만족도">
+              📥 엑셀
             </button>
           </div>
           <div class="table-wrap">
-            <table id="report-weekly-table"></table>
+            <table id="report-weekly-table" data-sheet-name="차수별출석률만족도"></table>
           </div>
           <ul class="report-footnote">
             <li>5주차 해외연수는 선택제로 참가자 8명만 참여하였으며, 평균 출석률 산정 시 미참가자는 해당 주차 결석으로 반영함(전 회차 100% 출석은 해외연수 참가자 중 4명만 해당)</li>
@@ -442,7 +442,7 @@
           </ul>
           <p class="panel-note report-sub">이전 기수 비교</p>
           <div class="table-wrap">
-            <table id="report-cohort-table"></table>
+            <table id="report-cohort-table" data-sheet-name="이전기수비교"></table>
           </div>
         </section>
 
@@ -581,6 +581,6 @@
       </div>
     </div>
 
-    <script src="./app.js?v=2026080803"></script>
+    <script src="./app.js?v=2026080804"></script>
   </body>
 </html>
