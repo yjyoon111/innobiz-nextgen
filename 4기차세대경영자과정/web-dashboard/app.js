@@ -754,7 +754,11 @@ function renderFinanceReport(data) {
     [
       { label: "수입", value: income, note: "교육비 + 해외연수 참가비" },
       { label: "지출", value: spent, note: "1~11주차 집행액" },
-      { label: "수익", value: income - spent, note: `집행률 ${fmtPercent(kpis.budget_usage_rate)}` },
+      {
+        label: "수익",
+        value: income - spent,
+        note: `집행률 ${fmtPercent(kpis.budget_usage_rate)} / 참고: 3기(25년) 수익 18,317천원(31명 참여)`,
+      },
     ],
   );
 
