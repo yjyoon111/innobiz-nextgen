@@ -794,6 +794,11 @@ function renderFinanceReport(data) {
           filter: (t) => t.raw_category === "운영비" && !t.detail.includes("회의실") && !t.detail.includes("수첩"),
           note: "- 6회차 액션러닝 진행 물품(카페 기프트카드 10,000원×7장)",
         },
+        {
+          label: "행사용품(와인)",
+          filter: (t) => t.raw_category === "식비" && t.detail.includes("끌리마"),
+          note: "- 8주차 와인파티 비용(끌리마) — 결의서상 '석식, 행사 운영비'로 식비가 아닌 이 항목으로 재분류",
+        },
       ],
     },
     {
@@ -806,8 +811,8 @@ function renderFinanceReport(data) {
         },
         {
           label: "식비",
-          filter: raw("식비"),
-          note: "- 교육 후 식비(석식)(10회)(1)",
+          filter: (t) => t.raw_category === "식비" && !t.detail.includes("끌리마"),
+          note: "- 교육 후 식비(석식)(9회)(1) — 8주차는 와인파티로 대체되어 사무용품비 항목에 반영",
         },
       ],
     },
@@ -1103,8 +1108,10 @@ function renderBudgetCompare(data) {
     강사료: sumBy((t) => t.raw_category === "강의비" || t.raw_category === "강의비,진행비") - W2_FACILITATION,
     액션러닝: sumBy(raw("진행비")) - MC_FEE + W2_FACILITATION,
     인쇄비: sumBy(raw("준비비")) + sumBy(raw("인쇄비")),
-    사무용품비: sumBy((t) => t.raw_category === "운영비" && !t.detail.includes("회의실") && !t.detail.includes("수첩")),
-    "다과 및 식비": sumBy(raw("다과비")) + sumBy(raw("식비")),
+    사무용품비:
+      sumBy((t) => t.raw_category === "운영비" && !t.detail.includes("회의실") && !t.detail.includes("수첩")) +
+      sumBy((t) => t.raw_category === "식비" && t.detail.includes("끌리마")),
+    "다과 및 식비": sumBy(raw("다과비")) + sumBy((t) => t.raw_category === "식비" && !t.detail.includes("끌리마")),
     "해외전시회 참가비": 19738080,
     // 계획상 졸업식 세부(현수막·식비·다과비)는 인쇄비/다과및식비에 합산 처리 -> 실제는 기념품만 남음(각주1)
     "수료식(졸업식)": sumBy(raw("기념품")),
